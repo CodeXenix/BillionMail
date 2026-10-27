@@ -1094,7 +1094,7 @@ CLEAR_OLD_IMAGE() {
     # Extract complete image names (including tags) defined in compose file
     # echo "Extracting billionmail images from docker-compose.yml..."
     # COMPOSE_IMAGES=$(grep -oP 'image:\s*\K[^"\s]+' docker-compose.yml | sort -u)
-    COMPOSE_IMAGES=$(grep -oP 'image:\s*\K(?:billionmail|ghcr\.io/aapanel)[^"\s]+' docker-compose.yml | sort -u)
+    COMPOSE_IMAGES=$(grep -oP 'image:\s*\K(?:billionmail|ghcr\.io/aapanel|ghcr\.io/codexenix)[^"\s]+' docker-compose.yml | sort -u)
 
     # Check if any images were found
     if [ -z "${COMPOSE_IMAGES}" ]; then

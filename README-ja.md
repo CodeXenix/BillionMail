@@ -20,7 +20,7 @@ Xenix Mailは、ビジネスや個人がメールキャンペーンを簡単に�
 ### Step 1: Xenix Mailのインストール
 インストールから最初のメール送信成功まで**約8分**で完了します。
 ```shell
-cd /opt && git clone https://github.com/CodeXenix/XenixMail && cd XenixMail && bash install.sh
+cd /opt && git clone -b main https://github.com/CodeXenix/XenixMail && cd XenixMail && bash install.sh
 ```
 
 ### Step 2: ドメインを接続する
@@ -36,7 +36,7 @@ cd /opt && git clone https://github.com/CodeXenix/XenixMail && cd XenixMail && b
 ## Dockerでインストール
 Dockerとdocker-composeプラグインを各自でインストールし、`.env`ファイルを編集してください。
 ```shell
-cd /opt && git clone https://github.com/CodeXenix/XenixMail && cd XenixMail && cp env_init .env && docker compose up -d || docker-compose up -d
+cd /opt && git clone -b main https://github.com/CodeXenix/XenixMail && cd XenixMail && cp env_init .env && docker compose up -d || docker-compose up -d
 ```
 
 ## 管理スクリプト

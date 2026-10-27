@@ -20,7 +20,7 @@ Xenix Mail 是一个开源的**邮件服务器和电子邮件营销平台**，�
 ### 第 1 步：安装 Xenix Mail
 从安装到首次成功发送**大约只需 8 分钟**。
 ```shell
-cd /opt && git clone https://github.com/CodeXenix/XenixMail && cd XenixMail && bash install.sh
+cd /opt && git clone -b main https://github.com/CodeXenix/XenixMail && cd XenixMail && bash install.sh
 ```
 
 ### 第 2 步：连接您的域名
@@ -36,7 +36,7 @@ cd /opt && git clone https://github.com/CodeXenix/XenixMail && cd XenixMail && b
 ## 使用 Docker 安装
 请自行安装 Docker 和 docker-compose 插件，然后修改 `.env` 文件。
 ```shell
-cd /opt && git clone https://github.com/CodeXenix/XenixMail && cd XenixMail && cp env_init .env && docker compose up -d || docker-compose up -d
+cd /opt && git clone -b main https://github.com/CodeXenix/XenixMail && cd XenixMail && cp env_init .env && docker compose up -d || docker-compose up -d
 ```
 
 ## 管理脚本

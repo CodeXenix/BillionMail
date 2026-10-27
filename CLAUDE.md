@@ -4,14 +4,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Xenix Mail is an open-source mail server and email marketing platform (bulk sending, campaigns, contacts, warmup, analytics). The Go backend + Vue admin UI live in `core/`; the mail stack (Postfix, Dovecot, Rspamd, Roundcube, Postgres, Redis) runs as separate containers configured from `conf/`.
 
-**Naming:** the project is a rebrand of BillionMail. Everything users see and every code name (Go module `xenixmail-core`) says Xenix Mail. Runtime names stay `billionmail` on purpose, so existing installs and the upstream Docker Hub images keep working: image names (`billionmail/*`), compose services and containers (`*-billionmail`), `billionmail-network`, `/opt/billionmail` paths, `BILLIONMAIL_*` env vars, the database name and user, the Postfix `master.cf` markers, and the session cookie and server names (`billion_mail` in config.yaml, `consts.DEFAULT_SERVER_NAME`), which key stored sessions. Do not rename them in passing. Name new user-facing text "Xenix Mail".
+**Naming:** the project is a rebrand of BillionMail. Everything users see and every code name (Go module `xenixmail-core`) says Xenix Mail. Runtime names stay `billionmail` on purpose, so existing installs and the upstream Docker Hub images keep working: image names (`billionmail/*` for postfix, dovecot and rspamd; only core is our own image, `ghcr.io/codexenix/xenixmail-core`), compose services and containers (`*-billionmail`), `billionmail-network`, `/opt/billionmail` paths, `BILLIONMAIL_*` env vars, the database name and user, the Postfix `master.cf` markers, and the session cookie and server names (`billion_mail` in config.yaml, `consts.DEFAULT_SERVER_NAME`), which key stored sessions. Do not rename them in passing. Name new user-facing text "Xenix Mail".
 
 ## Stack
 
 - **Backend:** Go 1.24 (`core/go.mod`), GoFrame v2, PostgreSQL, Redis
 - **Frontend:** Vue 3, TypeScript, Pinia, Naive UI, UnoCSS, Rsbuild, Vitest, pnpm
 - **Mail:** Postfix, Dovecot, Rspamd, Roundcube
-- **Deploy:** Docker Compose (`docker-compose.yml` at repo root)
+- **Deploy:** Docker Compose (`docker-compose.yml` at repo root), one VM per company; see `docs/DEPLOY.md`. `.github/workflows/core-image.yml` builds the core image from `main` (Go binary plus the committed `core/public/dist`) and publishes it to GHCR.
 
 ## Commands
 
@@ -73,7 +73,7 @@ After editing any file, run the matching vet/gofmt or lint command above and fix
 **Built frontend is committed:** `core/public/dist` is checked in and served by core. Rebuild it with `pnpm build:git` when a frontend change has to ship.
 
 **Local dev loop:**
-- The `core-billionmail` container runs the Docker Hub image `billionmail/core:<ver>`, so local source changes do not reach it automatically.
+- The `core-billionmail` container runs `ghcr.io/codexenix/xenixmail-core:latest`, so local source changes do not reach it automatically. A local, untracked `docker-compose.override.yml` can bind-mount the built binary, `public/`, `template/`, `languages/` and `manifest/` from the source tree instead; its header has the build commands.
 - `core/run_dev.sh` builds the binary inside a `p-g-alpine` helper container (set it up as shown in the header of `core/go-build.sh`), copies the binary plus `public/`, `manifest/` and `template/` into the core container, and restarts it.
 - `go run run_dev.go` watches the tree and re-runs that script on changes.
 

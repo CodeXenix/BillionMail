@@ -20,7 +20,7 @@ Xenix Mail is an open-source **mail server and email marketing platform** that h
 ### Step 1: Install Xenix Mail
 It takes **about 8 minutes** from installation to your first successful send.
 ```shell
-cd /opt && git clone https://github.com/CodeXenix/XenixMail && cd XenixMail && bash install.sh
+cd /opt && git clone -b main https://github.com/CodeXenix/XenixMail && cd XenixMail && bash install.sh
 ```
 
 ### Step 2: Connect your domain
@@ -36,7 +36,7 @@ cd /opt && git clone https://github.com/CodeXenix/XenixMail && cd XenixMail && b
 ## Install with Docker
 Install Docker and the docker-compose plugin yourself, then edit the `.env` file.
 ```shell
-cd /opt && git clone https://github.com/CodeXenix/XenixMail && cd XenixMail && cp env_init .env && docker compose up -d || docker-compose up -d
+cd /opt && git clone -b main https://github.com/CodeXenix/XenixMail && cd XenixMail && cp env_init .env && docker compose up -d || docker-compose up -d
 ```
 
 ## Management script

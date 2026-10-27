@@ -20,7 +20,7 @@ Xenix Mail, işletmelerin ve bireylerin e-posta kampanyalarını kolayca yönetm
 ### Adım 1: Xenix Mail'i Kurun
 Kurulumdan ilk başarılı gönderime geçmek **yaklaşık 8 dakika** sürer.
 ```shell
-cd /opt && git clone https://github.com/CodeXenix/XenixMail && cd XenixMail && bash install.sh
+cd /opt && git clone -b main https://github.com/CodeXenix/XenixMail && cd XenixMail && bash install.sh
 ```
 
 ### Adım 2: Alan Adınızı Bağlayın
@@ -36,7 +36,7 @@ cd /opt && git clone https://github.com/CodeXenix/XenixMail && cd XenixMail && b
 ## Docker ile Kurulum
 Docker'ı ve docker-compose eklentisini kendiniz kurun, ardından `.env` dosyasını düzenleyin.
 ```shell
-cd /opt && git clone https://github.com/CodeXenix/XenixMail && cd XenixMail && cp env_init .env && docker compose up -d || docker-compose up -d
+cd /opt && git clone -b main https://github.com/CodeXenix/XenixMail && cd XenixMail && cp env_init .env && docker compose up -d || docker-compose up -d
 ```
 
 ## Yönetim Scripti
