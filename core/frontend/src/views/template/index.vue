@@ -1,6 +1,6 @@
 <template>
 	<div class="p-24px">
-		<div class="bt-title">{{ t('template.template') }}</div>
+		<h1 class="bt-title">{{ t('template.template') }}</h1>
 		<bt-table-layout>
 			<template #toolsLeft>
 				<n-button type="primary" @click="handleAdd">
@@ -15,7 +15,11 @@
 			<template #table>
 				<n-data-table :loading="loading" :columns="columns" :data="tableList">
 					<template #empty>
-						<bt-table-help> </bt-table-help>
+						<bt-table-help>
+							<n-button type="primary" size="small" @click="handleAdd">
+								{{ t('market.template.actions.add') }}
+							</n-button>
+						</bt-table-help>
 					</template>
 				</n-data-table>
 			</template>
@@ -43,6 +47,7 @@ import { deleteTemplate, duplicateTemplate, getTemplateList ,updateTemplate} fro
 import type { Template, TemplateParams } from './interface'
 
 // import TemplateAdd from './components/TemplateAdd.vue'
+import BtIconAction from '@/components/base/bt-icon-action/index.vue'
 import TemplateForm from './components/TemplateForm.vue'
 import TemplatePreview from './components/TemplatePreview.vue'
 import CreateTplModal from './components/CreateTplModal.vue'
@@ -88,7 +93,7 @@ const columns = ref<DataTableColumns<Template>>([
 		},
 		render: row => {
 			if (!row.isEdit) {
-				return <div class="flex justify-start gap-1.25 items-center">
+				return <div class="flex justify-start gap-4px items-center">
 					<NButton
 						type="primary"
 						text
@@ -97,13 +102,13 @@ const columns = ref<DataTableColumns<Template>>([
 						}}>
 						{row.temp_name}
 					</NButton>
-					<i class="i-ci:edit-pencil-line-01 text-14px cursor-pointer" onClick={()=>{
+					<i class="i-lucide-pencil-line text-14px cursor-pointer" onClick={()=>{
 						row.isEdit = true
 						row.edit_name = row.temp_name
 						}}></i>
 				</div>
 			} else {
-				return <div class="flex justify-start gap-1.25 items-center">
+				return <div class="flex justify-start gap-4px items-center">
 					<n-input class="edit-domain-input" v-model:value={row.edit_name}></n-input>
 					<n-button text type="info" class="text-12px" onClick={()=>confirmUpdateTemplateName(row)}>{t('market.template.edit.confirm')}</n-button>
 					<n-button text type="default" onClick={()=>{
@@ -150,42 +155,40 @@ const columns = ref<DataTableColumns<Template>>([
 		title: t('common.columns.actions'),
 		key: 'actions',
 		align: 'right',
-		width: 240,
+		// 4 icon buttons: 4 × 28 + 3 × 4 + 24
+		width: 148,
 		render: row => (
-			<NFlex inline={true}>
-				<NButton
-					type="primary"
-					text={true}
+			<NFlex inline={true} size={4}>
+				<BtIconAction
+					icon="i-lucide-eye"
+					label={t('common.actions.preview')}
 					onClick={() => {
 						handlePreview(row.html_content)
-					}}>
-					{t('common.actions.preview')}
-				</NButton>
-				<NButton
-					type="primary"
-					text={true}
+					}}
+				/>
+				<BtIconAction
+					icon="i-lucide-pencil"
+					label={t('common.actions.edit')}
 					onClick={() => {
 						handleEdit(row)
-					}}>
-					{t('common.actions.edit')}
-				</NButton>
-				<NButton
-					type="primary"
-					text={true}
+					}}
+				/>
+				<BtIconAction
+					icon="i-lucide-copy-plus"
+					label={t('market.template.actions.duplicate')}
 					disabled={row.add_type == 2}
 					onClick={() => {
 						handleDuplicate(row)
-					}}>
-					{t('market.template.actions.duplicate')}
-				</NButton>
-				<NButton
+					}}
+				/>
+				<BtIconAction
+					icon="i-lucide-trash-2"
+					label={t('common.actions.delete')}
 					type="error"
-					text={true}
 					onClick={() => {
 						handleDelete(row)
-					}}>
-					{t('common.actions.delete')}
-				</NButton>
+					}}
+				/>
 			</NFlex>
 		),
 	},
@@ -265,18 +268,6 @@ const handleDelete = (row: Template) => {
 </script>
 
 <style lang="scss" scoped>
-.template-container {
-	padding: 16px;
-	background-color: #fff;
-	border-radius: 3px;
-
-	.action-bar {
-		display: flex;
-		justify-content: space-between;
-		margin-bottom: 16px;
-	}
-}
-
 :deep(.edit-domain-input) {
 	height: 26px;
 

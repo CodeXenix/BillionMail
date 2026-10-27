@@ -1,6 +1,6 @@
 <template>
 	<div class="p-24px">
-		<div class="bt-title">{{ $t('smtp.title') }}</div>
+		<h1 class="bt-title">{{ $t('smtp.title') }}</h1>
 		<div class="flex gap-12px mb-16px">
 			<n-dropdown
 				placement="bottom-start"
@@ -10,11 +10,10 @@
 				@select="handleSelectAdd">
 				<n-button type="primary">
 					<span class="mr-4px">{{ $t('common.actions.add') }}</span>
-					<i class="i-mdi-chevron-down text-17px"></i>
+					<i class="i-lucide-chevron-down text-17px"></i>
 				</n-button>
 			</n-dropdown>
-			<bt-help href="https://www.billionmail.com/start/smtp.html" :text="$t('smtp.description')">
-			</bt-help>
+			<span class="self-center text-desc">{{ $t('smtp.description') }}</span>
 		</div>
 		<smtp-loading v-if="loading"></smtp-loading>
 		<div
@@ -137,6 +136,8 @@ const handleDelete = (service: SmtpService) => {
 	confirm({
 		title: t('smtp.delete.title'),
 		content: t('smtp.delete.confirm', { name: service.smtp_name }),
+		confirmType: 'error',
+		confirmText: t('common.actions.delete'),
 		onConfirm: async () => {
 			await deleteSmtp({ id: service.id })
 			getCardList()

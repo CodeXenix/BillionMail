@@ -1,11 +1,6 @@
 package mail_service
 
 import (
-	v1 "billionmail-core/api/domains/v1"
-	"billionmail-core/internal/consts"
-	"billionmail-core/internal/service/acme"
-	docker "billionmail-core/internal/service/dockerapi"
-	"billionmail-core/internal/service/public"
 	"context"
 	"fmt"
 	"os"
@@ -13,6 +8,11 @@ import (
 	"strings"
 	"sync"
 	"time"
+	v1 "xenixmail-core/api/domains/v1"
+	"xenixmail-core/internal/consts"
+	"xenixmail-core/internal/service/acme"
+	docker "xenixmail-core/internal/service/dockerapi"
+	"xenixmail-core/internal/service/public"
 
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/text/gregex"
@@ -475,7 +475,7 @@ func (c *Certificate) GetSSLInfo(domain string) (certInfo v1.CertInfo, err error
 
 	certInfo, err = c.getSSLInfoFromDatabase(domain)
 	if err == nil && certInfo.Endtime > 0 {
-		return  certInfo, err
+		return certInfo, err
 	}
 
 	// Fallback to file system (legacy certificates)

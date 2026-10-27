@@ -1,9 +1,9 @@
 package v1
 
 import (
-	"billionmail-core/internal/model/entity"
-	"billionmail-core/utility/types/api_v1"
 	"github.com/gogf/gf/v2/frame/g"
+	"xenixmail-core/internal/model/entity"
+	"xenixmail-core/utility/types/api_v1"
 )
 
 type TagInfo struct {

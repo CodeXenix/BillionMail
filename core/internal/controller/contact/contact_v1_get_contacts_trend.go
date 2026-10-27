@@ -1,7 +1,6 @@
 package contact
 
 import (
-	"billionmail-core/internal/service/public"
 	"context"
 	"github.com/gogf/gf/v2/database/gdb"
 	"github.com/gogf/gf/v2/errors/gerror"
@@ -9,8 +8,9 @@ import (
 	"strconv"
 	"strings"
 	"time"
+	"xenixmail-core/internal/service/public"
 
-	"billionmail-core/api/contact/v1"
+	"xenixmail-core/api/contact/v1"
 )
 
 func (c *ControllerV1) GetContactsTrend(ctx context.Context, req *v1.GetContactsTrendReq) (res *v1.GetContactsTrendRes, err error) {
@@ -273,7 +273,7 @@ func (c *ControllerV1) fillMonthlyTrendData(data []struct {
 		}
 
 		result = append(result, &v1.MonthlyCount{
-			Date: monthStr,
+			Date:  monthStr,
 			Count: count,
 		})
 	}

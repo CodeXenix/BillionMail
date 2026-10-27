@@ -34,12 +34,12 @@ describe('BtSearch', () => {
 
   it('renders search icon in suffix by default (prefix=false)', () => {
     const wrapper = mountComponent()
-    expect(wrapper.find('.i-mdi-search').exists()).toBe(true)
+    expect(wrapper.find('.i-lucide-search').exists()).toBe(true)
   })
 
   it('renders search icon in prefix when prefix prop is true', () => {
     const wrapper = mountComponent({ prefix: true })
-    expect(wrapper.find('.i-mdi-search').exists()).toBe(true)
+    expect(wrapper.find('.i-lucide-search').exists()).toBe(true)
   })
 
   it('emits search event when search icon clicked', async () => {

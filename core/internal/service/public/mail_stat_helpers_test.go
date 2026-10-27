@@ -1,8 +1,8 @@
 package public
 
 import (
-	"billionmail-core/internal/consts"
 	"testing"
+	"xenixmail-core/internal/consts"
 
 	"github.com/stretchr/testify/assert"
 )

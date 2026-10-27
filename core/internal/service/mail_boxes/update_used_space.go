@@ -1,9 +1,6 @@
 package mail_boxes
 
 import (
-	"billionmail-core/internal/consts"
-	"billionmail-core/internal/service/dockerapi"
-	"billionmail-core/internal/service/public"
 	"bufio"
 	"context"
 	"fmt"
@@ -14,6 +11,9 @@ import (
 	"strings"
 	"sync"
 	"sync/atomic"
+	"xenixmail-core/internal/consts"
+	"xenixmail-core/internal/service/dockerapi"
+	"xenixmail-core/internal/service/public"
 )
 
 var domainUsageColumnEnsured int32 // 0-Unverified, 1-Verified

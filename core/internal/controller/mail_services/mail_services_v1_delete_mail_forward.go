@@ -1,14 +1,14 @@
 package mail_services
 
 import (
-	"billionmail-core/internal/consts"
-	"billionmail-core/internal/service/public"
 	"context"
 	"github.com/gogf/gf/v2/frame/g"
+	"xenixmail-core/internal/consts"
+	"xenixmail-core/internal/service/public"
 
 	"github.com/gogf/gf/v2/errors/gerror"
 
-	"billionmail-core/api/mail_services/v1"
+	"xenixmail-core/api/mail_services/v1"
 )
 
 func (c *ControllerV1) DeleteMailForward(ctx context.Context, req *v1.DeleteMailForwardReq) (res *v1.DeleteMailForwardRes, err error) {

@@ -11,7 +11,11 @@
 		<template #table>
 			<n-data-table :loading="loading" :columns="columns" :data="tableList">
 				<template #empty>
-					<bt-table-help> </bt-table-help>
+					<bt-table-help>
+						<n-button type="primary" size="small" @click="handleAdd">
+							{{ $t('settings.forward.add') }}
+						</n-button>
+					</bt-table-help>
 				</template>
 			</n-data-table>
 		</template>
@@ -30,10 +34,11 @@
 </template>
 
 <script lang="tsx" setup>
-import { DataTableColumns, NButton, NFlex, NSwitch } from 'naive-ui'
+import { DataTableColumns, NFlex, NSwitch } from 'naive-ui'
 import { confirm, formatTime } from '@/utils'
 import { useTableData } from '@/hooks/useTableData'
 import { useModal } from '@/hooks/modal/useModal'
+import BtIconAction from '@/components/base/bt-icon-action/index.vue'
 import { deleteForward, editForward, getForwardList } from '@/api/modules/settings/forward'
 import type { Forward, ForwardParams } from './types/base'
 
@@ -111,25 +116,24 @@ const columns = ref<DataTableColumns<Forward>>([
 		title: t('common.columns.actions'),
 		key: 'actions',
 		align: 'right',
-		width: 120,
+		width: 88, // wide enough for the column header
 		render: row => (
-			<NFlex inline={true}>
-				<NButton
-					type="primary"
-					text={true}
+			<NFlex inline={true} size={4}>
+				<BtIconAction
+					icon="i-lucide-pencil"
+					label={t('common.actions.edit')}
 					onClick={() => {
 						handleEdit(row)
-					}}>
-					{t('common.actions.edit')}
-				</NButton>
-				<NButton
+					}}
+				/>
+				<BtIconAction
+					icon="i-lucide-trash-2"
 					type="error"
-					text={true}
+					label={t('common.actions.delete')}
 					onClick={() => {
 						handleDelete(row)
-					}}>
-					{t('common.actions.delete')}
-				</NButton>
+					}}
+				/>
 			</NFlex>
 		),
 	},

@@ -11,7 +11,11 @@
 		<template #table>
 			<n-data-table :loading="loading" :columns="columns" :data="tableList">
 				<template #empty>
-					<bt-table-help> </bt-table-help>
+					<bt-table-help>
+						<n-button type="primary" size="small" @click="handleAdd">
+							{{ $t('settings.bcc.add') }}
+						</n-button>
+					</bt-table-help>
 				</template>
 			</n-data-table>
 		</template>
@@ -30,10 +34,12 @@
 </template>
 
 <script lang="tsx" setup>
-import { DataTableColumns, NButton, NFlex } from 'naive-ui'
+import { DataTableColumns, NFlex } from 'naive-ui'
 import { confirm } from '@/utils'
 import { useTableData } from '@/hooks/useTableData'
 import { useModal } from '@/hooks/modal/useModal'
+import BtIconAction from '@/components/base/bt-icon-action/index.vue'
+import BtStatus from '@/components/base/bt-status/index.vue'
 import { deleteBcc, getBccList } from '@/api/modules/settings/bcc'
 import type { Bcc, BccParams } from './type/base'
 import BccForm from './components/BccForm.vue'
@@ -83,34 +89,33 @@ const columns = ref<DataTableColumns<Bcc>>([
 		key: 'active',
 		title: () => t('settings.bcc.status'),
 		render: row => (
-			<div class={['text-16px', row.active === 1 ? 'text-primary' : 'text-error']}>
-				<i class={[row.active === 1 ? 'i-mdi-success-circle' : 'i-mdi-remove-circle']}></i>
-			</div>
+			<BtStatus type={row.active === 1 ? 'success' : 'warning'}>
+				{row.active === 1 ? t('settings.bcc.active') : t('settings.bcc.inactive')}
+			</BtStatus>
 		),
 	},
 	{
 		title: t('common.columns.actions'),
 		key: 'actions',
 		align: 'right',
-		width: 120,
+		width: 88, // wide enough for the column header
 		render: row => (
-			<NFlex inline={true}>
-				<NButton
-					type="primary"
-					text={true}
+			<NFlex inline={true} size={4}>
+				<BtIconAction
+					icon="i-lucide-pencil"
+					label={t('common.actions.edit')}
 					onClick={() => {
 						handleEdit(row)
-					}}>
-					{t('common.actions.edit')}
-				</NButton>
-				<NButton
+					}}
+				/>
+				<BtIconAction
+					icon="i-lucide-trash-2"
 					type="error"
-					text={true}
+					label={t('common.actions.delete')}
 					onClick={() => {
 						handleDelete(row)
-					}}>
-					{t('common.actions.delete')}
-				</NButton>
+					}}
+				/>
 			</NFlex>
 		),
 	},

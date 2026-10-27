@@ -54,7 +54,11 @@
 			<template #table>
 				<n-data-table v-bind="tableProps" :columns="columns">
 					<template #empty>
-						<bt-table-help> </bt-table-help>
+						<bt-table-help>
+							<n-button type="primary" size="small" @click="handleAdd">
+								{{ t('common.actions.import') }}
+							</n-button>
+						</bt-table-help>
 					</template>
 				</n-data-table>
 			</template>
@@ -77,10 +81,12 @@
 
 <script lang="tsx" setup>
 import { useBrowserLocation, useTimeAgo } from '@vueuse/core'
-import { DataTableColumns, NButton, NFlex, NTag } from 'naive-ui'
+import { DataTableColumns, NFlex, NTag } from 'naive-ui'
 import { confirm, Message } from '@/utils'
 import { useModal } from '@/hooks/modal/useModal'
 import { useDataTable } from '@/hooks/useDataTable'
+import BtIconAction from '@/components/base/bt-icon-action/index.vue'
+import BtStatus from '@/components/base/bt-status/index.vue'
 import { deleteSubscriberNdp, getSubscriberListNdp } from '@/api/modules/contacts/subscribers'
 import type { Subscriber, SubscriberParams } from './interface'
 
@@ -158,24 +164,12 @@ const columns = computed<DataTableColumns<Subscriber>>(() => [
 		minWidth: 100,
 		render: row => {
 			if (row.active === 0) {
-				return (
-					<NTag size="small" type="error" bordered={false}>
-						{t('contacts.subscribers.status.unsubscribed')}
-					</NTag>
-				)
+				return <BtStatus type="error">{t('contacts.subscribers.status.unsubscribed')}</BtStatus>
 			}
 			if (row.active === 1 && row.status === 0) {
-				return (
-					<NTag size="small" type="default" bordered={false}>
-						{t('contacts.subscribers.status.unconfirmed')}
-					</NTag>
-				)
+				return <BtStatus type="default">{t('contacts.subscribers.status.unconfirmed')}</BtStatus>
 			}
-			return (
-				<NTag size="small" type="success" bordered={false}>
-					{t('contacts.subscribers.status.subscribed')}
-				</NTag>
-			)
+			return <BtStatus type="success">{t('contacts.subscribers.status.subscribed')}</BtStatus>
 		},
 	},
 	{
@@ -194,6 +188,9 @@ const columns = computed<DataTableColumns<Subscriber>>(() => [
 		key: 'groups',
 		title: t('contacts.subscribers.joinGroup'),
 		minWidth: 100,
+		ellipsis: {
+			tooltip: true,
+		},
 		render: row => {
 			return row.group_name || ''
 		},
@@ -221,25 +218,24 @@ const columns = computed<DataTableColumns<Subscriber>>(() => [
 		title: t('common.columns.actions'),
 		key: 'actions',
 		align: 'right',
-		width: 180,
+		width: 88, // wide enough for the column header
 		render: row => (
-			<NFlex inline={true}>
-				<NButton
-					type="primary"
-					text={true}
+			<NFlex inline={true} size={4}>
+				<BtIconAction
+					icon="i-lucide-pencil"
+					label={t('common.actions.edit')}
 					onClick={() => {
 						handleEdit(row)
-					}}>
-					{t('common.actions.edit')}
-				</NButton>
-				<NButton
+					}}
+				/>
+				<BtIconAction
+					icon="i-lucide-trash-2"
 					type="error"
-					text={true}
+					label={t('common.actions.delete')}
 					onClick={() => {
 						handleDelete(row)
-					}}>
-					{t('common.actions.delete')}
-				</NButton>
+					}}
+				/>
 			</NFlex>
 		),
 	},
@@ -354,17 +350,3 @@ const handleBatchSetTag = (keys: number[]) => {
 	setTagModalApi.open()
 }
 </script>
-
-<style lang="scss" scoped>
-.subscriber-container {
-	padding: 16px;
-	background-color: #fff;
-	border-radius: 3px;
-
-	.action-bar {
-		display: flex;
-		justify-content: space-between;
-		margin-bottom: 16px;
-	}
-}
-</style>

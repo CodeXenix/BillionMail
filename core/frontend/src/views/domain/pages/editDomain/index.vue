@@ -27,7 +27,7 @@
 		<div v-if="!['Domain Configuration', 'Sitemap'].includes(activeTab)" class="footer-tool">
 			<n-button type="primary" @click="handleSwitchSave">
 				<template #icon>
-					<i class="i-mingcute:save-2-line text-5"></i>
+					<i class="i-lucide-save text-5"></i>
 				</template>
 				{{ $t('domain.edit.save') }}
 			</n-button>

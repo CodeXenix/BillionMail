@@ -1,8 +1,8 @@
 package domains
 
 import (
-	v1 "billionmail-core/api/domains/v1"
 	"testing"
+	v1 "xenixmail-core/api/domains/v1"
 
 	"github.com/stretchr/testify/assert"
 )

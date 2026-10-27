@@ -1,14 +1,14 @@
 package domains
 
 import (
-	"billionmail-core/internal/model"
-	"billionmail-core/internal/service/mail_service"
-	"billionmail-core/internal/service/public"
 	"context"
 	"encoding/json"
 	"fmt"
 	"strings"
 	"time"
+	"xenixmail-core/internal/model"
+	"xenixmail-core/internal/service/mail_service"
+	"xenixmail-core/internal/service/public"
 
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/os/gfile"
@@ -768,7 +768,7 @@ func buildBlacklistAlertEmailHTML(ip, domain string, result *model.BlacklistChec
 			<div class="footer">
 				<div>
 					<span>Powered by </span>
-					<a href="https://www.billionmail.com/" target="_blank">BillionMail</a>
+					Xenix Mail
 				</div>
 			</div>
 		</div>

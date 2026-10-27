@@ -6,14 +6,10 @@
 
 <script setup lang="ts">
 import { formatTime } from '@/utils'
-import { useThemeVars } from 'naive-ui'
+import { useThemeStore } from '@/store'
 
-const { chartName, chartColor, dateType, chartData } = defineProps({
+const { chartName, dateType, chartData } = defineProps({
 	chartName: {
-		type: String,
-		required: true,
-	},
-	chartColor: {
 		type: String,
 		required: true,
 	},
@@ -27,15 +23,27 @@ const { chartName, chartColor, dateType, chartData } = defineProps({
 	},
 })
 
-const theme = useThemeVars()
+const themeStore = useThemeStore()
 
 const chartOptions = computed(() => {
+	// ECharts needs concrete colours: read the tokens again whenever the theme store
+	// swaps its overrides (after the light/dark attribute has changed)
+	const { textColor1, textColor3 } = themeStore.themeOverrides.common ?? {}
+	const css = getComputedStyle(document.documentElement)
+	const token = (name: string) => css.getPropertyValue(name).trim()
+	const lineColor = token('--color-chart-1')
+	const gridColor = token('--color-chart-grid')
+
 	return {
 		tooltip: {
 			trigger: 'axis',
-			order: 'seriesDesc',
 			axisPointer: {
-				type: 'shadow',
+				type: 'line',
+			},
+			backgroundColor: token('--color-bg-1'),
+			borderColor: token('--color-border-1'),
+			textStyle: {
+				color: textColor1,
 			},
 		},
 		grid: {
@@ -47,7 +55,16 @@ const chartOptions = computed(() => {
 		},
 		xAxis: {
 			type: 'category',
+			axisLine: {
+				lineStyle: {
+					color: gridColor,
+				},
+			},
+			axisTick: {
+				show: false,
+			},
 			axisLabel: {
+				color: textColor3,
 				formatter: (val: string) => {
 					if (dateType === 'hourly') {
 						return formatTime(val, 'HH:mm')
@@ -59,16 +76,20 @@ const chartOptions = computed(() => {
 		yAxis: {
 			name: '%',
 			type: 'value',
+			max: 100,
+			nameTextStyle: {
+				color: textColor3,
+			},
+			axisLabel: {
+				color: textColor3,
+			},
 			splitLine: {
 				show: true,
 				lineStyle: {
-					type: 'dashed',
+					type: 'solid',
 					width: 1,
-					color: theme.value.borderColor,
+					color: gridColor,
 				},
-			},
-			max: () => {
-				return 100
 			},
 		},
 		series: [
@@ -77,7 +98,14 @@ const chartOptions = computed(() => {
 				type: 'line',
 				data: chartData,
 				itemStyle: {
-					color: chartColor,
+					color: lineColor,
+				},
+				lineStyle: {
+					width: 2,
+				},
+				areaStyle: {
+					color: lineColor,
+					opacity: 0.1,
 				},
 				smooth: false,
 				showSymbol: false,

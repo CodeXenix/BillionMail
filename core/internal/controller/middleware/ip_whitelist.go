@@ -1,9 +1,9 @@
 package middleware
 
 import (
-	"billionmail-core/internal/service/public"
 	"context"
 	"strings"
+	"xenixmail-core/internal/service/public"
 
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/net/ghttp"

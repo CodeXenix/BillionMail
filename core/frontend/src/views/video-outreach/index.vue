@@ -14,7 +14,7 @@
 			<template #table>
 				<n-data-table v-bind="tableProps" :columns="columns" :row-key="(row: any) => row.contact_email">
 					<template #empty>
-						<n-empty description="No video outreach contacts found" />
+						<bt-table-help> </bt-table-help>
 					</template>
 				</n-data-table>
 			</template>
@@ -28,6 +28,7 @@
 <script lang="tsx" setup>
 import { DataTableColumns, NTag, NButton } from 'naive-ui'
 import { useDataTable } from '@/hooks/useDataTable'
+import BtStatus from '@/components/base/bt-status/index.vue'
 import { listVideoOutreach } from '@/api/modules/video-outreach'
 
 const tierOptions = [
@@ -72,12 +73,12 @@ const columns: DataTableColumns<any> = [
 		key: 'status',
 		width: 120,
 		render: (row) => {
-			const typeMap: Record<string, string> = {
+			const typeMap: Record<string, 'success' | 'warning' | 'default'> = {
 				ready: 'success',
 				pending: 'warning',
 				not_eligible: 'default',
 			}
-			return <NTag type={typeMap[row.status] || 'default'} size="small">{row.status}</NTag>
+			return <BtStatus type={typeMap[row.status] || 'default'}>{row.status}</BtStatus>
 		},
 	},
 	{

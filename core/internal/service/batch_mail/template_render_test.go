@@ -1,9 +1,9 @@
 package batch_mail
 
 import (
-	"billionmail-core/internal/model/entity"
 	"context"
 	"testing"
+	"xenixmail-core/internal/model/entity"
 
 	"github.com/stretchr/testify/assert"
 )

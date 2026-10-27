@@ -1,13 +1,13 @@
 package rbac
 
 import (
-	"billionmail-core/internal/consts"
-	"billionmail-core/internal/service/public"
 	"context"
 	"fmt"
 	"github.com/gogf/gf/v2/util/gconv"
 	"strings"
 	"time"
+	"xenixmail-core/internal/consts"
+	"xenixmail-core/internal/service/public"
 
 	"github.com/gogf/gf/util/guid"
 	"github.com/gogf/gf/v2/errors/gerror"

@@ -58,7 +58,7 @@
 								<span>{{ $t('api.form.group.label') }}</span>
 								<n-popover trigger="hover">
 									<template #trigger>
-										<i class="i-custom:help"></i>
+										<i class="i-lucide-circle-help"></i>
 									</template>
 									<bt-tips>
 										<li>{{ $t('api.form.group.tips.choose') }}</li>

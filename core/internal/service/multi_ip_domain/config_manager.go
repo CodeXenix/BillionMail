@@ -1,8 +1,6 @@
 package multi_ip_domain
 
 import (
-	docker "billionmail-core/internal/service/dockerapi"
-	"billionmail-core/internal/service/public"
 	"context"
 	"fmt"
 	"io/ioutil"
@@ -12,6 +10,8 @@ import (
 	"regexp"
 	"strings"
 	"time"
+	docker "xenixmail-core/internal/service/dockerapi"
+	"xenixmail-core/internal/service/public"
 
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"

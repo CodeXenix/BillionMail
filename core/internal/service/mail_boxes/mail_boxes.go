@@ -1,10 +1,6 @@
 package mail_boxes
 
 import (
-	v1 "billionmail-core/api/mail_boxes/v1"
-	"billionmail-core/internal/consts"
-	"billionmail-core/internal/service/dockerapi"
-	"billionmail-core/internal/service/public"
 	"context"
 	"encoding/base64"
 	"encoding/hex"
@@ -19,6 +15,10 @@ import (
 	"regexp"
 	"strings"
 	"time"
+	v1 "xenixmail-core/api/mail_boxes/v1"
+	"xenixmail-core/internal/consts"
+	"xenixmail-core/internal/service/dockerapi"
+	"xenixmail-core/internal/service/public"
 )
 
 func Add(ctx context.Context, mailbox *v1.Mailbox) (err error) {

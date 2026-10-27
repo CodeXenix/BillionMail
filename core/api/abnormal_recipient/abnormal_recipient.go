@@ -7,7 +7,7 @@ package abnormal_recipient
 import (
 	"context"
 
-	"billionmail-core/api/abnormal_recipient/v1"
+	"xenixmail-core/api/abnormal_recipient/v1"
 )
 
 type IAbnormalRecipientV1 interface {

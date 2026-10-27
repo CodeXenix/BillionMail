@@ -5,7 +5,7 @@
 package files
 
 import (
-	"billionmail-core/api/files"
+	"xenixmail-core/api/files"
 )
 
 type ControllerV1 struct{}

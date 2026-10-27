@@ -2,7 +2,9 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-BillionMail is an open-source mail server and email marketing platform (bulk sending, campaigns, contacts, warmup, analytics). The Go backend + Vue admin UI live in `core/`; the mail stack (Postfix, Dovecot, Rspamd, Roundcube, Postgres, Redis) runs as separate containers configured from `conf/`.
+Xenix Mail is an open-source mail server and email marketing platform (bulk sending, campaigns, contacts, warmup, analytics). The Go backend + Vue admin UI live in `core/`; the mail stack (Postfix, Dovecot, Rspamd, Roundcube, Postgres, Redis) runs as separate containers configured from `conf/`.
+
+**Naming:** the project is a rebrand of BillionMail. Everything users see and every code name (Go module `xenixmail-core`) says Xenix Mail. Runtime names stay `billionmail` on purpose, so existing installs and the upstream Docker Hub images keep working: image names (`billionmail/*`), compose services and containers (`*-billionmail`), `billionmail-network`, `/opt/billionmail` paths, `BILLIONMAIL_*` env vars, the database name and user, the Postfix `master.cf` markers, and the session cookie and server names (`billion_mail` in config.yaml, `consts.DEFAULT_SERVER_NAME`), which key stored sessions. Do not rename them in passing. Name new user-facing text "Xenix Mail".
 
 ## Stack
 

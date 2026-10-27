@@ -8,7 +8,7 @@
 							<span>{{ t('domain.form.domain') }}</span>
 							<n-popover trigger="hover">
 								<template #trigger>
-									<i class="i-custom:help text-primary cursor-pointer"></i>
+									<i class="i-lucide-circle-help text-primary cursor-pointer"></i>
 								</template>
 								<bt-tips>
 									<li class="text-error">{{ t('domain.form.tips.aRecordFailed') }}</li>
@@ -61,7 +61,7 @@
 				<bt-more>
 					<template #title>
 						<div class="flex items-center">
-							<i class="i-domain:brand-info w-20px h-20px mr-6px"></i>
+							<i class="i-lucide-badge-info w-20px h-20px mr-6px"></i>
 							<span>{{ $t('domain.form.createBrandInfo') }}</span>
 						</div>
 					</template>
@@ -82,7 +82,7 @@
 						</div>
 					</n-alert>
 					<div class="mb-8px text-default flex justify-start">
-						<span><i class="i-domain:brand-info w-5 h-5 mr-4px"></i></span>
+						<span><i class="i-lucide-badge-info w-5 h-5 mr-4px"></i></span>
 						<span>{{ $t('domain.form.modelDescription') }}</span>
 					</div>
 					<bt-tips style="margin-bottom: 15px">
@@ -104,7 +104,7 @@
 									:placeholder="t('domain.form.urlsPlacement')"
 									:disabled="!aiConfigurationStatus"></n-input>
 								<div v-if="index != 0" class="close" @click="removeUrl(index)">
-									<i class="i-material-symbols:close-rounded text-5"></i>
+									<i class="i-lucide-x text-5"></i>
 								</div>
 								<!-- <div v-else class="w-34px h-34px"></div> -->
 							</div>
@@ -112,7 +112,7 @@
 
 							<!-- <n-button type="primary" :disabled="!aiConfigurationStatus || urls.length == 3" ghost @click="addUrl">
 							<template #icon>
-								<i class="i-material-symbols:add-circle-outline"></i>
+								<i class="i-lucide-circle-plus"></i>
 							</template>
 							{{ $t("domain.form.addMoreUrls") }}
 						</n-button> -->

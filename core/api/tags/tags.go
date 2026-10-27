@@ -7,7 +7,7 @@ package tags
 import (
 	"context"
 
-	"billionmail-core/api/tags/v1"
+	"xenixmail-core/api/tags/v1"
 )
 
 type ITagsV1 interface {

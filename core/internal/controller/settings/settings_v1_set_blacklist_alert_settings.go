@@ -1,15 +1,15 @@
 package settings
 
 import (
-	"billionmail-core/api/settings/v1"
-	"billionmail-core/internal/service/mail_service"
-	"billionmail-core/internal/service/public"
-	"billionmail-core/internal/service/relay"
 	"context"
 	"encoding/json"
 	"fmt"
 	"strings"
 	"time"
+	"xenixmail-core/api/settings/v1"
+	"xenixmail-core/internal/service/mail_service"
+	"xenixmail-core/internal/service/public"
+	"xenixmail-core/internal/service/relay"
 
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
@@ -118,7 +118,7 @@ func testSMTPConnectionWithRelay(ctx context.Context, settings *v1.SetBlacklistA
 func sendTestEmailWithMailService(ctx context.Context, settings *v1.SetBlacklistAlertSettingsReq) error {
 	//g.Log().Infof(ctx, "Sending test email to %v", settings.RecipientList)
 
-	subject := "Blacklist Alert Test - BillionMail"
+	subject := "Blacklist Alert Test - Xenix Mail"
 	body := buildTestEmailHTML(settings)
 
 	sender := mail_service.NewEmailSender()
@@ -353,7 +353,7 @@ func buildTestEmailHTML(settings *v1.SetBlacklistAlertSettingsReq) string {
 			<div class="footer">
 				<div>
 					<span>Powered by </span>
-					<a href="https://www.billionmail.com/" target="_blank">BillionMail</a>
+					Xenix Mail
 				</div>
 			</div>
 		</div>

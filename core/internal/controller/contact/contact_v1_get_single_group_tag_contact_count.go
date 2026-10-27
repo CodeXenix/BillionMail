@@ -1,13 +1,13 @@
 package contact
 
 import (
-	"billionmail-core/api/contact/v1"
-	"billionmail-core/internal/service/contact"
-	"billionmail-core/internal/service/public"
 	"context"
 	"fmt"
 	"strconv"
 	"strings"
+	"xenixmail-core/api/contact/v1"
+	"xenixmail-core/internal/service/contact"
+	"xenixmail-core/internal/service/public"
 
 	"github.com/gogf/gf/v2/frame/g"
 

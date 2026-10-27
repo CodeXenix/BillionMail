@@ -1,12 +1,12 @@
 package batch_mail
 
 import (
-	"billionmail-core/api/batch_mail/v1"
-	"billionmail-core/internal/model/entity"
-	"billionmail-core/internal/service/batch_mail"
-	"billionmail-core/internal/service/public"
 	"context"
 	"github.com/gogf/gf/v2/errors/gerror"
+	"xenixmail-core/api/batch_mail/v1"
+	"xenixmail-core/internal/model/entity"
+	"xenixmail-core/internal/service/batch_mail"
+	"xenixmail-core/internal/service/public"
 )
 
 // UpdateTaskSpeed update task sending speed

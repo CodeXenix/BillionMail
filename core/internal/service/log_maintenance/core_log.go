@@ -2,7 +2,6 @@ package log_maintenance
 
 import (
 	"archive/tar"
-	"billionmail-core/internal/service/public"
 	"compress/gzip"
 	"context"
 	"io"
@@ -12,6 +11,7 @@ import (
 	"sort"
 	"strings"
 	"time"
+	"xenixmail-core/internal/service/public"
 
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/os/gfile"

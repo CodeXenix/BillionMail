@@ -1,14 +1,14 @@
 package mail_service
 
 import (
-	"billionmail-core/internal/consts"
-	docker "billionmail-core/internal/service/dockerapi"
-	"billionmail-core/internal/service/public"
 	"context"
 	"github.com/gogf/gf/v2/database/gdb"
 	"github.com/gogf/gf/v2/frame/g"
 	"path/filepath"
 	"strings"
+	"xenixmail-core/internal/consts"
+	docker "xenixmail-core/internal/service/dockerapi"
+	"xenixmail-core/internal/service/public"
 )
 
 func FixPostfixMainConfig(ctx context.Context) {
@@ -22,8 +22,8 @@ func FixPostfixMainConfig(ctx context.Context) {
 	// initialize a header_checks file if it does not exist
 	headerChecksFile := public.AbsPath(filepath.Join(consts.POSTFIX_CONF_PATH, "header_checks"))
 	headerChecksContent := ""
-	regularHeaderChecks := `if /^\s*Received:.*Authenticated sender.*\(PostBillionMail\)/
-/^Received: from .*? \([\w\-.]* \[.*?\]\)(.*|\n.*)\(Authenticated sender: (.+)\)\s+by.+\(PostBillionMail\) with (.*)/
+	regularHeaderChecks := `if /^\s*Received:.*Authenticated sender.*\(XenixMail\)/
+/^Received: from .*? \([\w\-.]* \[.*?\]\)(.*|\n.*)\(Authenticated sender: (.+)\)\s+by.+\(XenixMail\) with (.*)/
   REPLACE Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with $3
 endif
 
@@ -51,7 +51,8 @@ endif
 	}
 
 	// Ensure Received header replacement is in place
-	if !strings.Contains(headerChecksContent, "REPLACE Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with $3") {
+	// Keyed on the mail_name so header_checks written for the old name get the current block appended
+	if !strings.Contains(headerChecksContent, `\(XenixMail\)`) {
 		headerChecksContent += "\n" + regularHeaderChecks
 		_, err = public.WriteFile(headerChecksFile, headerChecksContent)
 
@@ -82,7 +83,7 @@ endif
 
 		if strings.HasPrefix(strings.TrimSpace(row), "compatibility_level") {
 			lines = append(lines, "compatibility_level = 3.7\n")
-			lines = append(lines, "mail_name = PostBillionMail\n")
+			lines = append(lines, "mail_name = XenixMail\n")
 			lines = append(lines, "\n")
 			lines = append(lines, "smtp_header_checks = pcre:/etc/postfix/conf/header_checks\n")
 			lines = append(lines, "lmtp_header_checks = pcre:/etc/postfix/conf/header_checks\n\n")

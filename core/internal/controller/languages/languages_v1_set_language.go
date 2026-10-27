@@ -1,16 +1,16 @@
 package languages
 
 import (
-	"billionmail-core/internal/consts"
-	"billionmail-core/internal/service/public"
 	"context"
 	"fmt"
 	"github.com/gogf/gf/v2/frame/g"
 	"strings"
+	"xenixmail-core/internal/consts"
+	"xenixmail-core/internal/service/public"
 
 	"github.com/gogf/gf/v2/errors/gerror"
 
-	"billionmail-core/api/languages/v1"
+	"xenixmail-core/api/languages/v1"
 )
 
 func (c *ControllerV1) SetLanguage(ctx context.Context, req *v1.SetLanguageReq) (res *v1.SetLanguageRes, err error) {

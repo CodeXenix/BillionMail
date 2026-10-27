@@ -1,17 +1,17 @@
 package batch_mail
 
 import (
-	"billionmail-core/api/batch_mail/v1"
-	"billionmail-core/internal/model/entity"
-	"billionmail-core/internal/service/contact"
-	"billionmail-core/internal/service/mail_service"
-	"billionmail-core/internal/service/public"
 	"context"
 	"database/sql"
 	"errors"
 	"fmt"
 	"strings"
 	"time"
+	"xenixmail-core/api/batch_mail/v1"
+	"xenixmail-core/internal/model/entity"
+	"xenixmail-core/internal/service/contact"
+	"xenixmail-core/internal/service/mail_service"
+	"xenixmail-core/internal/service/public"
 
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"

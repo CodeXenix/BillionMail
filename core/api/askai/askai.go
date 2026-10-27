@@ -1,8 +1,8 @@
 package askai
 
 import (
-	v1 "billionmail-core/api/askai/v1"
-	"billionmail-core/utility/types/api_v1"
+	v1 "xenixmail-core/api/askai/v1"
+	"xenixmail-core/utility/types/api_v1"
 )
 
 type IAskAiV1 interface {

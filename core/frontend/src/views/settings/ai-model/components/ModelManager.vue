@@ -19,7 +19,7 @@
 			<div class="add-privider">
 				<n-button @click="handleAddProvider">
 					<template #icon>
-						<i class="i-ic:baseline-add-circle"></i>
+						<i class="i-lucide-circle-plus"></i>
 					</template>
 					Add model service provider
 				</n-button>
@@ -31,14 +31,14 @@
 			<div class="right-configuration">
 				<div class="top-switch">
 					<div class="switch-info">
-						<!-- <i class="i-ic:baseline-error text-5"></i> -->
+						<!-- <i class="i-lucide-circle-alert text-5"></i> -->
 						<span class="tit">{{ currentProvider.supplierName ? currentProvider.supplierName[0].toUpperCase()
 							+
 							currentProvider.supplierName.slice(1):"" }}</span>
 						<n-switch v-model:value="currentProvider.status"
 							@update:value="status => changeProviderStatus(status, modelStore)"></n-switch>
 					</div>
-					<i class="i-ri:delete-bin-3-line text-5.5 hover:text-red-5 cursor-pointer"
+					<i class="i-lucide-trash-2 text-5.5 hover:text-red-5 cursor-pointer"
 						@click="removeProvider(modelStore)"></i>
 				</div>
 				<div class="center-api">
@@ -69,19 +69,19 @@
 							<span class="sub-tit">{{$t("settings.aiModel.byDefault")}}</span>
 						</div>
 						<div class="add-model" @click="handleAddModel">
-							<i class="i-ic:baseline-control-point text-4"></i>
+							<i class="i-lucide-circle-plus text-4"></i>
 							<span class="tit">{{$t("settings.aiModel.addModel")}}</span>
 						</div>
 					</div>
 					<div v-for="item in modelList" :key="item.title" class="model-list">
 						<div class="model-item">
-							<!-- <i class="i-ic:round-check-circle-outline text-5"></i> -->
+							<!-- <i class="i-lucide-circle-check text-5"></i> -->
 							<span class="model-name">{{ item.title }}</span>
 							<div class="operation">
 								<n-switch v-model:value="item.status" @update:value="
 									status => setModelStatus(item, status, modelStore)
 								"></n-switch>
-								<i class="i-material-symbols:delete-outline text-5" @click="removeModel(item,modelStore)"></i>
+								<i class="i-lucide-trash-2 text-5" @click="removeModel(item,modelStore)"></i>
 							</div>
 						</div>
 					</div>

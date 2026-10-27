@@ -1,14 +1,14 @@
 package maillog_stat
 
 import (
-	"billionmail-core/internal/consts"
-	docker "billionmail-core/internal/service/dockerapi"
-	"billionmail-core/internal/service/public"
 	"context"
 	"fmt"
 	"sort"
 	"strings"
 	"time"
+	"xenixmail-core/internal/consts"
+	docker "xenixmail-core/internal/service/dockerapi"
+	"xenixmail-core/internal/service/public"
 
 	"github.com/gogf/gf/v2/database/gdb"
 	"github.com/gogf/gf/v2/encoding/gjson"

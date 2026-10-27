@@ -1,17 +1,17 @@
 package batch_mail
 
 import (
-	"billionmail-core/api/batch_mail/v1"
-	"billionmail-core/internal/model/entity"
-	"billionmail-core/internal/service/maillog_stat"
-	"billionmail-core/internal/service/public"
-	"billionmail-core/internal/service/warmup"
 	"context"
 	"fmt"
 	"strconv"
 	"strings"
 	"sync/atomic"
 	"time"
+	"xenixmail-core/api/batch_mail/v1"
+	"xenixmail-core/internal/model/entity"
+	"xenixmail-core/internal/service/maillog_stat"
+	"xenixmail-core/internal/service/public"
+	"xenixmail-core/internal/service/warmup"
 
 	"github.com/gogf/gf/v2/database/gdb"
 	"github.com/gogf/gf/v2/errors/gerror"
@@ -517,6 +517,27 @@ func CreateTaskWithRecipients(ctx context.Context, req *v1.CreateTaskReq, addTyp
 	}
 
 	return taskId, nil
+}
+
+// TaskWarmupLinked reports whether the task is linked to an IP warmup schedule
+func TaskWarmupLinked(ctx context.Context, taskId int) bool {
+	n, _ := g.DB().Model("bm_campaign_warmup").Ctx(ctx).Where("task_id", taskId).Count()
+	return n > 0
+}
+
+// SetTaskWarmup links the task to the server IP's warmup schedule, or removes the link
+func SetTaskWarmup(ctx context.Context, taskId int, enabled bool) error {
+	if !enabled {
+		_, err := g.DB().Model("bm_campaign_warmup").Ctx(ctx).Where("task_id", taskId).Delete()
+		return err
+	}
+	// As at creation: without a known server IP there is no warmup to link to
+	serverIP, _ := public.GetServerIP()
+	if serverIP == "" {
+		return nil
+	}
+	_, err := warmup.WarmupCampaign().AssociateCampaignWithWarmup(ctx, int64(taskId), serverIP)
+	return err
 }
 
 // GetTaskInfo get task info

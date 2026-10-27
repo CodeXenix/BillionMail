@@ -1,13 +1,13 @@
 package abnormal_recipient
 
 import (
-	"billionmail-core/api/abnormal_recipient/v1"
-	"billionmail-core/internal/consts"
-	"billionmail-core/internal/service/abnormal_recipient"
-	"billionmail-core/internal/service/public"
 	"context"
 	"github.com/gogf/gf/v2/errors/gerror"
 	"strings"
+	"xenixmail-core/api/abnormal_recipient/v1"
+	"xenixmail-core/internal/consts"
+	"xenixmail-core/internal/service/abnormal_recipient"
+	"xenixmail-core/internal/service/public"
 )
 
 func (c *ControllerV1) AddAbnormalRecipient(ctx context.Context, req *v1.AddAbnormalRecipientReq) (res *v1.AddAbnormalRecipientRes, err error) {

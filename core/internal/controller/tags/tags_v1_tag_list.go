@@ -1,12 +1,12 @@
 package tags
 
 import (
-	"billionmail-core/api/tags/v1"
-	"billionmail-core/internal/model/entity"
-	"billionmail-core/internal/service/contact"
-	"billionmail-core/internal/service/public"
 	"context"
 	"github.com/gogf/gf/v2/frame/g"
+	"xenixmail-core/api/tags/v1"
+	"xenixmail-core/internal/model/entity"
+	"xenixmail-core/internal/service/contact"
+	"xenixmail-core/internal/service/public"
 )
 
 func (c *ControllerV1) TagList(ctx context.Context, req *v1.TagListReq) (res *v1.TagListRes, err error) {
@@ -39,7 +39,7 @@ func (c *ControllerV1) TagList(ctx context.Context, req *v1.TagListReq) (res *v1
 
 		// check if group exists
 		GroupInfo, err := contact.GetGroup(ctx, tag.GroupId)
- 
+
 		if err != nil || GroupInfo == nil {
 			tag.GroupName = "Unknown"
 		} else {

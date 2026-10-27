@@ -5,7 +5,7 @@
 package subscribe_list
 
 import (
-	"billionmail-core/api/subscribe_list"
+	"xenixmail-core/api/subscribe_list"
 )
 
 type ControllerV1 struct{}

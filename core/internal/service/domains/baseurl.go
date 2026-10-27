@@ -1,14 +1,14 @@
 package domains
 
 import (
-	v1 "billionmail-core/api/domains/v1"
-	"billionmail-core/internal/consts"
-	"billionmail-core/internal/service/public"
 	"context"
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/util/gconv"
 	"strings"
 	"sync"
+	v1 "xenixmail-core/api/domains/v1"
+	"xenixmail-core/internal/consts"
+	"xenixmail-core/internal/service/public"
 )
 
 var (

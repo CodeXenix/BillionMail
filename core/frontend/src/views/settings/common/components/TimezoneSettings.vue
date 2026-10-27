@@ -29,7 +29,7 @@
 				<n-alert type="warning" class="w-full">
 					<template #icon>
 						<n-icon>
-							<i class="i-mdi-alert-circle"></i>
+							<i class="i-lucide-circle-alert"></i>
 						</n-icon>
 					</template>
 					{{ t('settings.common.system.terminalRequired') }}

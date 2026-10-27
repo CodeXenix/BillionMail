@@ -1,13 +1,13 @@
 package batch_mail
 
 import (
-	"billionmail-core/api/batch_mail/v1"
-	"billionmail-core/internal/consts"
-	"billionmail-core/internal/service/public"
 	"context"
 	"net"
 	"strings"
 	"time"
+	"xenixmail-core/api/batch_mail/v1"
+	"xenixmail-core/internal/consts"
+	"xenixmail-core/internal/service/public"
 
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
@@ -60,7 +60,7 @@ func (c *ControllerV1) ApiTemplatesUpdate(ctx context.Context, req *v1.ApiTempla
 		"active":      req.Active,
 		"expire_time": req.ExpireTime,
 		"update_time": now,
-		"group_id":   req.GroupId,
+		"group_id":    req.GroupId,
 	}
 
 	_, err = tx.Model("api_templates").

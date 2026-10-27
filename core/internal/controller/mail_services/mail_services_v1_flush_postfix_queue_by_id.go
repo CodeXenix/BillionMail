@@ -1,16 +1,16 @@
 package mail_services
 
 import (
-	"billionmail-core/internal/consts"
-	docker "billionmail-core/internal/service/dockerapi"
-	"billionmail-core/internal/service/public"
 	"context"
 	"strings"
+	"xenixmail-core/internal/consts"
+	docker "xenixmail-core/internal/service/dockerapi"
+	"xenixmail-core/internal/service/public"
 
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
 
-	"billionmail-core/api/mail_services/v1"
+	"xenixmail-core/api/mail_services/v1"
 )
 
 func (c *ControllerV1) FlushPostfixQueueById(ctx context.Context, req *v1.FlushPostfixQueueByIdReq) (res *v1.FlushPostfixQueueByIdRes, err error) {

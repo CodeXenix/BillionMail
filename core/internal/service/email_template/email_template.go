@@ -1,10 +1,10 @@
 package email_template
 
 import (
-	"billionmail-core/api/email_template/v1"
 	"context"
 	"github.com/gogf/gf/v2/frame/g"
 	"time"
+	"xenixmail-core/api/email_template/v1"
 )
 
 // CheckTemplateNameExists

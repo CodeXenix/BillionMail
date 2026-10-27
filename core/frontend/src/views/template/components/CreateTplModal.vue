@@ -246,7 +246,7 @@ function renderLabel(option: SelectOption) {
 	if (option.hasbrandinfo) {
 		return (
 			<div>
-				<i class="i-domain:brand-info w-4 h-4 mr-1.25"></i> <span>{option.domain}</span>
+				<i class="i-lucide-badge-info w-4 h-4 mr-4px"></i> <span>{option.domain}</span>
 			</div>
 		)
 	} else {

@@ -11,7 +11,7 @@
 			<div class="flex items-center">
 				<n-alert type="warning" class="w-full">
 					<template #icon>
-						<n-icon><i class="i-mdi-alert-circle" /></n-icon>
+						<n-icon><i class="i-lucide-circle-alert" /></n-icon>
 					</template>
 					{{ t('settings.common.system.terminalRequired') }}
 				</n-alert>

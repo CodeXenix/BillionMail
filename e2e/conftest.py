@@ -1,4 +1,4 @@
-"""E2E test fixtures for BillionMail + FrostByte."""
+"""E2E test fixtures for Xenix Mail + FrostByte."""
 
 import logging
 import os
@@ -22,7 +22,7 @@ _auth_token: str | None = None
 
 
 async def _get_auth_token(base_url: str) -> str:
-    """Login to BillionMail and return JWT token."""
+    """Login to Xenix Mail and return JWT token."""
     global _auth_token
     if _auth_token:
         return _auth_token
@@ -44,7 +44,7 @@ async def _get_auth_token(base_url: str) -> str:
 
 @pytest_asyncio.fixture(scope="session", loop_scope="session")
 async def bm_api():
-    """httpx.AsyncClient for BillionMail API."""
+    """httpx.AsyncClient for Xenix Mail API."""
     token = await _get_auth_token(BM_URL)
     client = httpx.AsyncClient(
         base_url=BM_URL,

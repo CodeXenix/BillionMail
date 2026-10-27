@@ -1,18 +1,18 @@
 package domains
 
 import (
-	"billionmail-core/internal/consts"
-	"billionmail-core/internal/service/domains"
-	"billionmail-core/internal/service/multi_ip_domain"
-	"billionmail-core/internal/service/public"
-	"billionmail-core/internal/service/rbac"
 	"context"
 	"github.com/gogf/gf/os/gtimer"
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
 	"time"
+	"xenixmail-core/internal/consts"
+	"xenixmail-core/internal/service/domains"
+	"xenixmail-core/internal/service/multi_ip_domain"
+	"xenixmail-core/internal/service/public"
+	"xenixmail-core/internal/service/rbac"
 
-	"billionmail-core/api/domains/v1"
+	"xenixmail-core/api/domains/v1"
 )
 
 func (c *ControllerV1) AddDomain(ctx context.Context, req *v1.AddDomainReq) (res *v1.AddDomainRes, err error) {

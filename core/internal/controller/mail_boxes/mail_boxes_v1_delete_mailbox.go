@@ -1,15 +1,15 @@
 package mail_boxes
 
 import (
-	"billionmail-core/internal/consts"
-	"billionmail-core/internal/service/public"
 	"context"
 	"fmt"
+	"xenixmail-core/internal/consts"
+	"xenixmail-core/internal/service/public"
 
 	"github.com/gogf/gf/v2/errors/gerror"
 
-	"billionmail-core/api/mail_boxes/v1"
-	"billionmail-core/internal/service/mail_boxes"
+	"xenixmail-core/api/mail_boxes/v1"
+	"xenixmail-core/internal/service/mail_boxes"
 )
 
 func (c *ControllerV1) DeleteMailbox(ctx context.Context, req *v1.DeleteMailboxReq) (res *v1.DeleteMailboxRes, err error) {

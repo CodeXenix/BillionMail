@@ -100,7 +100,7 @@
 							</n-form-item>
 						</n-card>
 						<n-card>
-							<n-form-item :label="t('market.task.edit.sendTime')" path="start_time">
+							<n-form-item v-if="!isEdit || taskProcess === 0" :label="t('market.task.edit.sendTime')" path="start_time">
 								<n-radio-group v-model:value="sendTimeType" class="flex items-center" @update:value="handleUpdateSend">
 									<n-radio :value="0">{{ t('market.task.edit.sendTimeNow') }}</n-radio>
 									<n-radio class="items-center" :value="1"> </n-radio>
@@ -194,6 +194,9 @@ const { height } = useElementBounding(formContentRef)
 const isEdit = ref(false)
 
 const taskId = ref(0)
+
+// task_process of the task being edited: 0 not started, 3 paused; null until it loads
+const taskProcess = ref<number | null>(null)
 
 // 表单数据
 const form = reactive({
@@ -440,12 +443,20 @@ const initForm = async () => {
 		form.template_id = res.template_id
 		form.is_record = res.is_record
 		form.unsubscribe = res.unsubscribe
+		form.warmup = res.warmup
 		form.threads = res.threads
 		threadsType.value = res.threads === 0 ? 0 : 1
 		form.remark = res.remark
 		form.tag_logic = res.tag_logic
 		form.track_open = res.track_open
 		form.track_click = res.track_click
+		if (isEdit.value) {
+			taskProcess.value = res.task_process
+			if (res.start_time * 1000 > Date.now()) {
+				sendTimeType.value = 1
+				form.start_time = res.start_time * 1000
+			}
+		}
 		nextTick(() => {
 			form.tag_ids = res.tag_ids
 		})

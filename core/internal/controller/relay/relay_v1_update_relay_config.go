@@ -1,14 +1,14 @@
 package relay
 
 import (
-	v1 "billionmail-core/api/relay/v1"
-	"billionmail-core/internal/consts"
-	"billionmail-core/internal/service/domains"
-	"billionmail-core/internal/service/public"
-	"billionmail-core/internal/service/relay"
 	"context"
 	"strings"
 	"time"
+	v1 "xenixmail-core/api/relay/v1"
+	"xenixmail-core/internal/consts"
+	"xenixmail-core/internal/service/domains"
+	"xenixmail-core/internal/service/public"
+	"xenixmail-core/internal/service/relay"
 
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"

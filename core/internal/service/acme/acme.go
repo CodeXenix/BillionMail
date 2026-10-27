@@ -1,8 +1,6 @@
 package acme
 
 import (
-	v1 "billionmail-core/api/domains/v1"
-	"billionmail-core/internal/service/public"
 	"context"
 	"crypto"
 	"crypto/ecdsa"
@@ -15,6 +13,8 @@ import (
 	srcLog "log"
 	"os"
 	"path/filepath"
+	v1 "xenixmail-core/api/domains/v1"
+	"xenixmail-core/internal/service/public"
 
 	"github.com/go-acme/lego/v4/certcrypto"
 	"github.com/go-acme/lego/v4/certificate"

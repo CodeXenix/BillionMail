@@ -1,9 +1,9 @@
-# Default Billion Mail Username password
-ADMIN_USERNAME=billion
-ADMIN_PASSWORD=billion
+# Default Xenix Mail Username password
+ADMIN_USERNAME=xenix
+ADMIN_PASSWORD=xenix
 
 # Manage Safe entrance
-SafePath=billion
+SafePath=xenix
 
 # BILLIONMAIL_HOSTNAME configuration, Postfix myhostname configuration
 BILLIONMAIL_HOSTNAME=mail.example.com
@@ -37,7 +37,7 @@ HTTPS_PORT=443
 # Set to /billionmail when embedding behind aaPanel path proxy.
 WEB_BASE_PATH=
 
-# Shared secret used by aaPanel to request trusted BillionMail SSO tokens.
+# Shared secret used by aaPanel to request trusted Xenix Mail SSO tokens.
 # Keep empty to disable aaPanel SSO.
 AAPANEL_SSO_SECRET=
 

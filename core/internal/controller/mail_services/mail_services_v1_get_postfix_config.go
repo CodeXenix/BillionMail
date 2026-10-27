@@ -1,15 +1,15 @@
 package mail_services
 
 import (
-	"billionmail-core/internal/service/public"
 	"bufio"
 	"context"
 	"os"
 	"strings"
+	"xenixmail-core/internal/service/public"
 
 	"github.com/gogf/gf/v2/frame/g"
 
-	"billionmail-core/api/mail_services/v1"
+	"xenixmail-core/api/mail_services/v1"
 )
 
 func (c *ControllerV1) GetPostfixConfig(ctx context.Context, req *v1.GetPostfixConfigReq) (res *v1.GetPostfixConfigRes, err error) {

@@ -1,14 +1,14 @@
 package operation_log
 
 import (
-	"billionmail-core/api/operation_log/v1"
-	"billionmail-core/internal/service/public"
 	"context"
 	"errors"
 	"os"
 	"path/filepath"
 	"sort"
 	"strings"
+	"xenixmail-core/api/operation_log/v1"
+	"xenixmail-core/internal/service/public"
 )
 
 const latestLogLinesLimit = 1000

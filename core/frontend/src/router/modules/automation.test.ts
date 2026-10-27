@@ -16,7 +16,7 @@ describe('automation route', () => {
       sort: 3,
       key: 'automation',
       title: 'Automation',
-      icon: 'i-mdi-refresh-auto',
+      icon: 'i-lucide-refresh-cw',
       hidden: true,
     })
   })

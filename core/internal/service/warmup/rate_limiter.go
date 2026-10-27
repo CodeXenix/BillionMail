@@ -1,10 +1,10 @@
 package warmup
 
 import (
-	"billionmail-core/internal/service/public"
 	"context"
 	"fmt"
 	"time"
+	"xenixmail-core/internal/service/public"
 
 	"github.com/gogf/gf/v2/encoding/gjson"
 	"github.com/gogf/gf/v2/frame/g"

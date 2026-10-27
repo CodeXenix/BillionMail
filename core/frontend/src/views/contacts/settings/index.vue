@@ -1,8 +1,8 @@
 <template>
 	<div class="p-24px">
-		<div class="bt-title mb-12px!">
+		<h1 class="bt-title mb-12px!">
 			{{ $t('layout.menu.contacts') }}
-		</div>
+		</h1>
 		<n-breadcrumb class="mb-4px">
 			<n-breadcrumb-item>
 				<router-link to="/contacts/group">Group</router-link>

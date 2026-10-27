@@ -1,18 +1,18 @@
 package mail_services
 
 import (
-	"billionmail-core/internal/consts"
-	"billionmail-core/internal/service/public"
 	"context"
 	"os"
 	"path/filepath"
 	"strings"
 	"time"
+	"xenixmail-core/internal/consts"
+	"xenixmail-core/internal/service/public"
 
-	"billionmail-core/api/mail_services/v1"
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/os/gfile"
+	"xenixmail-core/api/mail_services/v1"
 )
 
 func (c *ControllerV1) SaveConfigFile(ctx context.Context, req *v1.SaveConfigFileReq) (res *v1.SaveConfigFileRes, err error) {

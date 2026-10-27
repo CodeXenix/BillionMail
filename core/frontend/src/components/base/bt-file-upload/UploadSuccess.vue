@@ -1,6 +1,6 @@
 <template>
 	<div class="drag-icon">
-		<i class="i-mdi-file"></i>
+		<i class="i-lucide-file"></i>
 	</div>
 	<div class="drag-text">{{ fileName }}</div>
 </template>

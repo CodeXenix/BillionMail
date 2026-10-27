@@ -1,8 +1,6 @@
 package contact
 
 import (
-	v1 "billionmail-core/api/contact/v1"
-	"billionmail-core/internal/model/entity"
 	"context"
 	"database/sql"
 	"encoding/json"
@@ -10,6 +8,8 @@ import (
 	"math/rand"
 	"strings"
 	"time"
+	v1 "xenixmail-core/api/contact/v1"
+	"xenixmail-core/internal/model/entity"
 
 	"github.com/gogf/gf/crypto/gmd5"
 	"github.com/gogf/gf/v2/database/gdb"

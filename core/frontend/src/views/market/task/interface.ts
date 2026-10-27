@@ -10,6 +10,7 @@ export interface Task {
 	template_id: number
 	is_record: number
 	unsubscribe: number
+	warmup: number
 	threads: number
 	etypes: string
 	track_open: number

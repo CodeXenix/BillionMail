@@ -1,9 +1,6 @@
 package relay
 
 import (
-	"billionmail-core/internal/model/entity"
-	"billionmail-core/internal/service/mail_service"
-	"billionmail-core/internal/service/public"
 	"context"
 	"fmt"
 	"github.com/gogf/gf/v2/frame/g"
@@ -11,6 +8,9 @@ import (
 	"strings"
 	"sync"
 	"time"
+	"xenixmail-core/internal/model/entity"
+	"xenixmail-core/internal/service/mail_service"
+	"xenixmail-core/internal/service/public"
 )
 
 // Cache instance for storing SMTP connection states.
@@ -76,7 +76,7 @@ func TestSmtpConnection(host, port, user, password string) *SmtpConnectionTestRe
 	sender := mail_service.NewEmailSender()
 	sender.Host = host
 	sender.Port = port
-	sender.Email = "test_connection@billionmail.com" // Temporary email for testing
+	sender.Email = "test_connection@example.com" // Temporary email for testing
 
 	// Handle authentication based on whether credentials are provided
 	isAuthRequired := user != "" && password != ""

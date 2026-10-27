@@ -10,12 +10,12 @@ import (
 	"strings"
 	"time"
 
-	domainsV1 "billionmail-core/api/domains/v1"
-	"billionmail-core/internal/consts"
-	"billionmail-core/internal/model/entity"
-	docker "billionmail-core/internal/service/dockerapi"
-	"billionmail-core/internal/service/domains"
-	"billionmail-core/internal/service/public"
+	domainsV1 "xenixmail-core/api/domains/v1"
+	"xenixmail-core/internal/consts"
+	"xenixmail-core/internal/model/entity"
+	docker "xenixmail-core/internal/service/dockerapi"
+	"xenixmail-core/internal/service/domains"
+	"xenixmail-core/internal/service/public"
 
 	"github.com/gogf/gf/util/grand"
 	"github.com/gogf/gf/v2/crypto/gaes"
@@ -825,7 +825,7 @@ sender_dependent_default_transport_maps = pgsql:/etc/postfix/sql/pgsql_sender_tr
 			}
 			modified = true
 		}
-    
+
 	} else if hasConfigBlock {
 		// Remove the relay configuration block
 		content = content[:beginIndex] + content[endIndex+len(endMarker):]

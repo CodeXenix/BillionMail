@@ -1,12 +1,12 @@
 package askai
 
 import (
-	v1 "billionmail-core/api/askai/v1"
-	"billionmail-core/internal/service/askai"
-	"billionmail-core/internal/service/public"
-	"billionmail-core/utility/types/api_v1"
 	"context"
 	"errors"
+	v1 "xenixmail-core/api/askai/v1"
+	"xenixmail-core/internal/service/askai"
+	"xenixmail-core/internal/service/public"
+	"xenixmail-core/utility/types/api_v1"
 )
 
 func (c *ControllerV1) List(ctx context.Context, req *v1.ListReq) (res *v1.ListRes, err error) {

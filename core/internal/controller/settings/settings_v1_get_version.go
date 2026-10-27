@@ -1,11 +1,11 @@
 package settings
 
 import (
-	"billionmail-core/internal/service/public"
 	"context"
 	"github.com/gogf/gf/v2/frame/g"
+	"xenixmail-core/internal/service/public"
 
-	"billionmail-core/api/settings/v1"
+	"xenixmail-core/api/settings/v1"
 )
 
 func (c *ControllerV1) GetVersion(ctx context.Context, req *v1.GetVersionReq) (res *v1.GetVersionRes, err error) {

@@ -1,9 +1,9 @@
 package operation_log
 
 import (
-	"billionmail-core/api/operation_log/v1"
-	"billionmail-core/internal/service/public"
 	"context"
+	"xenixmail-core/api/operation_log/v1"
+	"xenixmail-core/internal/service/public"
 )
 
 func (c *ControllerV1) GetOperationType(ctx context.Context, req *v1.GetOperationTypeReq) (res *v1.GetOperationTypeRes, err error) {

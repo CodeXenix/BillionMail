@@ -1,16 +1,16 @@
 package batch_mail
 
 import (
-	"billionmail-core/internal/service/batch_mail"
-	"billionmail-core/internal/service/maillog_stat"
-	"billionmail-core/internal/service/public"
 	"context"
 	"fmt"
 	"github.com/gogf/gf/v2/util/gconv"
+	"xenixmail-core/internal/service/batch_mail"
+	"xenixmail-core/internal/service/maillog_stat"
+	"xenixmail-core/internal/service/public"
 
 	"github.com/gogf/gf/v2/errors/gerror"
 
-	"billionmail-core/api/batch_mail/v1"
+	"xenixmail-core/api/batch_mail/v1"
 )
 
 func (c *ControllerV1) TaskStatChart(ctx context.Context, req *v1.TaskStatChartReq) (res *v1.TaskStatChartRes, err error) {

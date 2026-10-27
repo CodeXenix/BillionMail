@@ -4,7 +4,7 @@
 			<i
 				class="text-16px"
 				:class="
-					checkResult.blacklisted ? 'i-ooui:clear text-error' : 'i-ooui:success text-primary'
+					checkResult.blacklisted ? 'i-lucide-circle-x text-error' : 'i-lucide-circle-check text-primary'
 				">
 			</i>
 			<span class="leading-[1]">{{ time }}</span>
@@ -12,14 +12,14 @@
 		<!-- Check Now -->
 		<n-popover>
 			<template #trigger>
-				<i class="i-common:search text-18px text-primary cursor-pointer" @click="onCheck"></i>
+				<i class="i-lucide-search text-18px text-primary cursor-pointer" @click="onCheck"></i>
 			</template>
 			<span>{{ $t('domain.notSpam.checkNow') }}</span>
 		</n-popover>
 		<!-- Logs -->
 		<n-popover>
 			<template #trigger>
-				<i class="i-common:logs text-18px cursor-pointer" @click="onShowLogs"></i>
+				<i class="i-lucide-scroll-text text-18px cursor-pointer" @click="onShowLogs"></i>
 			</template>
 			<span>{{ $t('domain.notSpam.logs') }}</span>
 		</n-popover>

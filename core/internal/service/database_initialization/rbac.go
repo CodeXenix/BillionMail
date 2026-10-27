@@ -1,12 +1,12 @@
 package database_initialization
 
 import (
-	"billionmail-core/internal/model"
-	"billionmail-core/internal/service/public"
-	"billionmail-core/internal/service/rbac"
 	"context"
 	"github.com/gogf/gf/v2/frame/g"
 	"time"
+	"xenixmail-core/internal/model"
+	"xenixmail-core/internal/service/public"
+	"xenixmail-core/internal/service/rbac"
 )
 
 // Initialize RBAC related table structures

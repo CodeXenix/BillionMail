@@ -1,8 +1,8 @@
 package v1
 
 import (
-	"billionmail-core/internal/model/entity"
-	"billionmail-core/utility/types/api_v1"
+	"xenixmail-core/internal/model/entity"
+	"xenixmail-core/utility/types/api_v1"
 
 	"github.com/gogf/gf/v2/frame/g"
 )
@@ -266,21 +266,23 @@ type TaskStatChartRes struct {
 	} `json:"data"`
 }
 
+// UpdateTaskInfoReq edits a task that has not finished. Fields left out keep their value;
+// the audience (group and tags) is fixed when the task is created.
 type UpdateTaskInfoReq struct {
-	g.Meta        `path:"/batch_mail/task/update" method:"post" tags:"BatchMail" summary:"update task info"`
-	Authorization string `json:"authorization" dc:"Authorization" in:"header"`
-	TaskId        int    `json:"task_id" v:"required" dc:"task id"`
-	Addresser     string `json:"addresser" dc:"addresser"`
-	Subject       string `json:"subject" dc:"subject"`
-	FullName      string `json:"full_name" dc:"full name"`
-	Remark        string `json:"remark" dc:"remark"`
-	TemplateId    int    `json:"template_id" dc:"template id"`
-	Unsubscribe   int    `json:"unsubscribe" v:"in:0,1" dc:"unsubscribe"`
-	Warmup        int    `json:"warmup" v:"in:0,1" dc:"warmup"`
-	Threads       int    `json:"threads" v:"min:0" dc:"threads"`
-	StartTime     int    `json:"start_time" dc:"start time"`
-	TagIds        []int  `json:"tag_ids" dc:"tag ids for filtering contacts"`
-	TagLogic      string `json:"tag_logic" v:"in:AND,OR,NOT" dc:"tag logic (AND: must have all tags, OR: have any tag, NOT)"`
+	g.Meta        `path:"/batch_mail/task/update" method:"post" tags:"BatchMail" summary:"update a scheduled, pending or paused task"`
+	Authorization string  `json:"authorization" dc:"Authorization" in:"header"`
+	TaskId        int     `json:"task_id" v:"required" dc:"task id"`
+	Addresser     string  `json:"addresser" dc:"addresser"`
+	Subject       string  `json:"subject" dc:"subject"`
+	FullName      string  `json:"full_name" dc:"full name"`
+	Remark        *string `json:"remark" dc:"remark"`
+	TemplateId    int     `json:"template_id" dc:"template id"`
+	Unsubscribe   *int    `json:"unsubscribe" v:"in:0,1" dc:"unsubscribe"`
+	Warmup        *int    `json:"warmup" v:"in:0,1" dc:"link the task to the server IP warmup"`
+	TrackOpen     *int    `json:"track_open" v:"in:0,1" dc:"track open"`
+	TrackClick    *int    `json:"track_click" v:"in:0,1" dc:"track click"`
+	Threads       *int    `json:"threads" v:"min:0" dc:"threads (0: auto)"`
+	StartTime     int     `json:"start_time" dc:"start time, only used before the task starts sending"`
 }
 type UpdateTaskInfoRes struct {
 	api_v1.StandardRes

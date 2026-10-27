@@ -1,18 +1,14 @@
 <template>
-	<n-layout-header ref="headerRef" :style="{ top: `${top}px` }">
+	<n-layout-header ref="headerRef" bordered :style="{ top: `${top}px` }">
 		<div class="header-left">
 			<n-button class="icon-btn" :bordered="false" @click="handleCollapse">
-				<i class="icon" :class="isCollapse ? 'i-mdi-menu-close' : 'i-mdi-menu-open'"></i>
-			</n-button>
-			<n-button type="primary" text class="text-14px" @click="handleGoIssues">
-				{{ t('layout.header.submit') }}
-				<i class="i-mdi:arrow-right ml-1px"></i>
+				<i class="icon" :class="isCollapse ? 'i-lucide-panel-left-open' : 'i-lucide-panel-left-close'"></i>
 			</n-button>
 		</div>
 
 		<div class="header-right">
 			<n-button class="icon-btn" :bordered="false" @click="handleSetTheme">
-				<i class="icon" :class="theme === 'light' ? 'i-ri-sun-line' : 'i-ri-moon-line'"></i>
+				<i class="icon" :class="theme === 'light' ? 'i-lucide-sun' : 'i-lucide-moon'"></i>
 			</n-button>
 			<n-dropdown
 				v-if="langOptions.length > 0"
@@ -20,18 +16,15 @@
 				:options="langOptions"
 				@select="handleLangAction">
 				<n-button class="icon-btn" :bordered="false">
-					<i class="icon i-mdi-language text-20px"></i>
+					<i class="icon i-lucide-languages"></i>
 				</n-button>
 			</n-dropdown>
 			<InstanceSwitcher />
 			<n-dropdown size="large" :options="userOptions" @select="handleUserAction">
 				<n-button class="icon-btn" :bordered="false">
-					<i class="icon i-mdi-user-outline"></i>
+					<i class="icon i-lucide-user"></i>
 				</n-button>
 			</n-dropdown>
-			<n-button type="primary" text class="text-14px" @click="handleGoVersion">
-				{{ version }}
-			</n-button>
 		</div>
 	</n-layout-header>
 </template>
@@ -41,8 +34,6 @@ import { storeToRefs } from 'pinia'
 import { DropdownOption } from 'naive-ui'
 import { useUserStore, useGlobalStore, useThemeStore } from '@/store'
 import InstanceSwitcher from './InstanceSwitcher.vue'
-import { getVersionInfo } from '@/api/modules/settings'
-import { isObject } from '@/utils'
 
 defineProps({
 	top: {
@@ -52,8 +43,6 @@ defineProps({
 })
 
 const { t } = useI18n()
-
-const version = ref('--')
 
 const userStore = useUserStore()
 
@@ -65,10 +54,6 @@ const { theme } = storeToRefs(themeStore)
 
 const handleCollapse = () => {
 	globalStore.setCollapse()
-}
-
-const handleGoIssues = () => {
-	window.open('https://github.com/aaPanel/BillionMail/issues')
 }
 
 const langOptions = ref<DropdownOption[]>([])
@@ -97,10 +82,6 @@ const handleUserAction = (key: string) => {
 	}
 }
 
-const handleGoVersion = () => {
-	window.open('https://github.com/aaPanel/BillionMail/releases')
-}
-
 const getLangOptions = async () => {
 	langOptions.value = langList.value.map(item => {
 		return {
@@ -110,15 +91,7 @@ const getLangOptions = async () => {
 	})
 }
 
-const getVersion = async () => {
-	const res = await getVersionInfo()
-	if (isObject<{ version: string }>(res)) {
-		version.value = `v${res.version}`
-	}
-}
-
 onMounted(() => {
-	getVersion()
 	getLangOptions()
 })
 </script>
@@ -133,31 +106,28 @@ onMounted(() => {
 	justify-content: space-between;
 	align-items: center;
 	height: 48px;
-	padding: 0 20px 0 12px;
-	box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+	padding: 0 16px 0 8px;
 	z-index: 1000;
+
+	// :deep so InstanceSwitcher's button (a fragment child) gets the same look
+	:deep(.icon-btn) {
+		--n-width: 36px;
+		--n-height: 36px;
+		--n-padding: 0;
+		--n-font-size: 20px;
+		--n-text-color: var(--color-text-4);
+		--n-text-color-hover: var(--color-text-1);
+		--n-text-color-pressed: var(--color-text-1);
+		--n-color-hover: var(--color-bg-2);
+		--n-color-pressed: var(--color-bg-2);
+		--n-ripple-color: none;
+	}
 }
 
 .header-left,
 .header-right {
 	display: flex;
 	align-items: center;
-	gap: 8px;
-}
-
-.header-item {
-	color: var(--color-text-4);
-	font-size: 14px;
-	text-align: center;
-	font-weight: 600;
-}
-
-.icon-btn {
-	--n-width: 42px;
-	--n-height: 48px;
-	--n-padding: 0;
-	--n-font-size: 22px;
-	--n-text-color: var(--color-text-4);
-	--n-ripple-color: none;
+	gap: 4px;
 }
 </style>

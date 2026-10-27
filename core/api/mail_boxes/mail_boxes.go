@@ -7,7 +7,7 @@ package mail_boxes
 import (
 	"context"
 
-	"billionmail-core/api/mail_boxes/v1"
+	"xenixmail-core/api/mail_boxes/v1"
 )
 
 type IMailBoxesV1 interface {

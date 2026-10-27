@@ -1,7 +1,6 @@
 package askai
 
 import (
-	"billionmail-core/internal/service/public"
 	"context"
 	"encoding/json"
 	"errors"
@@ -11,6 +10,7 @@ import (
 	"reflect"
 	"strconv"
 	"strings"
+	"xenixmail-core/internal/service/public"
 
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/net/ghttp"

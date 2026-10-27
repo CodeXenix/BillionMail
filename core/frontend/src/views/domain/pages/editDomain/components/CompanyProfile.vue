@@ -5,7 +5,7 @@
 				<div class="left-tit">
 					<div class="left-tit">
 						<div class="back-tool">
-							<i class="i-ri:apps-fill text-6"></i>
+							<i class="i-lucide-layout-grid text-6"></i>
 						</div>
 						<span class="tit-content"> {{ $t("domain.edit.companyProfile.title") }} </span>
 					</div>
@@ -40,7 +40,7 @@
 			<div class="page-tit mb-20px">
 				<div class="left-tit">
 					<div class="back-tool">
-						<i class="i-ri:apps-fill text-6"></i>
+						<i class="i-lucide-layout-grid text-6"></i>
 					</div>
 					<span class="tit-content"> {{ $t("domain.edit.companyProfile.contactInfo") }} </span>
 				</div>

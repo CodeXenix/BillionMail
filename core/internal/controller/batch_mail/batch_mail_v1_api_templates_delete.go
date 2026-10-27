@@ -1,14 +1,14 @@
 package batch_mail
 
 import (
-	"billionmail-core/api/batch_mail/v1"
-	"billionmail-core/internal/consts"
-	"billionmail-core/internal/model/entity"
-	"billionmail-core/internal/service/public"
 	"context"
 	"github.com/gogf/gf/v2/database/gdb"
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
+	"xenixmail-core/api/batch_mail/v1"
+	"xenixmail-core/internal/consts"
+	"xenixmail-core/internal/model/entity"
+	"xenixmail-core/internal/service/public"
 )
 
 func (c *ControllerV1) ApiTemplatesDelete(ctx context.Context, req *v1.ApiTemplatesDeleteReq) (res *v1.ApiTemplatesDeleteRes, err error) {

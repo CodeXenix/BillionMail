@@ -1,13 +1,13 @@
 package contact
 
 import (
-	"billionmail-core/api/contact/v1"
-	"billionmail-core/internal/consts"
-	"billionmail-core/internal/service/contact"
-	"billionmail-core/internal/service/public"
 	"context"
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
+	"xenixmail-core/api/contact/v1"
+	"xenixmail-core/internal/consts"
+	"xenixmail-core/internal/service/contact"
+	"xenixmail-core/internal/service/public"
 )
 
 func (c *ControllerV1) CreateGroup(ctx context.Context, req *v1.CreateGroupReq) (res *v1.CreateGroupRes, err error) {

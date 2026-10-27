@@ -1,10 +1,10 @@
 <template>
 	<div class="block-toolbar">
 		<button class="tool-btn" @click.stop="duplicate">
-			<i class="i-ri:file-copy-line text-16px text-#fff"></i>
+			<i class="i-lucide-copy text-16px text-#fff"></i>
 		</button>
 		<button class="tool-btn" @click.stop="remove">
-			<i class="i-mdi:delete-outline text-16px text-#fff"></i>
+			<i class="i-lucide-trash-2 text-16px text-#fff"></i>
 		</button>
 	</div>
 </template>

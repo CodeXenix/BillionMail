@@ -1,4 +1,4 @@
-module billionmail-core
+module xenixmail-core
 
 go 1.24.0
 

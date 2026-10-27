@@ -7,7 +7,7 @@ package campaign
 import (
 	"context"
 
-	"billionmail-core/api/campaign/v1"
+	"xenixmail-core/api/campaign/v1"
 )
 
 type ICampaignV1 interface {

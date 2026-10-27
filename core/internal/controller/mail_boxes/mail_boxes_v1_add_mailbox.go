@@ -1,13 +1,13 @@
 package mail_boxes
 
 import (
-	"billionmail-core/internal/consts"
-	"billionmail-core/internal/service/public"
 	"context"
 	"strings"
+	"xenixmail-core/internal/consts"
+	"xenixmail-core/internal/service/public"
 
-	"billionmail-core/api/mail_boxes/v1"
-	"billionmail-core/internal/service/mail_boxes"
+	"xenixmail-core/api/mail_boxes/v1"
+	"xenixmail-core/internal/service/mail_boxes"
 )
 
 func (c *ControllerV1) AddMailbox(ctx context.Context, req *v1.AddMailboxReq) (res *v1.AddMailboxRes, err error) {
@@ -16,14 +16,14 @@ func (c *ControllerV1) AddMailbox(ctx context.Context, req *v1.AddMailboxReq) (r
 	req.FullName = strings.TrimSpace(req.FullName)
 	req.LocalPart = strings.TrimSpace(req.LocalPart)
 	mailbox := &v1.Mailbox{
-		Username:  req.LocalPart + "@" + req.Domain,
-		Password:  req.Password,
-		FullName:  req.FullName,
-		IsAdmin:   req.IsAdmin,
-		Quota:     int64(req.Quota),
-		LocalPart: req.LocalPart,
-		Domain:    req.Domain,
-		Active:    req.Active,
+		Username:    req.LocalPart + "@" + req.Domain,
+		Password:    req.Password,
+		FullName:    req.FullName,
+		IsAdmin:     req.IsAdmin,
+		Quota:       int64(req.Quota),
+		LocalPart:   req.LocalPart,
+		Domain:      req.Domain,
+		Active:      req.Active,
 		QuotaActive: req.QuotaActive,
 	}
 

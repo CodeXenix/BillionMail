@@ -1,11 +1,11 @@
 package contact
 
 import (
-	"billionmail-core/api/contact/v1"
-	"billionmail-core/internal/service/contact"
-	"billionmail-core/internal/service/public"
 	"context"
 	"github.com/gogf/gf/v2/errors/gerror"
+	"xenixmail-core/api/contact/v1"
+	"xenixmail-core/internal/service/contact"
+	"xenixmail-core/internal/service/public"
 )
 
 // GetGroupContactCount handles the request to calculate the total number of active contacts in multiple groups

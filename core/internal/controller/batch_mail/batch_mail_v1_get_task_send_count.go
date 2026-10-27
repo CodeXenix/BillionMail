@@ -1,15 +1,15 @@
 package batch_mail
 
 import (
-	"billionmail-core/internal/service/batch_mail"
 	"context"
 	"time"
+	"xenixmail-core/internal/service/batch_mail"
 
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
 
-	"billionmail-core/api/batch_mail/v1"
-	"billionmail-core/internal/service/public"
+	"xenixmail-core/api/batch_mail/v1"
+	"xenixmail-core/internal/service/public"
 )
 
 // GetTaskSendCount

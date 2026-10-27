@@ -1,18 +1,18 @@
 package middlewares
 
 import (
-	"billionmail-core/internal/model"
-	"billionmail-core/internal/service/public"
 	"context"
 	"fmt"
 	"strings"
+	"xenixmail-core/internal/model"
+	"xenixmail-core/internal/service/public"
 
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/net/ghttp"
 	"github.com/gogf/gf/v2/text/gregex"
 	"github.com/gogf/gf/v2/util/gconv"
 
-	"billionmail-core/internal/service/rbac"
+	"xenixmail-core/internal/service/rbac"
 )
 
 // PathToRouteInfo converts path to module, action, and resource

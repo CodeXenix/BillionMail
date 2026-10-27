@@ -1,10 +1,6 @@
 package relay
 
 import (
-	"billionmail-core/api/relay/v1"
-	"billionmail-core/internal/model/entity"
-	"billionmail-core/internal/service/public"
-	relay_service "billionmail-core/internal/service/relay"
 	"context"
 	"fmt"
 	"github.com/gogf/gf/v2/os/gcache"
@@ -12,6 +8,10 @@ import (
 	"strings"
 	"sync"
 	"time"
+	"xenixmail-core/api/relay/v1"
+	"xenixmail-core/internal/model/entity"
+	"xenixmail-core/internal/service/public"
+	relay_service "xenixmail-core/internal/service/relay"
 
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
@@ -49,7 +49,7 @@ func (c *ControllerV1) ListRelayConfigs(ctx context.Context, req *v1.ListRelayCo
 	}
 
 	for _, config := range configs {
-		password,_ := relay_service.DecryptPassword(ctx,config.AuthPassword)
+		password, _ := relay_service.DecryptPassword(ctx, config.AuthPassword)
 
 		relayWithSPF := &v1.BmRelayWithSPF{
 			BmRelay: &v1.BmRelay{

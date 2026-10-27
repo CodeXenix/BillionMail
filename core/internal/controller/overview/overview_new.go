@@ -5,7 +5,7 @@
 package overview
 
 import (
-	"billionmail-core/api/overview"
+	"xenixmail-core/api/overview"
 )
 
 type ControllerV1 struct{}

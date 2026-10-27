@@ -4,7 +4,7 @@
 			<div class="page-tit">
 				<div class="left-tit">
 					<div class="back-tool">
-						<i class="i-ri:apps-fill text-6"></i>
+						<i class="i-lucide-layout-grid text-6"></i>
 					</div>
 					<span class="tit-content"> {{ $t("domain.edit.sitemap.title") }} </span>
 				</div>
@@ -20,14 +20,14 @@
 					<n-input v-model:value="item.title" class="name"></n-input>
 					<n-input v-model:value="item.uri_path" class="url"></n-input>
 					<div class="operation close" @click="handleRemove(item, index)">
-						<i class="i-material-symbols:close-rounded text-5"></i>
+						<i class="i-lucide-x text-5"></i>
 					</div>
 					<div :class="[
 						'operation',
 						{ save: item.title && item.uri_path },
 						{ disabled: !item.title || !item.uri_path },
 					]" @click="handleSave(item, index)">
-						<i class="i-mingcute:save-2-line text-5"></i>
+						<i class="i-lucide-save text-5"></i>
 					</div>
 				</div>
 			</div>

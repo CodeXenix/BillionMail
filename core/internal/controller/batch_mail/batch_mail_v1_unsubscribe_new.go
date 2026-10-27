@@ -1,13 +1,6 @@
 package batch_mail
 
 import (
-	"billionmail-core/api/batch_mail/v1"
-	"billionmail-core/internal/controller/subscribe_list"
-	"billionmail-core/internal/model/entity"
-	"billionmail-core/internal/service/batch_mail"
-	"billionmail-core/internal/service/contact_activity"
-	"billionmail-core/internal/service/domains"
-	"billionmail-core/internal/service/public"
 	"context"
 	"fmt"
 	"github.com/gogf/gf/os/gtimer"
@@ -16,6 +9,13 @@ import (
 	"github.com/gogf/gf/v2/frame/g"
 	"strings"
 	"time"
+	"xenixmail-core/api/batch_mail/v1"
+	"xenixmail-core/internal/controller/subscribe_list"
+	"xenixmail-core/internal/model/entity"
+	"xenixmail-core/internal/service/batch_mail"
+	"xenixmail-core/internal/service/contact_activity"
+	"xenixmail-core/internal/service/domains"
+	"xenixmail-core/internal/service/public"
 )
 
 func (c *ControllerV1) UnsubscribeNew(ctx context.Context, req *v1.UnsubscribeNewReq) (res *v1.UnsubscribeNewRes, err error) {

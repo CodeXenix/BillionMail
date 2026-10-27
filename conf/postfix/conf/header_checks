@@ -1,3 +1,9 @@
+if /^\s*Received:.*Authenticated sender.*\(XenixMail\)/
+/^Received: from .*? \([\w\-.]* \[.*?\]\)(.*|\n.*)\(Authenticated sender: (.+)\)\s+by.+\(XenixMail\) with (.*)/
+  REPLACE Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with $3
+endif
+
+# Same rule for the upstream billionmail/core image, which still sets mail_name = PostBillionMail
 if /^\s*Received:.*Authenticated sender.*\(PostBillionMail\)/
 /^Received: from .*? \([\w\-.]* \[.*?\]\)(.*|\n.*)\(Authenticated sender: (.+)\)\s+by.+\(PostBillionMail\) with (.*)/
   REPLACE Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with $3

@@ -1,15 +1,6 @@
 package domains
 
 import (
-	"billionmail-core/api/domains/v1"
-	"billionmail-core/internal/consts"
-	"billionmail-core/internal/model"
-	"billionmail-core/internal/model/entity"
-	"billionmail-core/internal/service/acme"
-	docker "billionmail-core/internal/service/dockerapi"
-	"billionmail-core/internal/service/mail_service"
-	"billionmail-core/internal/service/public"
-	"billionmail-core/internal/service/rbac"
 	"context"
 	"database/sql"
 	"encoding/json"
@@ -17,6 +8,15 @@ import (
 	"path/filepath"
 	"strings"
 	"time"
+	"xenixmail-core/api/domains/v1"
+	"xenixmail-core/internal/consts"
+	"xenixmail-core/internal/model"
+	"xenixmail-core/internal/model/entity"
+	"xenixmail-core/internal/service/acme"
+	docker "xenixmail-core/internal/service/dockerapi"
+	"xenixmail-core/internal/service/mail_service"
+	"xenixmail-core/internal/service/public"
+	"xenixmail-core/internal/service/rbac"
 
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"

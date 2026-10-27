@@ -1,10 +1,10 @@
 package video_outreach
 
 import (
-	"billionmail-core/internal/service/lead_scoring"
 	"os"
 	"strconv"
 	"strings"
+	"xenixmail-core/internal/service/lead_scoring"
 )
 
 // TemplateSelection holds the chosen template ID and type for a contact.

@@ -8,6 +8,9 @@
 					:columns="columns"
 					:data="tableList"
 					:row-props="rowProps">
+					<template #empty>
+						<bt-table-help> </bt-table-help>
+					</template>
 				</n-data-table>
 			</template>
 			<template #pageRight>

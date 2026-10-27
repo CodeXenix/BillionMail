@@ -1,8 +1,6 @@
 package docker
 
 import (
-	v1 "billionmail-core/api/dockerapi/v1"
-	"billionmail-core/internal/consts"
 	"bytes"
 	"context"
 	"encoding/json"
@@ -14,6 +12,8 @@ import (
 	"os"
 	"strings"
 	"time"
+	v1 "xenixmail-core/api/dockerapi/v1"
+	"xenixmail-core/internal/consts"
 
 	"github.com/docker/docker/api/types/container"
 	"github.com/docker/docker/api/types/filters"

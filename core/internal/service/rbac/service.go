@@ -1,8 +1,8 @@
 package rbac
 
 import (
-	"billionmail-core/internal/model"
 	"context"
+	"xenixmail-core/internal/model"
 )
 
 // Account service interface

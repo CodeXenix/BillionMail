@@ -1,15 +1,15 @@
 package batch_mail
 
 import (
-	"billionmail-core/internal/model/entity"
-	"billionmail-core/internal/service/batch_mail"
-	"billionmail-core/internal/service/public"
 	"context"
 	"encoding/json"
+	"xenixmail-core/internal/model/entity"
+	"xenixmail-core/internal/service/batch_mail"
+	"xenixmail-core/internal/service/public"
 
 	"github.com/gogf/gf/v2/errors/gerror"
 
-	"billionmail-core/api/batch_mail/v1"
+	"xenixmail-core/api/batch_mail/v1"
 )
 
 func (c *ControllerV1) TaskInfo(ctx context.Context, req *v1.TaskInfoReq) (res *v1.TaskInfoRes, err error) {
@@ -35,6 +35,10 @@ func (c *ControllerV1) TaskInfo(ctx context.Context, req *v1.TaskInfoReq) (res *
 		if err := json.Unmarshal([]byte(taskInfo.TagIdsRaw), &tagIds); err == nil {
 			taskInfo.TagIds = tagIds
 		}
+	}
+
+	if batch_mail.TaskWarmupLinked(ctx, req.Id) {
+		taskInfo.Warmup = 1
 	}
 
 	res.Data = taskInfo

@@ -1,12 +1,12 @@
 package batch_mail
 
 import (
-	"billionmail-core/api/batch_mail/v1"
-	"billionmail-core/internal/service/batch_mail"
-	"billionmail-core/internal/service/public"
 	"context"
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
+	"xenixmail-core/api/batch_mail/v1"
+	"xenixmail-core/internal/service/batch_mail"
+	"xenixmail-core/internal/service/public"
 )
 
 func (c *ControllerV1) ListTasks(ctx context.Context, req *v1.ListTasksReq) (res *v1.ListTasksRes, err error) {

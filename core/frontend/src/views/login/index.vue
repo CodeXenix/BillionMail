@@ -1,61 +1,85 @@
 <template>
 	<div class="login-container">
-		<div class="login-card">
-			<div class="logo-container">
-				<div class="logo">
-					<img class="w-full" src="@/assets/images/logo.png" />
-				</div>
+		<aside class="brand-panel">
+			<div class="brand-content">
+				<img class="brand-logo" src="@/assets/images/logo-white.svg" alt="" />
+				<div class="brand-name">{{ t('login.title') }}</div>
+				<p class="brand-tagline">{{ t('login.brand.tagline') }}</p>
+				<ul class="brand-features">
+					<li v-for="item in brandFeatures" :key="item.key" class="brand-feature">
+						<span class="feature-chip">
+							<i :class="item.icon"></i>
+						</span>
+						<span>{{ t(item.key) }}</span>
+					</li>
+				</ul>
 			</div>
+		</aside>
 
-			<h2 class="login-title">BillionMail</h2>
+		<main class="form-panel">
+			<div class="form-box">
+				<h1 class="form-title">{{ t('login.welcome') }}</h1>
+				<p class="form-subtitle">{{ t('login.subtitle') }}</p>
 
-			<n-form ref="formRef" size="large" :model="form" :rules="rules">
-				<n-form-item :show-label="false" path="username">
-					<n-input v-model:value="form.username" :placeholder="t('login.form.usernamePlaceholder')">
-					</n-input>
-				</n-form-item>
-				<n-form-item :show-label="false" path="password">
-					<n-input
-						v-model:value="form.password"
-						class="password-input"
-						type="password"
-						show-password-on="click"
-						:placeholder="t('login.form.passwordPlaceholder')"
-						@keyup.enter="handleLogin">
-					</n-input>
-				</n-form-item>
-				<n-form-item v-if="isCode" :show-label="false" path="validate_code">
-					<n-input
-						v-model:value="form.validate_code"
-						class="flex-1"
-						:placeholder="t('login.form.captcha')"
-						:input-props="{ spellcheck: false }"
-						@keydown.enter="handleLogin">
-					</n-input>
-					<n-spin size="small" :show="codeLoading">
-						<div class="code" @click="getCode()">
-							<img
-								class="w-full h-full"
-								:src="codeUrl"
-								:title="t('login.form.changeCaptcha')"
-								:alt="t('login.form.captcha')" />
-						</div>
-					</n-spin>
-				</n-form-item>
-				<n-form-item :show-label="false" :show-feedback="false">
-					<n-button
-						type="primary"
-						size="large"
-						class="font-bold"
-						:loading="loading"
-						:disabled="loading"
-						:block="true"
-						@click="handleLogin">
-						{{ t('login.form.loginButton') }}
-					</n-button>
-				</n-form-item>
-			</n-form>
-		</div>
+				<n-form ref="formRef" size="large" :model="form" :rules="rules">
+					<n-form-item :show-label="false" path="username">
+						<n-input
+							v-model:value="form.username"
+							:placeholder="t('login.form.usernamePlaceholder')">
+							<template #prefix>
+								<i class="i-lucide-user input-icon"></i>
+							</template>
+						</n-input>
+					</n-form-item>
+					<n-form-item :show-label="false" path="password">
+						<n-input
+							v-model:value="form.password"
+							class="password-input"
+							type="password"
+							show-password-on="click"
+							:placeholder="t('login.form.passwordPlaceholder')"
+							@keyup.enter="handleLogin">
+							<template #prefix>
+								<i class="i-lucide-lock input-icon"></i>
+							</template>
+						</n-input>
+					</n-form-item>
+					<n-form-item v-if="isCode" :show-label="false" path="validate_code">
+						<n-input
+							v-model:value="form.validate_code"
+							class="flex-1"
+							:placeholder="t('login.form.captcha')"
+							:input-props="{ spellcheck: false }"
+							@keydown.enter="handleLogin">
+							<template #prefix>
+								<i class="i-lucide-shield-check input-icon"></i>
+							</template>
+						</n-input>
+						<n-spin size="small" :show="codeLoading">
+							<div class="code" @click="getCode()">
+								<img
+									class="w-full h-full"
+									:src="codeUrl"
+									:title="t('login.form.changeCaptcha')"
+									:alt="t('login.form.captcha')" />
+							</div>
+						</n-spin>
+					</n-form-item>
+					<n-form-item :show-label="false" :show-feedback="false">
+						<n-button
+							type="primary"
+							size="large"
+							class="font-bold"
+							:loading="loading"
+							:disabled="loading"
+							:block="true"
+							@click="handleLogin">
+							{{ t('login.form.loginButton') }}
+						</n-button>
+					</n-form-item>
+				</n-form>
+			</div>
+		</main>
 	</div>
 </template>
 
@@ -65,6 +89,12 @@ import { isObject } from '@/utils'
 import { getValidateCode, login } from '@/api/modules/user'
 
 const { t } = useI18n()
+
+const brandFeatures = [
+	{ icon: 'i-lucide-send', key: 'login.brand.feature1' },
+	{ icon: 'i-lucide-chart-column', key: 'login.brand.feature2' },
+	{ icon: 'i-lucide-users', key: 'login.brand.feature3' },
+]
 
 const router = useRouter()
 const userStore = useUserStore()
@@ -159,86 +189,136 @@ getCode()
 
 <style lang="scss" scoped>
 .login-container {
-	--text-dark: var(--color-text-1);
-	--text-light: var(--color-text-2);
-	--accent-green: #25cdb1;
-	--accent-purple: #7e6ed5;
-	--border-light: #ddd;
+	display: flex;
+	min-height: 100%;
+	background: var(--color-bg-1);
 }
 
-.login-container {
+.brand-panel {
 	display: flex;
 	position: relative;
-	justify-content: center;
+	flex: 0 0 44%;
 	align-items: center;
-	min-height: 100%;
-	background: var(--color-bg-3);
+	padding: 48px 56px;
 	overflow: hidden;
+	color: #fff;
+	// White/alpha overlay deepens the brand gradient so white text stays readable in both themes
+	background:
+		linear-gradient(180deg, rgba(0, 0, 0, 0.16) 0%, rgba(0, 0, 0, 0.36) 100%),
+		linear-gradient(135deg, var(--color-primary-1) 0%, var(--color-primary-hover-1) 100%);
+
 	&::before {
 		content: '';
 		position: absolute;
-		top: -15%;
-		right: -15%;
-		width: 40vw;
-		height: 40vw;
+		top: -120px;
+		right: -120px;
+		width: 360px;
+		height: 360px;
 		border-radius: 50%;
-		background-color: var(--accent-green);
-		z-index: 0;
+		background: rgba(255, 255, 255, 0.06);
 	}
+
 	&::after {
 		content: '';
 		position: absolute;
-		left: -15%;
-		bottom: -15%;
-		width: 40vw;
-		height: 40vw;
+		bottom: -160px;
+		left: -96px;
+		width: 420px;
+		height: 420px;
 		border-radius: 50%;
-		background-color: var(--accent-purple);
-		z-index: 0;
+		border: 1px solid rgba(255, 255, 255, 0.12);
 	}
 }
 
-.login-card {
+.brand-content {
+	position: relative;
+	z-index: 1;
 	width: 100%;
 	max-width: 400px;
-	background-color: var(--color-bg-1);
-	padding: 52px 32px 62px;
-	border-radius: 8px;
-	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-	z-index: 1;
+	margin: 0 auto;
 }
 
-.logo {
+.brand-logo {
+	display: block;
+	width: 56px;
+	height: 56px;
+}
+
+.brand-name {
+	margin-top: 24px;
+	font-size: 28px;
+	font-weight: 600;
+	line-height: 36px;
+}
+
+.brand-tagline {
+	margin-top: 8px;
+	font-size: 16px;
+	line-height: 24px;
+	color: rgba(255, 255, 255, 0.92);
+}
+
+.brand-features {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	margin-top: 40px;
+	list-style: none;
+}
+
+.brand-feature {
 	display: flex;
 	align-items: center;
-	justify-content: center;
-	width: 70px;
-
-	&-container {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
-
-	&-icon {
-		width: 24px;
-		height: 24px;
-		color: white;
-	}
-
-	&-text {
-		font-size: 20px;
-		font-weight: 600;
-		color: var(--text-dark);
-	}
+	gap: 12px;
+	font-size: 14px;
+	line-height: 20px;
+	color: rgba(255, 255, 255, 0.92);
 }
 
-.login-title {
-	margin-top: 0;
+.feature-chip {
+	display: flex;
+	flex-shrink: 0;
+	align-items: center;
+	justify-content: center;
+	width: 36px;
+	height: 36px;
+	border-radius: 8px;
+	font-size: 18px;
+	background: rgba(255, 255, 255, 0.14);
+}
+
+.form-panel {
+	display: flex;
+	flex: 1;
+	align-items: center;
+	justify-content: center;
+	padding: 48px;
+}
+
+.form-box {
+	width: 100%;
+	max-width: 360px;
+}
+
+.form-title {
+	margin: 0;
+	font-size: 24px;
+	font-weight: 600;
+	line-height: 32px;
+	color: var(--color-text-1);
+}
+
+.form-subtitle {
+	margin-top: 8px;
 	margin-bottom: 32px;
-	text-align: center;
-	font-weight: 500;
-	color: var(--text-dark);
+	font-size: 14px;
+	line-height: 20px;
+	color: var(--color-text-2);
+}
+
+.input-icon {
+	font-size: 16px;
+	color: var(--color-text-3);
 }
 
 .code {
@@ -246,7 +326,7 @@ getCode()
 	height: 40px;
 	margin-left: 12px;
 	border-radius: 4px;
-	border: 1px solid #dcdfe6;
+	border: 1px solid var(--color-border-1);
 	overflow: hidden;
 	cursor: pointer;
 }

@@ -1,14 +1,14 @@
 package settings
 
 import (
-	"billionmail-core/api/settings/v1"
-	"billionmail-core/internal/service/public"
 	"context"
 	"encoding/json"
 	"github.com/gogf/gf/v2/os/gfile"
 	"os"
 	"path/filepath"
 	"sort"
+	"xenixmail-core/api/settings/v1"
+	"xenixmail-core/internal/service/public"
 )
 
 func (c *ControllerV1) GetTimeZoneList(ctx context.Context, req *v1.GetTimeZoneListReq) (res *v1.GetTimeZoneListRes, err error) {

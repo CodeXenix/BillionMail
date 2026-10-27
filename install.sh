@@ -45,7 +45,7 @@ fi
 
 is64bit=$(getconf LONG_BIT)
 if [ "${is64bit}" != '64' ];then
-    echo -e "\033[31m Sorry, BillionMail does not support 32-bit systems \033[0m"
+    echo -e "\033[31m Sorry, Xenix Mail does not support 32-bit systems \033[0m"
     exit 1
 fi
 
@@ -185,7 +185,7 @@ GetSysInfo(){
     echo -e ${SYS_VERSION}
     echo -e Bit:${SYS_BIT} Mem:${MEM_TOTAL}M Core:${CPU_INFO}
     echo -e ${SYS_INFO}
-    echo -e "Please screenshot the above error message and post to the https://github.com/aaPanel/BillionMail/issues for help"
+    echo -e "Please screenshot the above error message and post to the https://github.com/CodeXenix/XenixMail/issues for help"
 
 }
 
@@ -219,7 +219,7 @@ PORT(){
         if [[ ! -z "$check_command" ]]; then
             echo "Checking the port is used:"
             echo "$check_command"|grep -v "docker-proxy"
-            echo -e "\033[1;31m BillionMail need use port ${SMTP_PORT}|${SMTPS_PORT}|${SUBMISSION_PORT}|${POP_PORT}|${IMAP_PORT}|${IMAPS_PORT}|${POPS_PORT}.\033[0m There are already services ports in the system. "
+            echo -e "\033[1;31m Xenix Mail need use port ${SMTP_PORT}|${SMTPS_PORT}|${SUBMISSION_PORT}|${POP_PORT}|${IMAP_PORT}|${IMAPS_PORT}|${POPS_PORT}.\033[0m There are already services ports in the system. "
             # exit 1
         fi
     fi
@@ -429,7 +429,7 @@ Docker_Start() {
                     if [ "$?" != "0" ];then
                         docker_status=$(systemctl status docker.service)
                         echo "$docker_status"
-                        Red_Error "docker start failed" "Please try again later execute the restart docker command: systemctl restart docker.service (no content returns normal)" "Finally, re-execute install BillionMail"
+                        Red_Error "docker start failed" "Please try again later execute the restart docker command: systemctl restart docker.service (no content returns normal)" "Finally, re-execute install Xenix Mail"
                     fi
                 fi
             fi
@@ -1141,7 +1141,7 @@ Domain_record() {
     fi
 }
 
-Init_Billionmail()
+Init_XenixMail()
 {
     # SQL file path
     SQL_FILE="./init.sql"
@@ -1192,8 +1192,8 @@ Init_Billionmail()
             echo "Generate_mailbox_password: ${Generate_mailbox_password}"
             echo "mailbox_password: ${Encrypt_mailbox_password}"
         else
-            # Generate the default password after failure: BILLIONMAIL
-            Generate_mailbox_password="BILLIONMAIL"
+            # Generate the default password after failure: XENIXMAIL
+            Generate_mailbox_password="XENIXMAIL"
             Encrypt_mailbox_password='$1$ELBUCcYE$TbdGKBvLkFbjQguDbi3s01'
             echo "Generate_mailbox_password--default: ${Generate_mailbox_password}"
             Default_password=1
@@ -1251,7 +1251,7 @@ Init_Billionmail()
 }
 
 
-Billionmail(){
+XenixMail(){
     Check_Port=$(ss -tlnp | grep -E ":(${HTTP_PORT})\b")
     if [ ! -z "${Check_Port}" ]; then
         HTTP_PORT=5678
@@ -1285,7 +1285,7 @@ Billionmail(){
     fi
 
     cat << EOF > billionmail.conf
-# Default BillionMail Username password
+# Default Xenix Mail Username password
 ADMIN_USERNAME=${ADMIN_USERNAME}
 ADMIN_PASSWORD=${ADMIN_PASSWORD}
 
@@ -1324,7 +1324,7 @@ HTTPS_PORT=${HTTPS_PORT}
 # Set to /billionmail when embedding behind aaPanel path proxy.
 WEB_BASE_PATH=
 
-# Shared secret used by aaPanel to request trusted BillionMail SSO tokens.
+# Shared secret used by aaPanel to request trusted Xenix Mail SSO tokens.
 # Keep empty to disable aaPanel SSO.
 AAPANEL_SSO_SECRET=
 
@@ -1368,7 +1368,7 @@ EOF
     ${DOCKER_COMPOSE} pull
     ${DOCKER_COMPOSE} up -d
     if [ $? -eq 0 ]; then
-        echo -e "Billionmail installation completed successfully!"
+        echo -e "Xenix Mail installation completed successfully!"
     else
         echo ""
         echo -e "--------------------------------------------------"
@@ -1382,7 +1382,7 @@ EOF
 
     # echo -e "Initialize the data..."
     # sleep 5
-    # Init_Billionmail
+    # Init_XenixMail
 
     [ ! -d "/opt" ] && mkdir /opt
     echo "${PWD_d}" > /opt/PWD-Billion-Mail.txt
@@ -1423,7 +1423,7 @@ Install_Main(){
    
     Docker_Start
 
-    Billionmail
+    XenixMail
     
     Set_Firewall
     
@@ -1453,11 +1453,11 @@ intenal_ip=$(ip addr | grep -E -o '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3
 # echo -e "Webmail Username(e-mail): \e[1;33m${mailbox}@${BILLIONMAIL_HOSTNAME}\e[0m Password: \e[1;33m${Generate_mailbox_password}\e[0m"
 # echo -e ""
 if [ ${HTTPS_PORT} = "443" ]; then
-    echo -e "BillionMail Internet address: \e[1;33mhttps://${IPV4_ADDRESS}/${SafePath}\e[0m"
-    echo -e "BillionMail Internal address: \e[1;33mhttps://${intenal_ip}/${SafePath}\e[0m"
+    echo -e "Xenix Mail Internet address: \e[1;33mhttps://${IPV4_ADDRESS}/${SafePath}\e[0m"
+    echo -e "Xenix Mail Internal address: \e[1;33mhttps://${intenal_ip}/${SafePath}\e[0m"
 else
-    echo -e "BillionMail Internet address: \e[1;33mhttps://${IPV4_ADDRESS}:${HTTPS_PORT}/${SafePath}\e[0m"
-    echo -e "BillionMail Internal address: \e[1;33mhttps://${intenal_ip}:${HTTPS_PORT}/${SafePath}\e[0m"
+    echo -e "Xenix Mail Internet address: \e[1;33mhttps://${IPV4_ADDRESS}:${HTTPS_PORT}/${SafePath}\e[0m"
+    echo -e "Xenix Mail Internal address: \e[1;33mhttps://${intenal_ip}:${HTTPS_PORT}/${SafePath}\e[0m"
 fi
 echo -e "Username: \e[1;33m${ADMIN_USERNAME}\e[0m"
 echo -e "Password: \e[1;33m${ADMIN_PASSWORD}\e[0m"
@@ -1465,4 +1465,3 @@ echo -e ""
 echo -e "Tip: Use \e[33m bm \e[0m or \e[33mbash bm.sh\e[0m to View login info etc."
 
 # Install
-curl -o /dev/null -fsSLk --connect-time 10 -X POST "https://www.aapanel.com/api/panel/panel_count_daily?name=billionmail" >/dev/null 2>&1

@@ -1,16 +1,19 @@
 <template>
 	<div class="p-24px">
-		<div class="bt-title">{{ t('layout.menu.domain') }}</div>
+		<h1 class="bt-title">{{ t('layout.menu.domain') }}</h1>
 		<bt-table-layout>
 			<template #toolsLeft>
 				<n-button type="primary" @click="handleAddDomain">{{ t('domain.addDomain') }}</n-button>
-				<bt-help href="https://www.billionmail.com/start/domain.html" :text="t('domain.help')">
-				</bt-help>
+				<span class="self-center text-desc">{{ t('domain.help') }}</span>
 			</template>
 			<template #table>
 				<n-data-table :loading="loading" :columns="columns" :data="tableList">
 					<template #empty>
-						<bt-table-help></bt-table-help>
+						<bt-table-help>
+							<n-button type="primary" size="small" @click="handleAddDomain">
+								{{ t('domain.addDomain') }}
+							</n-button>
+						</bt-table-help>
 					</template>
 				</n-data-table>
 			</template>
@@ -37,6 +40,8 @@
 <script lang="tsx" setup>
 import { DataTableColumns, NFlex, NButton, NTag } from 'naive-ui'
 import { confirm, getByteUnit } from '@/utils'
+import BtIconAction from '@/components/base/bt-icon-action/index.vue'
+import BtStatus from '@/components/base/bt-status/index.vue'
 import { useModal } from '@/hooks/modal/useModal'
 import { useTableData } from '@/hooks/useTableData'
 import { deleteDomain, getDomainList, setDefaultDomain } from '@/api/modules/domain'
@@ -70,6 +75,20 @@ const route = useRoute()
 const router = useRouter()
 
 // Table columns
+// The SSL pill opens the SSL dialog by mouse or keyboard
+const sslTrigger = (row: MailDomain) => ({
+	class: 'cursor-pointer',
+	role: 'button',
+	tabindex: 0,
+	onClick: () => handleShowSsl(row),
+	onKeydown: (e: KeyboardEvent) => {
+		if (e.key === 'Enter' || e.key === ' ') {
+			e.preventDefault()
+			handleShowSsl(row)
+		}
+	},
+})
+
 const columns = ref<DataTableColumns<MailDomain>>([
 	{
 		key: 'domain',
@@ -81,7 +100,7 @@ const columns = ref<DataTableColumns<MailDomain>>([
 		render: row => {
 			return (
 				<div class="inline-flex items-center">
-					{row.hasbrandinfo == 1 && <i class="i-domain:brand-info w-4 h-4 mr-4px"></i>}
+					{row.hasbrandinfo == 1 && <i class="i-lucide-badge-info w-4 h-4 mr-4px"></i>}
 					<NButton text type="primary" onClick={() => handleEdit(row)}>
 						{row.domain}
 					</NButton>
@@ -175,25 +194,15 @@ const columns = ref<DataTableColumns<MailDomain>>([
 				const ssl = row.cert_info
 				const day = Math.floor((ssl.endtime * 1000 - Date.now()) / 1000 / 60 / 60 / 24)
 				return (
-					<NButton
-						type={day < 0 ? 'error' : 'primary'}
-						text
-						onClick={() => {
-							handleShowSsl(row)
-						}}>
+					<BtStatus type={day < 0 ? 'error' : 'success'} {...sslTrigger(row)}>
 						{day < 0 ? t('domain.ssl.expired') : t('domain.ssl.daysLeft', { days: day })}
-					</NButton>
+					</BtStatus>
 				)
 			}
 			return (
-				<NButton
-					type="warning"
-					text
-					onClick={() => {
-						handleShowSsl(row)
-					}}>
+				<BtStatus type="warning" {...sslTrigger(row)}>
 					{t('domain.ssl.notSet')}
-				</NButton>
+				</BtStatus>
 			)
 		},
 	},
@@ -201,42 +210,39 @@ const columns = ref<DataTableColumns<MailDomain>>([
 		title: t('domain.columns.actions'),
 		key: 'actions',
 		align: 'right',
-		width: 260,
+		width: 148,
 		render: row => (
-			<NFlex inline={true}>
-				<NButton
-					type="primary"
-					text={true}
+			<NFlex inline={true} size={4}>
+				<BtIconAction
+					icon="i-lucide-network"
+					label={t('domain.actions.dnsRecord')}
 					onClick={() => {
 						handleDNSRecord(row)
-					}}>
-					{t('domain.actions.dnsRecord')}
-				</NButton>
-				<NButton
-					type="primary"
-					text={true}
+					}}
+				/>
+				<BtIconAction
+					icon="i-lucide-pencil"
+					label={t('common.actions.edit')}
 					onClick={() => {
 						handleEdit(row)
-					}}>
-					{t('common.actions.edit')}
-				</NButton>
-				<NButton
-					type="primary"
-					text={true}
+					}}
+				/>
+				<BtIconAction
+					icon="i-lucide-star"
+					label={t('domain.actions.setDefault')}
 					disabled={row.default === 1}
 					onClick={() => {
 						handleSetDefault(row)
-					}}>
-					{t('domain.actions.setDefault')}
-				</NButton>
-				<NButton
+					}}
+				/>
+				<BtIconAction
+					icon="i-lucide-trash-2"
+					label={t('common.actions.delete')}
 					type="error"
-					text={true}
 					onClick={() => {
 						handleDelete(row)
-					}}>
-					{t('common.actions.delete')}
-				</NButton>
+					}}
+				/>
 			</NFlex>
 		),
 	},
@@ -360,16 +366,4 @@ onMounted(() => {
 })
 </script>
 
-<style lang="scss" scoped>
-.domain-container {
-	padding: 16px;
-	background-color: #fff;
-	border-radius: 3px;
-
-	.action-bar {
-		display: flex;
-		justify-content: space-between;
-		margin-bottom: 16px;
-	}
-}
-</style>
+<style lang="scss" scoped></style>

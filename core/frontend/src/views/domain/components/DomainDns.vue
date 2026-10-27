@@ -2,6 +2,9 @@
 	<modal :title="t('domain.dns.title')" :width="750" :footer="false">
 		<div>
 			<n-data-table size="small" class="mb-20px" :data="statusData" :columns="statusColumns">
+				<template #empty>
+					<bt-table-help></bt-table-help>
+				</template>
 			</n-data-table>
 			<div class="record-title">{{ t('domain.dns.step1.title') }}</div>
 			<n-table size="small" class="mb-24px">
@@ -46,7 +49,7 @@
 				<div class="flex items-center gap-4px">
 					<n-popover trigger="hover">
 						<template #trigger>
-							<i class="i-custom:help text-primary"></i>
+							<i class="i-lucide-circle-help text-primary"></i>
 						</template>
 						<bt-tips>
 							<li>{{ t('domain.dns.dkim.tips.line1') }}</li>
@@ -128,8 +131,8 @@
 </template>
 
 <script lang="tsx" setup>
-import { DataTableColumns, NIcon } from 'naive-ui'
-import { SuccessIcon, ErrorIcon } from 'naive-ui/es/_internal/icons'
+import { DataTableColumns } from 'naive-ui'
+import BtStatus from '@/components/base/bt-status/index.vue'
 import { isObject } from '@/utils'
 import { useCopy } from '@/hooks/useCopy'
 import { useModal } from '@/hooks/modal/useModal'
@@ -185,12 +188,9 @@ const command = computed(() => {
 
 const StatusCol = ({ status }: { status: boolean }) => {
 	return (
-		<div class={['inline-flex items-center', status ? 'text-primary' : 'text-error']}>
-			<NIcon size="16">{status ? <SuccessIcon /> : <ErrorIcon />}</NIcon>
-			<span class="ml-4px">
-				{status ? t('domain.dns.status.ok') : t('domain.dns.status.notSet')}
-			</span>
-		</div>
+		<BtStatus type={status ? 'success' : 'error'}>
+			{status ? t('domain.dns.status.ok') : t('domain.dns.status.notSet')}
+		</BtStatus>
 	)
 }
 

@@ -1,12 +1,6 @@
 package batch_mail
 
 import (
-	"billionmail-core/internal/model/entity"
-	"billionmail-core/internal/service/domains"
-	"billionmail-core/internal/service/mail_service"
-	"billionmail-core/internal/service/maillog_stat"
-	"billionmail-core/internal/service/public"
-	"billionmail-core/internal/service/warmup"
 	"context"
 	"errors"
 	"fmt"
@@ -15,6 +9,12 @@ import (
 	"sync"
 	"sync/atomic"
 	"time"
+	"xenixmail-core/internal/model/entity"
+	"xenixmail-core/internal/service/domains"
+	"xenixmail-core/internal/service/mail_service"
+	"xenixmail-core/internal/service/maillog_stat"
+	"xenixmail-core/internal/service/public"
+	"xenixmail-core/internal/service/warmup"
 
 	"github.com/gogf/gf/util/grand"
 	"github.com/gogf/gf/v2/database/gdb"

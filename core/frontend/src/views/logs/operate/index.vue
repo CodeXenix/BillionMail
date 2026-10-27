@@ -16,7 +16,11 @@
 			</bt-search>
 		</template>
 		<template #table>
-			<n-data-table v-bind="tableProps" :columns="columns"></n-data-table>
+			<n-data-table v-bind="tableProps" :columns="columns">
+				<template #empty>
+					<bt-table-help></bt-table-help>
+				</template>
+			</n-data-table>
 		</template>
 		<template #pageRight>
 			<bt-table-page v-bind="pageProps" @refresh="fetchTable"> </bt-table-page>
@@ -48,12 +52,18 @@ const columns = ref<DataTableColumns<Logs>>([
 		title: t('logs.table.columns.type'),
 		width: '12%',
 		minWidth: '140px',
+		ellipsis: {
+			tooltip: true,
+		},
 	},
 	{
 		key: 'ip',
 		title: 'IP',
 		width: '10%',
 		minWidth: '120px',
+		ellipsis: {
+			tooltip: true,
+		},
 	},
 	{
 		key: 'addtime',

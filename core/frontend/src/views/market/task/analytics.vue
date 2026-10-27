@@ -1,6 +1,6 @@
 <template>
-	<div class="p-20px">
-		<div class="flex justify-between items-center mb-20px">
+	<div class="p-24px">
+		<div class="flex justify-between items-center gap-16px mb-16px">
 			<n-breadcrumb>
 				<n-breadcrumb-item>
 					<router-link to="/market/task">{{ $t('market.task.title') }}</router-link>
@@ -19,23 +19,25 @@
 		<!-- Main Metric Cards -->
 		<div class="metrics-cards">
 			<metric-card
-				v-for="(item, key) in rateData"
-				:key="key"
-				:title="item.label"
+				v-for="item in metrics"
+				:key="item.key"
+				:title="item.title"
 				:value="item.value"
-				:unit="item.unit">
+				unit="%"
+				:icon="item.icon"
+				:caption="item.caption">
 			</metric-card>
 		</div>
 
 		<!-- Data Details Area -->
 		<div class="detail-row">
 			<!-- Left: Mail Provider Table -->
-			<n-card class="provider-table-card" :title="$t('overview.mailProviders')">
+			<n-card :title="$t('overview.mailProviders')">
 				<provider-table v-model:value="providers" />
 			</n-card>
 
 			<!-- Right: Today's Sending Statistics -->
-			<n-card class="send-today-card" :title="$t('overview.sendStats')">
+			<n-card :title="$t('overview.sendStats')">
 				<send-today-stats :data="sendMail" />
 			</n-card>
 		</div>
@@ -50,7 +52,7 @@
 <script lang="ts" setup>
 import { getDayTimeRange, getNumber, isArray, isObject } from '@/utils'
 import { getTaskDetails, getTaskOverview } from '@/api/modules/market/task'
-import type { MailOverview, MailProvider, RateData } from '@/views/overview/types'
+import type { MailDashboard, MailOverview, MailProvider } from '@/views/overview/types'
 
 import MetricCard from '@/views/overview/components/MetricCard.vue'
 import ProviderTable from '@/views/overview/components/ProviderTable.vue'
@@ -59,7 +61,7 @@ import RateChartPanel from '@/views/overview/components/RateChartPanel.vue'
 
 const route = useRoute()
 
-const { t } = useI18n()
+const { t, locale } = useI18n()
 
 const id = computed(() => {
 	return getNumber(route.params.id || '0')
@@ -69,11 +71,54 @@ const dateRange = ref(getDayTimeRange())
 
 const providers = ref<MailProvider[]>([])
 
-const rateData = reactive<RateData>({
-	delivery_rate: { label: t('overview.delivered'), value: 0, unit: '%' },
-	open_rate: { label: t('overview.opened'), value: 0, unit: '%' },
-	click_rate: { label: t('overview.clicked'), value: 0, unit: '%' },
-	bounce_rate: { label: t('overview.bounced'), value: 0, unit: '%' },
+const dashboard = ref<MailDashboard>({
+	sends: 0,
+	delivered: 0,
+	delivery_rate: 0,
+	opened: 0,
+	open_rate: 0,
+	clicked: 0,
+	click_rate: 0,
+	bounced: 0,
+	bounce_rate: 0,
+	delayed_queue: 0,
+})
+
+const formatCount = (val: number) => val.toLocaleString(locale.value)
+
+// Each rate card shows the counts behind it: part / whole (as on Overview)
+const metrics = computed(() => {
+	const d = dashboard.value
+	return [
+		{
+			key: 'delivery_rate',
+			title: t('overview.delivered'),
+			icon: 'i-lucide-mail-check',
+			value: d.delivery_rate,
+			caption: `${formatCount(d.delivered)} / ${formatCount(d.sends)}`,
+		},
+		{
+			key: 'open_rate',
+			title: t('overview.opened'),
+			icon: 'i-lucide-mail-open',
+			value: d.open_rate,
+			caption: `${formatCount(d.opened)} / ${formatCount(d.delivered)}`,
+		},
+		{
+			key: 'click_rate',
+			title: t('overview.clicked'),
+			icon: 'i-lucide-mouse-pointer-click',
+			value: d.click_rate,
+			caption: `${formatCount(d.clicked)} / ${formatCount(d.delivered)}`,
+		},
+		{
+			key: 'bounce_rate',
+			title: t('overview.bounced'),
+			icon: 'i-lucide-mail-warning',
+			value: d.bounce_rate,
+			caption: `${formatCount(d.bounced)} / ${formatCount(d.sends)}`,
+		},
+	]
 })
 
 const sendMail = ref<MailOverview['send_mail_chart']>({
@@ -103,15 +148,8 @@ const openRate = ref<MailOverview['open_rate_chart']>({
 	data: [],
 })
 
-// Function to update rate data
-const updateRateData = (dashboard: MailOverview['dashboard']) => {
-	Object.entries(dashboard).forEach(([key, value]) => {
-		if (key in rateData) {
-			rateData[key].value = value
-		}
-	})
-}
-
+// No onMounted fetch: bt-time-range sets its default range during setup and emits change once,
+// which is the first load
 async function fetchOverviewData() {
 	const res = await getTaskOverview({
 		task_id: id.value,
@@ -120,8 +158,7 @@ async function fetchOverviewData() {
 	})
 
 	if (isObject<MailOverview>(res)) {
-		updateRateData(res.dashboard)
-
+		dashboard.value = res.dashboard
 		providers.value = isArray(res.mail_providers) ? res.mail_providers : []
 		sendMail.value = res.send_mail_chart
 		bounceRate.value = res.bounce_rate_chart
@@ -143,26 +180,5 @@ getDetails()
 </script>
 
 <style lang="scss" scoped>
-.metrics-cards {
-	display: flex;
-	justify-content: space-between;
-	gap: 20px;
-	margin-bottom: 20px;
-}
-
-.detail-row {
-	display: flex;
-	gap: 20px;
-	margin-bottom: 20px;
-
-	.provider-table-card,
-	.send-today-card {
-		flex: 1;
-	}
-}
-
-.rate-charts-card {
-	display: flex;
-	gap: 20px;
-}
+@use '../../overview/dashboard.scss';
 </style>

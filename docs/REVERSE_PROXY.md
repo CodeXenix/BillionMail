@@ -1,14 +1,14 @@
-# Running BillionMail Behind a Reverse Proxy
+# Running Xenix Mail Behind a Reverse Proxy
 
-BillionMail can be placed behind a reverse proxy (nginx, Caddy, Traefik, etc.) to add SSL termination, custom domains, or integrate with existing infrastructure.
+Xenix Mail can be placed behind a reverse proxy (nginx, Caddy, Traefik, etc.) to add SSL termination, custom domains, or integrate with existing infrastructure.
 
 ## The `reverse_proxy_domain` Setting
 
-BillionMail stores a `reverse_proxy_domain` value in the `bm_options` table. When set, tracking URLs (open/click tracking) and public-facing links use this domain instead of the internal container address.
+Xenix Mail stores a `reverse_proxy_domain` value in the `bm_options` table. When set, tracking URLs (open/click tracking) and public-facing links use this domain instead of the internal container address.
 
 **Set via UI:** Settings > General > Reverse Proxy Domain
 
-The domain must include the scheme, e.g. `https://mail.example.com`. BillionMail tests connectivity by calling `GET {domain}/api/languages/get` before saving.
+The domain must include the scheme, e.g. `https://mail.example.com`. Xenix Mail tests connectivity by calling `GET {domain}/api/languages/get` before saving.
 
 ## Required Headers
 
@@ -19,7 +19,7 @@ All proxy configs must forward these headers:
 | `Host` | Original host header for correct URL generation |
 | `X-Real-IP` | Client's real IP for analytics and rate limiting |
 | `X-Forwarded-For` | Full proxy chain for logging |
-| `X-Forwarded-Proto` | `https` — ensures BillionMail generates HTTPS tracking URLs |
+| `X-Forwarded-Proto` | `https` — ensures Xenix Mail generates HTTPS tracking URLs |
 
 ## Nginx
 
@@ -46,7 +46,7 @@ server {
         proxy_set_header Upgrade    $http_upgrade;
         proxy_set_header Connection "upgrade";
 
-        # SPA fallback — let BillionMail handle routing
+        # SPA fallback — let Xenix Mail handle routing
         proxy_intercept_errors off;
     }
 }
@@ -78,26 +78,26 @@ Caddy handles SSL certificates automatically via Let's Encrypt.
 ```yaml
 labels:
   - "traefik.enable=true"
-  - "traefik.http.routers.billionmail.rule=Host(`mail.example.com`)"
-  - "traefik.http.routers.billionmail.tls.certresolver=letsencrypt"
-  - "traefik.http.services.billionmail.loadbalancer.server.port=8080"
+  - "traefik.http.routers.xenixmail.rule=Host(`mail.example.com`)"
+  - "traefik.http.routers.xenixmail.tls.certresolver=letsencrypt"
+  - "traefik.http.services.xenixmail.loadbalancer.server.port=8080"
 ```
 
 ## After Setup
 
-1. Set the reverse proxy domain in BillionMail: Settings > General > Reverse Proxy Domain
+1. Set the reverse proxy domain in Xenix Mail: Settings > General > Reverse Proxy Domain
 2. Enter your full URL with scheme: `https://mail.example.com`
-3. BillionMail will test the connection before saving
+3. Xenix Mail will test the connection before saving
 
 ## Troubleshooting
 
 ### SPA 404 errors on page refresh
 
-The frontend is a Vue SPA — all routes must resolve to the BillionMail backend, not return static 404s. Ensure your proxy passes all paths to the upstream (no `try_files` that serve a local 404 page).
+The frontend is a Vue SPA — all routes must resolve to the Xenix Mail backend, not return static 404s. Ensure your proxy passes all paths to the upstream (no `try_files` that serve a local 404 page).
 
 ### Tracking URLs showing internal port (e.g. `:5679`)
 
-The `reverse_proxy_domain` is not set, or `X-Forwarded-Proto` / `Host` headers are not forwarded. BillionMail falls back to the internal address. Set the reverse proxy domain in Settings after confirming headers are passed.
+The `reverse_proxy_domain` is not set, or `X-Forwarded-Proto` / `Host` headers are not forwarded. Xenix Mail falls back to the internal address. Set the reverse proxy domain in Settings after confirming headers are passed.
 
 ### SSL certificate mismatch
 

@@ -3,7 +3,7 @@
 		<template #header>
 			<div class="flex items-center">
 				<n-icon class="mr-2 text-primary" size="20">
-					<i class="i-mdi:notification-settings-outline"></i>
+					<i class="i-lucide-bell"></i>
 				</n-icon>
 				<span class="text-lg font-medium">{{ $t('settings.common.notifySettings.title') }}</span>
 			</div>

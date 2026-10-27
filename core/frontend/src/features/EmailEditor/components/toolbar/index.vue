@@ -3,10 +3,10 @@
 		<div>
 			<div v-if="false" class="tools-view">
 				<div class="view-item checked">
-					<i class="i-ri:computer-line text-16px"></i>
+					<i class="i-lucide-monitor text-16px"></i>
 				</div>
 				<div class="view-item">
-					<i class="i-ri:smartphone-line text-16px"></i>
+					<i class="i-lucide-smartphone text-16px"></i>
 				</div>
 			</div>
 		</div>

@@ -3,7 +3,7 @@
 		<template #header>
 			<div class="flex items-center">
 				<n-icon class="mr-2 text-primary" size="20">
-					<i class="i-mdi-shield-account"></i>
+					<i class="i-lucide-shield-user"></i>
 				</n-icon>
 				<span class="text-lg font-medium">{{ t('settings.common.security.title') }}</span>
 			</div>

@@ -7,7 +7,7 @@ package subscribe_list
 import (
 	"context"
 
-	"billionmail-core/api/subscribe_list/v1"
+	"xenixmail-core/api/subscribe_list/v1"
 )
 
 type ISubscribeListV1 interface {

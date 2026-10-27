@@ -1,15 +1,15 @@
 package contact
 
 import (
-	"billionmail-core/internal/consts"
-	"billionmail-core/internal/model/entity"
-	"billionmail-core/internal/service/public"
 	"context"
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
 	"strings"
+	"xenixmail-core/internal/consts"
+	"xenixmail-core/internal/model/entity"
+	"xenixmail-core/internal/service/public"
 
-	"billionmail-core/api/contact/v1"
+	"xenixmail-core/api/contact/v1"
 )
 
 func (c *ControllerV1) DeleteContactsNDP(ctx context.Context, req *v1.DeleteContactsNDPReq) (res *v1.DeleteContactsNDPRes, err error) {

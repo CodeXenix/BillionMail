@@ -1,10 +1,10 @@
 package domains
 
 import (
-	"billionmail-core/api/domains/v1"
-	"billionmail-core/internal/service/mail_service"
-	"billionmail-core/internal/service/public"
 	"context"
+	"xenixmail-core/api/domains/v1"
+	"xenixmail-core/internal/service/mail_service"
+	"xenixmail-core/internal/service/public"
 )
 
 func (c *ControllerV1) GetSSL(ctx context.Context, req *v1.GetSSLReq) (res *v1.GetSSLRes, err error) {

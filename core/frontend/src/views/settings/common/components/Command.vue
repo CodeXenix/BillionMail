@@ -3,7 +3,7 @@
 		<span class="text-gray-400 mr-2">$</span>{{ value }}
 		<div class="absolute top-0px right-16px h-full flex items-center">
 			<n-button text class="text-desc" @click="copyText(value)">
-				<i class="i-mdi-content-copy text-18px"></i>
+				<i class="i-lucide-copy text-18px"></i>
 			</n-button>
 		</div>
 	</div>

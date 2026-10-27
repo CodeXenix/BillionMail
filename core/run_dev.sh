@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Compiling billionmail..."
+echo "Compiling Xenix Mail..."
 
 # Determine the architecture and set the binary name accordingly
 ARCH=$(uname -m)
@@ -58,4 +58,4 @@ echo "Restarting billionmail-core-billionmail-1 container..."
 # Restart the billionmail-core-billionmail-1 container to apply changes
 docker restart billionmail-core-billionmail-1
 
-echo "billionmail has been successfully compiled and deployed."
+echo "Xenix Mail has been successfully compiled and deployed."

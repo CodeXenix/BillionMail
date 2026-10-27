@@ -1,7 +1,6 @@
 package acme
 
 import (
-	"billionmail-core/internal/service/public"
 	"context"
 	"encoding/json"
 	"fmt"
@@ -9,6 +8,7 @@ import (
 	"path/filepath"
 	"strings"
 	"time"
+	"xenixmail-core/internal/service/public"
 )
 
 /**

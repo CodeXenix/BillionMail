@@ -1,13 +1,13 @@
 package redis_initialization
 
 import (
-	"billionmail-core/internal/service/public"
 	"context"
 	"fmt"
 	"github.com/gogf/gf/v2/database/gredis"
 	"github.com/gogf/gf/v2/frame/g"
 	"strconv"
 	"time"
+	"xenixmail-core/internal/service/public"
 )
 
 // InitRedis initialize redis configuration

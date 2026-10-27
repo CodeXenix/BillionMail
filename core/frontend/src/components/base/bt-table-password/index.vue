@@ -7,10 +7,10 @@
 				</n-ellipsis>
 			</div>
 			<div class="ml-6px text-15px cursor-pointer" title="Show" @click="onToggle">
-				<i :class="show ? 'i-mdi-eye-outline' : 'i-mdi-eye-off-outline'"></i>
+				<i :class="show ? 'i-lucide-eye' : 'i-lucide-eye-off'"></i>
 			</div>
 			<div class="reset ml-6px text-15px cursor-pointer text-#333" title="Copy" @click="onCopy">
-				<i class="i-mdi-content-copy"></i>
+				<i class="i-lucide-copy"></i>
 			</div>
 		</div>
 	</div>

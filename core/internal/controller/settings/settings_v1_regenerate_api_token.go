@@ -1,14 +1,14 @@
 package settings
 
 import (
-	"billionmail-core/internal/consts"
-	"billionmail-core/internal/service/public"
-	"billionmail-core/internal/service/rbac"
 	"context"
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
+	"xenixmail-core/internal/consts"
+	"xenixmail-core/internal/service/public"
+	"xenixmail-core/internal/service/rbac"
 
-	"billionmail-core/api/settings/v1"
+	"xenixmail-core/api/settings/v1"
 )
 
 func (c *ControllerV1) RegenerateAPIToken(ctx context.Context, req *v1.RegenerateAPITokenReq) (res *v1.RegenerateAPITokenRes, err error) {

@@ -1,11 +1,11 @@
 package contact
 
 import (
-	"billionmail-core/internal/service/contact"
-	"billionmail-core/internal/service/public"
 	"context"
+	"xenixmail-core/internal/service/contact"
+	"xenixmail-core/internal/service/public"
 
-	"billionmail-core/api/contact/v1"
+	"xenixmail-core/api/contact/v1"
 )
 
 func (c *ControllerV1) ListContactsGroups(ctx context.Context, req *v1.ListContactsGroupsReq) (res *v1.ListContactsGroupsRes, err error) {

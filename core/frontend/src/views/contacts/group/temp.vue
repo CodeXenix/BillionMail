@@ -22,7 +22,11 @@
 					:columns="columns"
 					:data="tableList">
 					<template #empty>
-						<bt-table-help> </bt-table-help>
+						<bt-table-help>
+							<n-button type="primary" size="small" @click="handleAdd">
+								{{ t('common.actions.add') }}
+							</n-button>
+						</bt-table-help>
 					</template>
 				</n-data-table>
 			</template>
@@ -52,6 +56,7 @@ import { DataTableColumns, NButton, NFlex } from 'naive-ui'
 import { useModal } from '@/hooks/modal/useModal'
 import { useTableData } from '@/hooks/useTableData'
 import { confirm, formatTime } from '@/utils'
+import BtIconAction from '@/components/base/bt-icon-action/index.vue'
 import { getGroupList, deleteGroup, exportGroup } from '@/api/modules/contacts/group'
 import type { Group, GroupParams } from './types/base.ts'
 
@@ -87,6 +92,9 @@ const columns = ref<DataTableColumns<Group>>([
 		key: 'name',
 		title: t('contacts.group.columns.name'),
 		minWidth: 120,
+		ellipsis: {
+			tooltip: true,
+		},
 		render: row => (
 			<NButton
 				text
@@ -126,33 +134,31 @@ const columns = ref<DataTableColumns<Group>>([
 		title: t('common.columns.actions'),
 		key: 'actions',
 		align: 'right',
-		width: 180,
+		width: 116,
 		render: row => (
-			<NFlex inline={true}>
-				<NButton
-					type="primary"
-					text={true}
+			<NFlex inline={true} size={4}>
+				<BtIconAction
+					icon="i-lucide-settings"
+					label={t('common.actions.settings')}
 					onClick={() => {
 						handleSettings(row)
-					}}>
-					{t('common.actions.settings')}
-				</NButton>
-				<NButton
-					type="primary"
-					text={true}
+					}}
+				/>
+				<BtIconAction
+					icon="i-lucide-pencil-line"
+					label={t('common.actions.rename')}
 					onClick={() => {
 						handleEdit(row)
-					}}>
-					{t('common.actions.rename')}
-				</NButton>
-				<NButton
+					}}
+				/>
+				<BtIconAction
+					icon="i-lucide-trash-2"
 					type="error"
-					text={true}
+					label={t('common.actions.delete')}
 					onClick={() => {
 						handleDelete(row)
-					}}>
-					{t('common.actions.delete')}
-				</NButton>
+					}}
+				/>
 			</NFlex>
 		),
 	},

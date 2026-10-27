@@ -1,22 +1,21 @@
 package timers
 
 import (
-	"billionmail-core/internal/service/abnormal_recipient"
-	"billionmail-core/internal/service/askai"
-	"billionmail-core/internal/service/batch_mail"
-	"billionmail-core/internal/service/collect"
-	"billionmail-core/internal/service/domains"
-	"billionmail-core/internal/service/fail2ban"
-	"billionmail-core/internal/service/log_maintenance"
-	"billionmail-core/internal/service/mail_boxes"
-	"billionmail-core/internal/service/mail_service"
-	"billionmail-core/internal/service/maillog_stat"
-	"billionmail-core/internal/service/multi_ip_domain"
-	"billionmail-core/internal/service/relay"
-	"billionmail-core/internal/service/video_gen"
-	"billionmail-core/internal/service/warmup"
 	"context"
 	"time"
+	"xenixmail-core/internal/service/abnormal_recipient"
+	"xenixmail-core/internal/service/askai"
+	"xenixmail-core/internal/service/batch_mail"
+	"xenixmail-core/internal/service/domains"
+	"xenixmail-core/internal/service/fail2ban"
+	"xenixmail-core/internal/service/log_maintenance"
+	"xenixmail-core/internal/service/mail_boxes"
+	"xenixmail-core/internal/service/mail_service"
+	"xenixmail-core/internal/service/maillog_stat"
+	"xenixmail-core/internal/service/multi_ip_domain"
+	"xenixmail-core/internal/service/relay"
+	"xenixmail-core/internal/service/video_gen"
+	"xenixmail-core/internal/service/warmup"
 
 	"github.com/gogf/gf/os/gtimer"
 	"github.com/gogf/gf/v2/frame/g"
@@ -78,14 +77,6 @@ func Start(ctx context.Context) (err error) {
 	})
 
 	g.Log().Debug(ctx, "Start timers complete")
-
-	// Collect mail-sent total and mail-relay total
-	gtimer.AddOnce(5*time.Second, func() {
-		collect.Collect(ctx)
-	})
-	gtimer.Add(2*time.Hour, func() {
-		collect.Collect(ctx)
-	})
 
 	// Fix Postfix main configuration and Rspamd DKIM signing config
 	gtimer.AddOnce(5*time.Second, func() {

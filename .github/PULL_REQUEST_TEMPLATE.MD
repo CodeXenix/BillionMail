@@ -1,4 +1,4 @@
-# BillionMail Pull Request Template
+# Xenix Mail Pull Request Template
 
 ## PR Title Format
 `<type>(<scope>): <description>`  

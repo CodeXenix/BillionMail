@@ -14,7 +14,9 @@
 		<template #table>
 			<n-data-table v-bind="tableProps" :columns="columns">
 				<template #empty>
-					<bt-table-help> </bt-table-help>
+					<bt-table-help>
+						<n-button type="primary" size="small" @click="handleAdd">Add group</n-button>
+					</bt-table-help>
 				</template>
 			</n-data-table>
 		</template>
@@ -37,6 +39,7 @@ import { DataTableColumns, NButton, NFlex, NSelect, NTag } from 'naive-ui'
 import { confirm, formatTime } from '@/utils'
 import { useModal } from '@/hooks/modal/useModal'
 import { useDataTable } from '@/hooks/useDataTable'
+import BtIconAction from '@/components/base/bt-icon-action/index.vue'
 import { getGroupList, deleteGroup, exportGroup } from '@/api/modules/contacts/group'
 import type { Group, GroupParams } from './types/base.ts'
 
@@ -67,6 +70,9 @@ const columns = ref<DataTableColumns<Group>>([
 		key: 'name',
 		title: t('contacts.group.columns.name'),
 		minWidth: 120,
+		ellipsis: {
+			tooltip: true,
+		},
 		render: row => (
 			<NButton
 				text
@@ -116,33 +122,31 @@ const columns = ref<DataTableColumns<Group>>([
 		title: t('common.columns.actions'),
 		key: 'actions',
 		align: 'right',
-		width: 180,
+		width: 116,
 		render: row => (
-			<NFlex inline={true}>
-				<NButton
-					type="primary"
-					text={true}
+			<NFlex inline={true} size={4}>
+				<BtIconAction
+					icon="i-lucide-settings"
+					label={t('common.actions.settings')}
 					onClick={() => {
 						handleSettings(row)
-					}}>
-					{t('common.actions.settings')}
-				</NButton>
-				<NButton
-					type="primary"
-					text={true}
+					}}
+				/>
+				<BtIconAction
+					icon="i-lucide-pencil"
+					label={t('common.actions.edit')}
 					onClick={() => {
 						handleEdit(row)
-					}}>
-					{t('common.actions.edit')}
-				</NButton>
-				<NButton
+					}}
+				/>
+				<BtIconAction
+					icon="i-lucide-trash-2"
 					type="error"
-					text={true}
+					label={t('common.actions.delete')}
 					onClick={() => {
 						handleDelete(row)
-					}}>
-					{t('common.actions.delete')}
-				</NButton>
+					}}
+				/>
 			</NFlex>
 		),
 	},
@@ -180,7 +184,7 @@ const handleBatchExport = (keys: number[]) => {
 		title: t('contacts.group.export.title'),
 		content: () => (
 			<>
-				<div class="mb-10px">{t('contacts.group.export.confirm', { count: keys.length })}</div>
+				<div class="mb-12px">{t('contacts.group.export.confirm', { count: keys.length })}</div>
 				<div class="flex">
 					<NSelect
 						value={format.value}

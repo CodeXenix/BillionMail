@@ -1,10 +1,6 @@
 package mail_boxes
 
 import (
-	"billionmail-core/api/mail_boxes/v1"
-	"billionmail-core/internal/consts"
-	"billionmail-core/internal/service/mail_boxes"
-	"billionmail-core/internal/service/public"
 	"context"
 	"encoding/csv"
 	"encoding/json"
@@ -12,6 +8,10 @@ import (
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
 	"strings"
+	"xenixmail-core/api/mail_boxes/v1"
+	"xenixmail-core/internal/consts"
+	"xenixmail-core/internal/service/mail_boxes"
+	"xenixmail-core/internal/service/public"
 )
 
 func (c *ControllerV1) ExportMailbox(ctx context.Context, req *v1.ExportMailboxReq) (res *v1.ExportMailboxRes, err error) {

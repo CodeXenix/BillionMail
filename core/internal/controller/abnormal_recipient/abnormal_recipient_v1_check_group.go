@@ -1,11 +1,6 @@
 package abnormal_recipient
 
 import (
-	"billionmail-core/api/abnormal_recipient/v1"
-	"billionmail-core/internal/consts"
-	"billionmail-core/internal/model/entity"
-	"billionmail-core/internal/service/abnormal_recipient"
-	"billionmail-core/internal/service/public"
 	"context"
 	"fmt"
 	"github.com/gogf/gf/os/gtimer"
@@ -17,13 +12,18 @@ import (
 	"strings"
 	"sync"
 	"time"
+	"xenixmail-core/api/abnormal_recipient/v1"
+	"xenixmail-core/internal/consts"
+	"xenixmail-core/internal/model/entity"
+	"xenixmail-core/internal/service/abnormal_recipient"
+	"xenixmail-core/internal/service/public"
 )
 
 type DNSRecord struct {
 	Type  string `json:"type"`
 	Host  string `json:"host"`
 	Value string `json:"value"`
-	Valid bool `json:"valid"`
+	Valid bool   `json:"valid"`
 }
 
 func (c *ControllerV1) CheckGroup(ctx context.Context, req *v1.CheckGroupReq) (res *v1.CheckGroupRes, err error) {

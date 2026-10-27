@@ -1,13 +1,13 @@
 package tags
 
 import (
-	"billionmail-core/internal/model/entity"
-	"billionmail-core/internal/service/contact"
-	"billionmail-core/internal/service/public"
 	"context"
 	"github.com/gogf/gf/v2/frame/g"
+	"xenixmail-core/internal/model/entity"
+	"xenixmail-core/internal/service/contact"
+	"xenixmail-core/internal/service/public"
 
-	"billionmail-core/api/tags/v1"
+	"xenixmail-core/api/tags/v1"
 )
 
 func (c *ControllerV1) TagAll(ctx context.Context, req *v1.TagAllReq) (res *v1.TagAllRes, err error) {

@@ -416,18 +416,6 @@ export const copyrightVNode = h(
 		},
 	},
 	[
-		h('span', 'Powered by '),
-		h(
-			'a',
-			{
-				href: 'https://www.billionmail.com',
-				target: '_blank',
-				style: {
-					color: '#999',
-					textDecoration: 'underline',
-				},
-			},
-			'BillionMail'
-		),
+		h('span', 'Powered by Xenix Mail'),
 	]
 )

@@ -1,36 +1,46 @@
 <template>
-	<n-empty>
-		<template #default>
-			<div class="leading-22px text-13px text-desc text-center">
-				<i18n-t tag="span" scope="global" keypath="components.tableHelp.text1">
-					<template #issues>
-						<n-button class="text-13px" type="primary" text @click="handleGoIssues">
-							<span>Issues</span>
-							<i class="i-mdi:arrow-right ml-1px"></i>
-						</n-button>
-					</template>
-					<template #star>
-						<n-button class="text-13px" type="primary" text @click="handleGoStar">
-							Star
-							<i class="i-mdi:arrow-right ml-1px"></i>
-						</n-button>
-					</template>
-				</i18n-t>
-				<br />
-				<span>{{ $t('components.tableHelp.text2') }}</span>
-			</div>
-		</template>
-	</n-empty>
+	<div class="bt-table-help">
+		<span class="empty-icon">
+			<i class="i-lucide-inbox"></i>
+		</span>
+		<div class="empty-title">{{ $t('components.tableHelp.title') }}</div>
+		<!-- Optional primary action, e.g. the page's "Add …" button -->
+		<div v-if="$slots.default" class="empty-action">
+			<slot></slot>
+		</div>
+	</div>
 </template>
 
-<script lang="ts" setup>
-const handleGoIssues = () => {
-	window.open('https://github.com/aaPanel/BillionMail/issues')
+<style lang="scss" scoped>
+.bt-table-help {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 24px 16px;
+	text-align: center;
 }
 
-const handleGoStar = () => {
-	window.open('https://github.com/aaPanel/BillionMail')
+.empty-icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 48px;
+	height: 48px;
+	margin-bottom: 12px;
+	border-radius: 50%;
+	font-size: 24px;
+	color: var(--color-primary-1);
+	background-color: var(--color-primary-2);
 }
-</script>
 
-<style lang="scss" scoped></style>
+.empty-title {
+	margin-bottom: 4px;
+	font-size: 15px;
+	font-weight: 600;
+	color: var(--color-text-1);
+}
+
+.empty-action {
+	margin-top: 16px;
+}
+</style>

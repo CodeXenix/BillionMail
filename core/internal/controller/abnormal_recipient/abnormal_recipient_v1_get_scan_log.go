@@ -1,11 +1,11 @@
 package abnormal_recipient
 
 import (
-	"billionmail-core/api/abnormal_recipient/v1"
-	"billionmail-core/internal/service/public"
 	"context"
 	"github.com/gogf/gf/v2/errors/gerror"
 	"os"
+	"xenixmail-core/api/abnormal_recipient/v1"
+	"xenixmail-core/internal/service/public"
 )
 
 func (c *ControllerV1) GetScanLog(ctx context.Context, req *v1.GetScanLogReq) (res *v1.GetScanLogRes, err error) {

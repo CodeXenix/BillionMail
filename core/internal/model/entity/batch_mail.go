@@ -90,6 +90,7 @@ type EmailTask struct {
 	TagIds          []int  `json:"tag_ids"         dc:"Tag IDs (parsed array)"`
 	TagLogic        string `json:"tag_logic"       dc:"Tag Logic (AND/OR/NOT)"`
 	UseTagFilter    int    `json:"use_tag_filter"  dc:"Use Tag Filter (0: no, 1: yes)"`
+	Warmup          int    `json:"warmup"          dc:"Linked to IP warmup (0: no, 1: yes); not a column, set by the task detail API"`
 }
 
 // MarshalJSON implements custom JSON marshaling to convert TagIdsRaw to TagIds array

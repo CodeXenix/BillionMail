@@ -17,7 +17,11 @@
 			<template #table>
 				<n-data-table :loading="loading" :columns="columns" :data="tableList">
 					<template #empty>
-						<bt-table-help> </bt-table-help>
+						<bt-table-help>
+							<n-button type="primary" size="small" @click="handleAdd">
+								{{ t('market.template.actions.add') }}
+							</n-button>
+						</bt-table-help>
 					</template>
 				</n-data-table>
 			</template>
@@ -46,6 +50,7 @@ import { deleteTemplate, duplicateTemplate, getTemplateList } from '@/api/module
 import type { Template, TemplateParams } from './interface'
 
 // import TemplateAdd from './components/TemplateAdd.vue'
+import BtIconAction from '@/components/base/bt-icon-action/index.vue'
 import TemplateForm from './components/TemplateForm.vue'
 import TemplatePreview from './components/TemplatePreview.vue'
 
@@ -115,41 +120,39 @@ const columns = ref<DataTableColumns<Template>>([
 		title: t('common.columns.actions'),
 		key: 'actions',
 		align: 'right',
-		width: 240,
+		// 4 icon buttons: 4 × 28 + 3 × 4 + 24
+		width: 148,
 		render: row => (
-			<NFlex inline={true}>
-				<NButton
-					type="primary"
-					text={true}
+			<NFlex inline={true} size={4}>
+				<BtIconAction
+					icon="i-lucide-eye"
+					label={t('common.actions.preview')}
 					onClick={() => {
 						handlePreview(row.html_content)
-					}}>
-					{t('common.actions.preview')}
-				</NButton>
-				<NButton
-					type="primary"
-					text={true}
+					}}
+				/>
+				<BtIconAction
+					icon="i-lucide-pencil"
+					label={t('common.actions.edit')}
 					onClick={() => {
 						handleEdit(row)
-					}}>
-					{t('common.actions.edit')}
-				</NButton>
-				<NButton
-					type="primary"
-					text={true}
+					}}
+				/>
+				<BtIconAction
+					icon="i-lucide-copy-plus"
+					label={t('market.template.actions.duplicate')}
 					onClick={() => {
 						handleDuplicate(row)
-					}}>
-					{t('market.template.actions.duplicate')}
-				</NButton>
-				<NButton
+					}}
+				/>
+				<BtIconAction
+					icon="i-lucide-trash-2"
+					label={t('common.actions.delete')}
 					type="error"
-					text={true}
 					onClick={() => {
 						handleDelete(row)
-					}}>
-					{t('common.actions.delete')}
-				</NButton>
+					}}
+				/>
 			</NFlex>
 		),
 	},
@@ -208,17 +211,3 @@ const handleDelete = (row: Template) => {
 	})
 }
 </script>
-
-<style lang="scss" scoped>
-.template-container {
-	padding: 16px;
-	background-color: #fff;
-	border-radius: 3px;
-
-	.action-bar {
-		display: flex;
-		justify-content: space-between;
-		margin-bottom: 16px;
-	}
-}
-</style>

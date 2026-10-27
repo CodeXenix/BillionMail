@@ -5,7 +5,7 @@
 				<div class="page-tit mb-5">
 					<div class="left-tit">
 						<div class="back-tool">
-							<i class="i-cuida:mail-outline text-28px"></i>
+							<i class="i-lucide-mail text-28px"></i>
 						</div>
 						<span class="tit-content">{{ $t('domain.edit.domainConfiguration.title') }}</span>
 					</div>
@@ -20,7 +20,7 @@
 							<div class="mb-12px text-desc">
 								*
 								{{
-									$t('domain.edit.domainConfiguration.dedicatedIpDesc', { domain: 'aapanel.com' })
+									$t('domain.edit.domainConfiguration.dedicatedIpDesc', { domain: 'example.com' })
 								}}
 							</div>
 							<div class="flex gap-16px">
@@ -77,7 +77,7 @@
 				<div class="page-tit mb-5">
 					<div class="left-tit">
 						<div class="back-tool">
-							<i class="i-cuida:mail-outline text-7"></i>
+							<i class="i-lucide-mail text-7"></i>
 						</div>
 						<span class="tit-content">{{ $t('domain.edit.domainConfiguration.brandInfo') }}</span>
 					</div>
@@ -98,7 +98,7 @@
 							readonly>
 						</n-input>
 						<div v-if="index != 0" class="close" @click="removeUrl(index)">
-							<i class="i-material-symbols:close-rounded text-5"></i>
+							<i class="i-lucide-x text-5"></i>
 						</div>
 					</div>
 				</div>
@@ -139,13 +139,13 @@
 								:disabled="!supplierStatus">
 							</n-input>
 							<div v-if="index != 0" class="close" @click="removeUrl(index)">
-								<i class="i-material-symbols:close-rounded text-5"></i>
+								<i class="i-lucide-x text-5"></i>
 							</div>
 						</div>
 						<!-- <div class="text-[#777]">{{ $t("domain.form.maxUrl") }}</div> -->
 						<!-- <n-button type="primary" :disabled="!supplierStatus" ghost @click="addUrl">
 							<template #icon>
-								<i class="i-material-symbols:add-circle-outline"></i>
+								<i class="i-lucide-circle-plus"></i>
 							</template>
 							{{ $t('domain.edit.domainConfiguration.addMoreUrls') }}
 						</n-button> -->
@@ -157,7 +157,7 @@
 			</n-card>
 			<n-button type="primary" class="w-100% mt-5" @click="updateDomain">
 				<template #icon>
-					<i class="i-mingcute:save-2-line text-5"></i>
+					<i class="i-lucide-save text-5"></i>
 				</template>
 				{{ $t('domain.edit.save') }}
 			</n-button>

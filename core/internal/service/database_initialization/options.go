@@ -8,7 +8,7 @@ import (
 func init() {
 	registerHandler(func() {
 		sqlList := []string{
-			`-- BillionMail Options
+			`-- Xenix Mail Options
 			CREATE TABLE IF NOT EXISTS bm_options (
 				name VARCHAR(255) NOT NULL PRIMARY KEY,
 				value TEXT NOT NULL
@@ -18,7 +18,7 @@ func init() {
 		for _, sql := range sqlList {
 			_, err := g.DB().Exec(context.Background(), sql)
 			if err != nil {
-				g.Log().Error(context.Background(), "Failed to create billion-mail options table:", err)
+				g.Log().Error(context.Background(), "Failed to create Xenix Mail options table:", err)
 				return
 			}
 		}

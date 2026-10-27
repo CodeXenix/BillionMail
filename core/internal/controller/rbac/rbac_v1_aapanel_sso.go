@@ -1,11 +1,6 @@
 package rbac
 
 import (
-	"billionmail-core/api/rbac/v1"
-	"billionmail-core/internal/consts"
-	"billionmail-core/internal/model"
-	"billionmail-core/internal/service/public"
-	service "billionmail-core/internal/service/rbac"
 	"context"
 	"crypto/hmac"
 	"crypto/sha256"
@@ -15,6 +10,11 @@ import (
 	"strconv"
 	"strings"
 	"time"
+	"xenixmail-core/api/rbac/v1"
+	"xenixmail-core/internal/consts"
+	"xenixmail-core/internal/model"
+	"xenixmail-core/internal/service/public"
+	service "xenixmail-core/internal/service/rbac"
 
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
@@ -89,7 +89,7 @@ func validateAaPanelSSORequest(ctx context.Context, username string) error {
 	return nil
 }
 
-// AaPanelSSO signs in a trusted aaPanel request without exposing BillionMail credentials.
+// AaPanelSSO signs in a trusted aaPanel request without exposing Xenix Mail credentials.
 func (c *ControllerV1) AaPanelSSO(ctx context.Context, req *v1.AaPanelSSOReq) (res *v1.AaPanelSSORes, err error) {
 	res = &v1.AaPanelSSORes{}
 	username := strings.TrimSpace(req.Username)

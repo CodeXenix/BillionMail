@@ -1,14 +1,20 @@
 <template>
 	<div>
-		<n-data-table :loading="loading" :data="serviceList" :columns="columns"></n-data-table>
+		<n-data-table :loading="loading" :data="serviceList" :columns="columns">
+			<template #empty>
+				<bt-table-help></bt-table-help>
+			</template>
+		</n-data-table>
 		<config-modal></config-modal>
 	</div>
 </template>
 
 <script lang="tsx" setup>
-import { NButton, NTag, DataTableColumns, NFlex } from 'naive-ui'
+import { DataTableColumns, NFlex } from 'naive-ui'
 import { confirm, isArray } from '@/utils'
 import { useModal } from '@/hooks/modal/useModal'
+import BtIconAction from '@/components/base/bt-icon-action/index.vue'
+import BtStatus from '@/components/base/bt-status/index.vue'
 import { getServiceList, restartService } from '@/api/modules/settings'
 import type { DockerService } from '../types/common'
 
@@ -29,6 +35,9 @@ const columns = ref<DataTableColumns<DockerService>>([
 	{
 		key: 'Names',
 		title: t('settings.service.columns.name'),
+		ellipsis: {
+			tooltip: true,
+		},
 		render: row => {
 			return row.Names[0]
 		},
@@ -38,11 +47,11 @@ const columns = ref<DataTableColumns<DockerService>>([
 		title: t('settings.service.columns.status'),
 		render: row => {
 			return (
-				<NTag size="small" bordered={false} type={row.State === 'running' ? 'success' : 'error'}>
+				<BtStatus type={row.State === 'running' ? 'success' : 'error'}>
 					{row.State === 'running'
 						? t('settings.service.status.running')
 						: t('settings.service.status.stopped')}
-				</NTag>
+				</BtStatus>
 			)
 		},
 	},
@@ -50,35 +59,33 @@ const columns = ref<DataTableColumns<DockerService>>([
 		key: 'action',
 		title: t('common.columns.actions'),
 		align: 'right',
+		width: 116,
 		render: row => (
-			<NFlex inline={true}>
+			<NFlex inline={true} size={4}>
 				{row.Names[0].includes('rspamd') ? (
-					<NButton
-						type="primary"
-						text
+					<BtIconAction
+						icon="i-lucide-monitor"
+						label="GUI"
 						onClick={() => {
 							router.push('/settings/rspamd')
-						}}>
-						GUI
-					</NButton>
+						}}
+					/>
 				) : null}
-				<NButton
-					type="primary"
-					text
+				<BtIconAction
+					icon="i-lucide-sliders-horizontal"
+					label={t('common.actions.config')}
 					disabled={!getConfigDisabled(row.Names[0])}
 					onClick={() => {
 						handleShowConfig(row)
-					}}>
-					{t('common.actions.config')}
-				</NButton>
-				<NButton
-					type="primary"
-					text
+					}}
+				/>
+				<BtIconAction
+					icon="i-lucide-rotate-ccw"
+					label={t('common.actions.restart')}
 					onClick={() => {
 						handleRestart(row)
-					}}>
-					{t('common.actions.restart')}
-				</NButton>
+					}}
+				/>
 			</NFlex>
 		),
 	},

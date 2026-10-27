@@ -4,7 +4,7 @@
             <div class="page-tit" style="margin: 0;">
                 <div class="left-tit">
                     <div class="back-tool">
-                        <i class="i-ri:apps-fill text-6"></i>
+                        <i class="i-lucide-layout-grid text-6"></i>
                     </div>
                     <span class="tit-content">
                         AI Model

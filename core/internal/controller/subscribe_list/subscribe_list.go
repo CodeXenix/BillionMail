@@ -5,13 +5,6 @@
 package subscribe_list
 
 import (
-	mail_v1 "billionmail-core/api/mail_boxes/v1"
-	"billionmail-core/internal/model/entity"
-	"billionmail-core/internal/service/batch_mail"
-	"billionmail-core/internal/service/domains"
-	"billionmail-core/internal/service/mail_boxes"
-	"billionmail-core/internal/service/mail_service"
-	"billionmail-core/internal/service/public"
 	"context"
 	"database/sql"
 	"fmt"
@@ -22,6 +15,13 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+	mail_v1 "xenixmail-core/api/mail_boxes/v1"
+	"xenixmail-core/internal/model/entity"
+	"xenixmail-core/internal/service/batch_mail"
+	"xenixmail-core/internal/service/domains"
+	"xenixmail-core/internal/service/mail_boxes"
+	"xenixmail-core/internal/service/mail_service"
+	"xenixmail-core/internal/service/public"
 )
 
 func getGroupByToken(token string) (*entity.ContactGroup, error) {

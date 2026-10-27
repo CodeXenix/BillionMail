@@ -7,10 +7,10 @@
 			<n-input v-model:value="href"></n-input>
 		</div>
 		<div class="w-auto cursor-pointer" @click="onDel">
-			<i class="i-mdi:delete-outline text-16px"></i>
+			<i class="i-lucide-trash-2 text-16px"></i>
 		</div>
 		<div :ref="drag" class="w-auto cursor-grab">
-			<i class="i-mdi:format-list-bulleted text-16px"></i>
+			<i class="i-lucide-list text-16px"></i>
 		</div>
 	</li>
 </template>

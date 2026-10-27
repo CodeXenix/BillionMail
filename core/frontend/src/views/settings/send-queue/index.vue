@@ -10,7 +10,11 @@
 			</n-button>
 		</template>
 		<template #table>
-			<n-data-table v-bind="tableProps" max-height="540px" :columns="columns"></n-data-table>
+			<n-data-table v-bind="tableProps" max-height="540px" :columns="columns">
+				<template #empty>
+					<bt-table-help></bt-table-help>
+				</template>
+			</n-data-table>
 		</template>
 		<template #pageLeft>
 			<bt-table-batch v-bind="batchProps" :options="batchOptions" @select="onSelectBatch">
@@ -27,6 +31,7 @@
 import { DataTableColumns, NButton, NFlex, SelectOption } from 'naive-ui'
 import { confirm, formatTime, getByteUnit } from '@/utils'
 import { useDataTable } from '@/hooks/useDataTable'
+import BtIconAction from '@/components/base/bt-icon-action/index.vue'
 import {
 	getSendQueueList,
 	deleteSendQueue,
@@ -91,6 +96,9 @@ const columns = ref<DataTableColumns<SendQueue>>([
 		title: t('overview.sendQueue.table.columns.sender'),
 		width: '10%',
 		minWidth: '120px',
+		ellipsis: {
+			tooltip: true,
+		},
 	},
 	{
 		key: 'recipient',
@@ -126,25 +134,24 @@ const columns = ref<DataTableColumns<SendQueue>>([
 		key: 'action',
 		title: t('overview.sendQueue.table.columns.action'),
 		align: 'right',
-		width: 120,
+		width: 88, // wide enough for the column header
 		render: row => (
-			<NFlex inline={true}>
-				<NButton
-					type="primary"
-					text={true}
+			<NFlex inline={true} size={4}>
+				<BtIconAction
+					icon="i-lucide-send"
+					label={t('overview.sendQueue.buttons.resend')}
 					onClick={() => {
 						handleResend(row)
-					}}>
-					{t('overview.sendQueue.buttons.resend')}
-				</NButton>
-				<NButton
+					}}
+				/>
+				<BtIconAction
+					icon="i-lucide-trash-2"
 					type="error"
-					text={true}
+					label={t('common.actions.delete')}
 					onClick={() => {
 						handleDelete(row)
-					}}>
-					{t('common.actions.delete')}
-				</NButton>
+					}}
+				/>
 			</NFlex>
 		),
 	},
@@ -165,6 +172,7 @@ const handleDelete = async (row: SendQueue) => {
 	confirm({
 		title: t('overview.sendQueue.confirm.delete.title'),
 		content: t('overview.sendQueue.confirm.delete.content'),
+		confirmText: t('common.actions.delete'),
 		confirmType: 'error',
 		onConfirm: async () => {
 			await deleteSendQueue({ queue_ids: [row.queue_id] })

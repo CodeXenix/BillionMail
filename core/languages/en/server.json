@@ -346,5 +346,6 @@
     "04f33e88d2d8d4ac4363336c24933c84": "Failed to get contacts count: {}",
     "8f759823dbe04188a1dae3c8d1d3f45e": "Invalid IP address: {}",
     "da3a6cce34026ab87459baff83a10664": "delete success but sync config failed: {}",
-    "2c7330c6de7f21f0a1f0674aeffed4cc": "postsuper -d failed: {}"
+    "2c7330c6de7f21f0a1f0674aeffed4cc": "postsuper -d failed: {}",
+    "548e223a36848d21b1c4d1e90088d0d0": "A completed task cannot be edited."
 }

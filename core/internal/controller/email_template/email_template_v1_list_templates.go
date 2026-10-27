@@ -1,13 +1,13 @@
 package email_template
 
 import (
-	"billionmail-core/internal/service/email_template"
-	"billionmail-core/internal/service/public"
 	"context"
+	"xenixmail-core/internal/service/email_template"
+	"xenixmail-core/internal/service/public"
 
 	"github.com/gogf/gf/v2/errors/gerror"
 
-	"billionmail-core/api/email_template/v1"
+	"xenixmail-core/api/email_template/v1"
 )
 
 func (c *ControllerV1) ListTemplates(ctx context.Context, req *v1.ListTemplatesReq) (res *v1.ListTemplatesRes, err error) {

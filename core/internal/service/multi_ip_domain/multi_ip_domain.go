@@ -1,9 +1,6 @@
 package multi_ip_domain
 
 import (
-	v1 "billionmail-core/api/domains/v1"
-	docker "billionmail-core/internal/service/dockerapi"
-	"billionmail-core/internal/service/public"
 	"context"
 	"fmt"
 	"github.com/gogf/gf/v2/database/gdb"
@@ -17,6 +14,9 @@ import (
 	"strings"
 	"sync"
 	"time"
+	v1 "xenixmail-core/api/domains/v1"
+	docker "xenixmail-core/internal/service/dockerapi"
+	"xenixmail-core/internal/service/public"
 )
 
 type MultiIPDomainService struct {

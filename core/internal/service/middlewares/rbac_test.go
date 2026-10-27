@@ -8,11 +8,11 @@ import (
 
 func TestPathToRouteInfo(t *testing.T) {
 	tests := []struct {
-		name             string
-		path             string
-		wantModule       string
-		wantAction       string
-		wantResource     string
+		name         string
+		path         string
+		wantModule   string
+		wantAction   string
+		wantResource string
 	}{
 		// Standard CRUD operations
 		{"domains list", "/api/domains/list", "domains", "read", "domains"},

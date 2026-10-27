@@ -1,9 +1,9 @@
 package rbac
 
 import (
-	"billionmail-core/internal/model"
 	"context"
 	"time"
+	"xenixmail-core/internal/model"
 
 	"github.com/gogf/gf/v2/frame/g"
 )

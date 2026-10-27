@@ -1,12 +1,12 @@
 package warmup
 
 import (
-	"billionmail-core/internal/consts"
-	"billionmail-core/internal/model/entity"
 	"context"
 	"fmt"
 	"github.com/gogf/gf/v2/frame/g"
 	"math"
+	"xenixmail-core/internal/consts"
+	"xenixmail-core/internal/model/entity"
 )
 
 // CampaignWarmupAssociation extends CampaignWarmup with prediction data.

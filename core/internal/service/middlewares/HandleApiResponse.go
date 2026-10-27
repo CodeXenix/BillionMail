@@ -1,11 +1,11 @@
 package middlewares
 
 import (
-	"billionmail-core/internal/service/public"
-	"billionmail-core/utility/types/api_v1"
 	"github.com/gogf/gf/util/gvalid"
 	"github.com/gogf/gf/v2/net/ghttp"
 	"strings"
+	"xenixmail-core/internal/service/public"
+	"xenixmail-core/utility/types/api_v1"
 )
 
 func HandleApiResponse(r *ghttp.Request) {

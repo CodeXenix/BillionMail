@@ -1,12 +1,12 @@
 package settings
 
 import (
-	"billionmail-core/internal/service/public"
 	"context"
+	"xenixmail-core/internal/service/public"
 
 	"github.com/gogf/gf/v2/errors/gerror"
 
-	"billionmail-core/api/settings/v1"
+	"xenixmail-core/api/settings/v1"
 )
 
 func (c *ControllerV1) SetBlacklistAutoScan(ctx context.Context, req *v1.SetBlacklistAutoScanReq) (res *v1.SetBlacklistAutoScanRes, err error) {

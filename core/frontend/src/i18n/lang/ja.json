@@ -50,8 +50,7 @@
 	},
 	"components": {
 		"tableHelp": {
-			"text1": "質問や提案は {issues} に投稿し、プロジェクトを応援するために Github で {star} を付けてください。",
-			"text2": "皆様の積極的な参加を高く評価しています。ありがとうございます。"
+			"title": "データがありません"
 		},
 		"upload": {
 			"error": {
@@ -66,7 +65,6 @@
 	},
 	"layout": {
 		"header": {
-			"submit": "リクエストを送信"
 		},
 		"instances": {
 			"title": "インスタンス",
@@ -103,11 +101,22 @@
 			"sequences": "Sequences",
 			"leads": "Leads",
 			"enrichment": "Enrichment",
-			"videoOutreach": "ビデオアウトリーチ"
+			"videoOutreach": "ビデオアウトリーチ",
+			"groupMarketing": "マーケティング",
+			"groupMailServer": "メールサーバー",
+			"groupSystem": "システム"
 		}
 	},
 	"login": {
-		"title": "BillionMail",
+		"title": "Xenix Mail",
+		"welcome": "おかえりなさい",
+		"subtitle": "ログインしてキャンペーンを管理",
+		"brand": {
+			"tagline": "オープンソースのメールマーケティング＆メールサーバー",
+			"feature1": "自社インフラで無制限に送信",
+			"feature2": "配信・開封・クリックをリアルタイムに分析",
+			"feature3": "連絡先・テンプレート・自動化をひとつに"
+		},
 		"form": {
 			"usernamePlaceholder": "ユーザー名",
 			"passwordPlaceholder": "パスワード",
@@ -252,7 +261,8 @@
 				"detail": "表示",
 				"export": "エクスポート",
 				"send": "送信",
-				"pause": "一時停止"
+				"pause": "一時停止",
+				"analytics": "分析"
 			},
 			"columns": {
 				"time": "時間",
@@ -264,16 +274,24 @@
 				"status": "ステータス",
 				"remark": "備考",
 				"progress": "進捗",
+				"estimatedTime": "推定完了時間",
 				"email": "メール",
 				"errorMsg": "エラーメッセージ"
 			},
 			"status": {
 				"pending": "保留中",
 				"processing": "処理中",
-				"done": "完了"
+				"done": "完了",
+				"scheduled": "予約済み",
+				"paused": "一時停止中",
+				"noIpWarmup": "IPウォームアップ未関連付け"
 			},
 			"search": {
 				"subjectPlaceholder": "件名で検索"
+			},
+			"pauseToEdit": {
+				"title": "一時停止して編集",
+				"content": "このキャンペーンは送信中です。一時停止して変更しますか？再開するまで一時停止のままです。"
 			},
 			"changeStatus": {
 				"title": "タスクステータス変更 [{subject}]",
@@ -424,7 +442,7 @@
 			"useAiTools": "AIツールを使用してメールコンテンツを自動生成し、作業効率を向上させます。",
 			"create": "作成",
 			"notices": {
-				"domainListEmpty": "BillionMailでメール送信用の最初のドメインを作成してください",
+				"domainListEmpty": "Xenix Mailでメール送信用の最初のドメインを作成してください",
 				"aiConfigurationInvalid": "現在AIモデルが設定されていないため、AIモデルを使用してメールテンプレートを作成できません",
 				"invalidBrandDomain": "まずドメインのブランド情報を作成してください"
 			},
@@ -437,7 +455,7 @@
 			"title": "AIテンプレート",
 			"welcomeMessage": "例：{domain}に参加するユーザー向けのウェルカムメールを作成してください",
 			"greeting": "美しいメールテンプレートを作成しましょう。",
-			"brandName": "BillionMail",
+			"brandName": "Xenix Mail",
 			"buttons": {
 				"regenerate": "再生成",
 				"info": "情報",
@@ -814,10 +832,10 @@
 			"addTitle": "ドメイン追加",
 			"editTitle": "ドメイン編集",
 			"domain": "ドメイン",
-			"domainPlaceholder": "例: aapanel.com",
-			"urlsPlacement": "例: https://aapanel.com",
+			"domainPlaceholder": "例: example.com",
+			"urlsPlacement": "例: https://example.com",
 			"aRecord": "A レコード",
-			"aRecordPlaceholder": "例: mail.aapanel.com",
+			"aRecordPlaceholder": "例: mail.example.com",
 			"quota": "ドメインクォータ",
 			"mailboxCount": "メールボックス数",
 			"globalCatch": "Catch All",
@@ -926,7 +944,7 @@
 			"title": "ブラックリストチェック",
 			"checking": "{results} は {ip} に解決され、既知のブラックリスト {tested} 件に対してチェックしています...",
 			"listed": "リスト件数: {count}",
-			"success": "aaPanel が認識するブラックリストには IP は存在しません",
+			"success": "既知のブラックリストに IP は存在しません",
 			"columns": {
 				"blacklist": "ブラックリスト",
 				"responseIp": "レスポンス IP",
@@ -1208,6 +1226,7 @@
 			"type": "BCC Type",
 			"status": "Status",
 			"active": "Active",
+			"inactive": "Inactive",
 			"types": {
 				"sender": "When sending",
 				"recipient": "When receiving"

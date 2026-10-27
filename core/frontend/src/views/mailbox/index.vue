@@ -1,6 +1,6 @@
 <template>
 	<div class="p-24px">
-		<div class="bt-title">{{ t('layout.menu.mailboxes') }}</div>
+		<h1 class="bt-title">{{ t('layout.menu.mailboxes') }}</h1>
 		<bt-table-layout>
 			<template #toolsLeft>
 				<n-button type="primary" @click="handleAdd">{{ t('mailbox.actions.add') }}</n-button>
@@ -23,7 +23,11 @@
 			<template #table>
 				<n-data-table v-bind="tableProps" :columns="columns">
 					<template #empty>
-						<bt-table-help> </bt-table-help>
+						<bt-table-help>
+							<n-button type="primary" size="small" @click="handleAdd">
+								{{ t('mailbox.actions.add') }}
+							</n-button>
+						</bt-table-help>
 					</template>
 				</n-data-table>
 			</template>
@@ -55,6 +59,7 @@ import { deleteMailbox, getMailboxList, updateMailbox } from '@/api/modules/mail
 import { MailBox, MailBoxParams } from './interface'
 
 import TablePassword from '@/components/base/bt-table-password/index.vue'
+import BtIconAction from '@/components/base/bt-icon-action/index.vue'
 import DomainSelect from './components/DomainSelect.vue'
 import MailboxForm from './components/MailboxForm.vue'
 import BatchAddModal from './components/MailboxBatchAdd.vue'
@@ -161,7 +166,7 @@ const columns = ref<DataTableColumns<MailBox>>([
 			if (row.quota_active === 1) {
 				return `${getByteUnit(row.used_quota)} / ${getByteUnit(row.quota)}`
 			}
-			return <i class="i-common:quota w-20px h-20px"></i>
+			return <i class="i-lucide-gauge w-20px h-20px text-primary"></i>
 		},
 	},
 	// {
@@ -203,25 +208,24 @@ const columns = ref<DataTableColumns<MailBox>>([
 		title: t('common.columns.actions'),
 		key: 'actions',
 		align: 'right',
-		width: 120,
+		width: 88, // wide enough for the column header
 		render: row => (
-			<NFlex inline={true}>
-				<NButton
-					type="primary"
-					text={true}
+			<NFlex inline={true} size={4}>
+				<BtIconAction
+					icon="i-lucide-pencil"
+					label={t('common.actions.edit')}
 					onClick={() => {
 						handleEdit(row)
-					}}>
-					{t('common.actions.edit')}
-				</NButton>
-				<NButton
+					}}
+				/>
+				<BtIconAction
+					icon="i-lucide-trash-2"
+					label={t('common.actions.delete')}
 					type="error"
-					text={true}
 					onClick={() => {
 						handleDelete(row)
-					}}>
-					{t('common.actions.delete')}
-				</NButton>
+					}}
+				/>
 			</NFlex>
 		),
 	},

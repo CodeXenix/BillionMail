@@ -1,12 +1,12 @@
 package askai
 
 import (
-	"billionmail-core/internal/service/public"
 	"encoding/json"
 	"fmt"
 	"net/url"
 	"os"
 	"strings"
+	"xenixmail-core/internal/service/public"
 
 	"github.com/google/uuid"
 )

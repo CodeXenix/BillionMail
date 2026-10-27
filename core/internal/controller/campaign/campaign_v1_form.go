@@ -1,19 +1,19 @@
 package campaign
 
 import (
-	"billionmail-core/internal/model/entity"
-	"billionmail-core/internal/service/contact"
-	"billionmail-core/internal/service/domains"
-	"billionmail-core/internal/service/mail_service"
-	"billionmail-core/internal/service/public"
 	"context"
 	"fmt"
-	"net/url"
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/util/grand"
+	"net/url"
 	"time"
+	"xenixmail-core/internal/model/entity"
+	"xenixmail-core/internal/service/contact"
+	"xenixmail-core/internal/service/domains"
+	"xenixmail-core/internal/service/mail_service"
+	"xenixmail-core/internal/service/public"
 
-	"billionmail-core/api/campaign/v1"
+	"xenixmail-core/api/campaign/v1"
 )
 
 func (c *ControllerV1) Form(ctx context.Context, req *v1.FormReq) (res *v1.FormRes, err error) {
@@ -152,7 +152,7 @@ func sendConfirmationEmail(ctx context.Context, email, name string) error {
         </div>
         <div class="footer">
             <p>This email was sent to %s</p>
-            <p>Powered by BillionMail</p>
+            <p>Powered by Xenix Mail</p>
         </div>
     </div>
 </body>

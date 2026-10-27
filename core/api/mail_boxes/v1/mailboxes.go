@@ -1,8 +1,8 @@
 package v1
 
 import (
-	"billionmail-core/utility/types/api_v1"
 	"github.com/gogf/gf/v2/frame/g"
+	"xenixmail-core/utility/types/api_v1"
 )
 
 // Mailbox defines the mailbox entity
@@ -44,9 +44,9 @@ type BatchAddMailboxReq struct {
 	g.Meta        `path:"/mailbox/batch_create" tags:"MailBox" method:"post" summary:"Batch create mailbox" in:"body"`
 	Authorization string `json:"authorization" dc:"Authorization" in:"header"`
 	Domain        string `json:"domain" v:"required|domain" dc:"Domain"`
-	Quota  int    `json:"quota"   dc:"Quota" d:"5242880"`
-	Count  int    `json:"count" v:"required|min:2" dc:"Count" d:"10"`
-	Prefix string `json:"prefix" v:"regex:[\\w-]{0,}" dc:"Email name prefix, optional" d:"user"`
+	Quota         int    `json:"quota"   dc:"Quota" d:"5242880"`
+	Count         int    `json:"count" v:"required|min:2" dc:"Count" d:"10"`
+	Prefix        string `json:"prefix" v:"regex:[\\w-]{0,}" dc:"Email name prefix, optional" d:"user"`
 	QuotaActive   int    `json:"quota_active" v:"in:0,1" dc:"Quota switch 1: On 0: Off" d:"1"`
 }
 

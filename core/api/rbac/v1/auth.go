@@ -1,7 +1,7 @@
 package v1
 
 import (
-	"billionmail-core/utility/types/api_v1"
+	"xenixmail-core/utility/types/api_v1"
 
 	"github.com/gogf/gf/v2/frame/g"
 )
@@ -35,7 +35,7 @@ type LoginRes struct {
 // AaPanelSSOReq defines the request for aaPanel trusted SSO.
 type AaPanelSSOReq struct {
 	g.Meta   `path:"/aapanel/sso" method:"post" tags:"Authentication" summary:"aaPanel SSO" sm:"aaPanel SSO" in:"body"`
-	Username string `p:"username" dc:"BillionMail username to sign in"`
+	Username string `p:"username" dc:"Xenix Mail username to sign in"`
 }
 
 // AaPanelSSORes defines the response for aaPanel trusted SSO.

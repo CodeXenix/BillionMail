@@ -7,7 +7,7 @@ package overview
 import (
 	"context"
 
-	"billionmail-core/api/overview/v1"
+	"xenixmail-core/api/overview/v1"
 )
 
 type IOverviewV1 interface {

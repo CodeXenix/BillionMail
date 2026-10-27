@@ -1,10 +1,6 @@
 package contact
 
 import (
-	"billionmail-core/api/contact/v1"
-	"billionmail-core/internal/consts"
-	"billionmail-core/internal/model/entity"
-	"billionmail-core/internal/service/public"
 	"context"
 	"encoding/json"
 	"fmt"
@@ -12,6 +8,10 @@ import (
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
 	"strings"
+	"xenixmail-core/api/contact/v1"
+	"xenixmail-core/internal/consts"
+	"xenixmail-core/internal/model/entity"
+	"xenixmail-core/internal/service/public"
 )
 
 func (c *ControllerV1) EditContactsNDP(ctx context.Context, req *v1.EditContactsNDPReq) (res *v1.EditContactsNDPRes, err error) {

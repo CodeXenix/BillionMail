@@ -1,5 +1,5 @@
 #!/bin/bash
-# Seed demo data into a running BillionMail stack: a sending domain with mailboxes,
+# Seed demo data into a running Xenix Mail stack: a sending domain with mailboxes,
 # contact groups/tags, templates and completed campaigns with delivery/open/click stats.
 # Re-running replaces the previous demo data. Only reserved example.* domains are used,
 # and campaigns are inserted as already completed, so nothing is ever sent.

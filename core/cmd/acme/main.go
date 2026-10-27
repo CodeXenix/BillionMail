@@ -1,7 +1,7 @@
 package main
 
 import (
-	"billionmail-core/internal/service/acme"
+	"xenixmail-core/internal/service/acme"
 	"os"
 )
 

@@ -3,16 +3,16 @@
 		<div class="stats-header">
 			<div class="stat-item">
 				<div class="stat-label">{{ $t('overview.send.successRate') }}</div>
-				<div class="stat-value text-primary">{{ successRate }}%</div>
+				<div class="stat-value">{{ successRate }}%</div>
 			</div>
 			<div class="stat-item">
 				<div class="stat-label">{{ $t('overview.send.success') }}</div>
-				<div class="stat-value text-primary">{{ successCount }}</div>
+				<div class="stat-value">{{ successCount }}</div>
 			</div>
 			<div class="stat-item">
 				<div class="stat-label">{{ $t('overview.send.fail') }}</div>
 				<div class="stat-value">
-					<n-button text type="error" class="text-18px! font-bold" @click="handleShowFail">
+					<n-button text type="error" class="fail-button" @click="handleShowFail">
 						{{ failCount }}
 					</n-button>
 				</div>
@@ -42,18 +42,18 @@ const emit = defineEmits<{
 	showFail: []
 }>()
 
-const { t } = useI18n()
+const { t, locale } = useI18n()
 
 const successRate = computed(() => {
 	return data.dashboard.delivery_rate
 })
 
 const successCount = computed(() => {
-	return data.dashboard.delivered
+	return data.dashboard.delivered.toLocaleString(locale.value)
 })
 
 const failCount = computed(() => {
-	return data.dashboard.failed
+	return data.dashboard.failed.toLocaleString(locale.value)
 })
 
 const handleShowFail = () => {
@@ -108,21 +108,28 @@ const barChartData = computed(() => {
 .stats-header {
 	display: flex;
 	justify-content: space-around;
-	margin-bottom: 20px;
+	margin-bottom: 16px;
 
 	.stat-item {
 		text-align: center;
 	}
 
 	.stat-label {
-		font-size: 14px;
+		margin-bottom: 4px;
+		font-size: 13px;
 		color: var(--color-text-2);
-		margin-bottom: 5px;
+	}
+
+	.stat-value,
+	.fail-button {
+		font-size: 20px;
+		font-weight: 600;
+		line-height: 1.2;
+		font-variant-numeric: tabular-nums;
 	}
 
 	.stat-value {
-		font-size: 18px;
-		font-weight: bold;
+		color: var(--color-text-1);
 	}
 }
 </style>

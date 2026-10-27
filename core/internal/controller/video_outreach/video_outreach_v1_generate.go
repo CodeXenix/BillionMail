@@ -1,11 +1,11 @@
 package video_outreach
 
 import (
-	v1 "billionmail-core/api/video_outreach/v1"
-	"billionmail-core/internal/model/entity"
-	"billionmail-core/internal/service/video_gen"
-	vo "billionmail-core/internal/service/video_outreach"
 	"context"
+	v1 "xenixmail-core/api/video_outreach/v1"
+	"xenixmail-core/internal/model/entity"
+	"xenixmail-core/internal/service/video_gen"
+	vo "xenixmail-core/internal/service/video_outreach"
 
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"

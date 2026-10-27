@@ -22,7 +22,7 @@
 					<n-tag v-for="domain in service.sender_domains" :key="domain" :bordered="false">{{ domain }}</n-tag>
 					<n-tag v-if="service.check_spf === 1" type="warning" class="cursor-pointer" :bordered="false" @click="handleShowDns">
 						<div class="flex items-center gap-4px">
-							<i class="i-carbon:warning-filled text-16px"></i>
+							<i class="i-lucide-triangle-alert text-16px"></i>
 							<span>{{ $t('smtp.card.dnsUpdateRequired') }}</span>
 						</div>
 					</n-tag>
@@ -45,14 +45,14 @@
 		</div>
 		<div class="action-buttons">
 			
-			<n-button secondary class="action-btn" @click="handleEdit">
+			<n-button secondary class="action-btn" :aria-label="$t('common.actions.edit')" @click="handleEdit">
 				<template #icon>
-					<i class="i-mdi-edit"></i>
+					<i class="i-lucide-pencil"></i>
 				</template>
 			</n-button>
-			<n-button secondary class="action-btn" @click="handleDelete">
+			<n-button secondary class="action-btn" :aria-label="$t('common.actions.delete')" @click="handleDelete">
 				<template #icon>
-					<i class="i-mdi-delete"></i>
+					<i class="i-lucide-trash-2"></i>
 				</template>
 			</n-button>
 		</div>

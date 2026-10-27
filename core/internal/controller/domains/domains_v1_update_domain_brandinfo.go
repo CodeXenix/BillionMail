@@ -1,15 +1,15 @@
 package domains
 
 import (
-	"billionmail-core/internal/consts"
-	"billionmail-core/internal/service/domains"
-	"billionmail-core/internal/service/public"
 	"context"
 	"github.com/gogf/gf/v2/util/gconv"
+	"xenixmail-core/internal/consts"
+	"xenixmail-core/internal/service/domains"
+	"xenixmail-core/internal/service/public"
 
 	"github.com/gogf/gf/v2/errors/gerror"
 
-	"billionmail-core/api/domains/v1"
+	"xenixmail-core/api/domains/v1"
 )
 
 func (c *ControllerV1) UpdateDomainBrandinfo(ctx context.Context, req *v1.UpdateDomainBrandinfoReq) (res *v1.UpdateDomainBrandinfoRes, err error) {

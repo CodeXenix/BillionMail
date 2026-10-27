@@ -1,16 +1,16 @@
 package subscribe_list
 
 import (
-	"billionmail-core/api/subscribe_list/v1"
-	"billionmail-core/internal/service/contact_activity"
-	"billionmail-core/internal/service/domains"
-	"billionmail-core/internal/service/public"
 	"context"
 	"fmt"
 	"github.com/gogf/gf/os/gtimer"
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
 	"time"
+	"xenixmail-core/api/subscribe_list/v1"
+	"xenixmail-core/internal/service/contact_activity"
+	"xenixmail-core/internal/service/domains"
+	"xenixmail-core/internal/service/public"
 )
 
 func (c *ControllerV1) SubscribeSubmit(ctx context.Context, req *v1.SubscribeSubmitReq) (res *v1.SubscribeSubmitRes, err error) {

@@ -8,8 +8,8 @@ import (
 	"sync"
 	"time"
 
-	"billionmail-core/internal/service/mail_service"
 	"github.com/gogf/gf/v2/frame/g"
+	"xenixmail-core/internal/service/mail_service"
 )
 
 // -----------------------------

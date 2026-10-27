@@ -1,15 +1,15 @@
 package tags
 
 import (
-	"billionmail-core/api/tags/v1"
-	"billionmail-core/internal/consts"
-	"billionmail-core/internal/service/public"
 	"context"
 	"github.com/gogf/gf/v2/database/gdb"
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
 	"strings"
 	"time"
+	"xenixmail-core/api/tags/v1"
+	"xenixmail-core/internal/consts"
+	"xenixmail-core/internal/service/public"
 )
 
 func (c *ControllerV1) BatchTagContacts(ctx context.Context, req *v1.BatchTagContactsReq) (res *v1.BatchTagContactsRes, err error) {

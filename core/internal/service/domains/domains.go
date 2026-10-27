@@ -1,16 +1,6 @@
 package domains
 
 import (
-	v2 "billionmail-core/api/dockerapi/v1"
-	v1 "billionmail-core/api/domains/v1"
-	mail_v1 "billionmail-core/api/mail_boxes/v1"
-	"billionmail-core/internal/consts"
-	"billionmail-core/internal/model"
-	docker "billionmail-core/internal/service/dockerapi"
-	"billionmail-core/internal/service/mail_boxes"
-	"billionmail-core/internal/service/mail_service"
-	"billionmail-core/internal/service/multi_ip_domain"
-	"billionmail-core/internal/service/public"
 	"context"
 	"database/sql"
 	"fmt"
@@ -19,6 +9,16 @@ import (
 	"strings"
 	"sync"
 	"time"
+	v2 "xenixmail-core/api/dockerapi/v1"
+	v1 "xenixmail-core/api/domains/v1"
+	mail_v1 "xenixmail-core/api/mail_boxes/v1"
+	"xenixmail-core/internal/consts"
+	"xenixmail-core/internal/model"
+	docker "xenixmail-core/internal/service/dockerapi"
+	"xenixmail-core/internal/service/mail_boxes"
+	"xenixmail-core/internal/service/mail_service"
+	"xenixmail-core/internal/service/multi_ip_domain"
+	"xenixmail-core/internal/service/public"
 
 	"github.com/gogf/gf/util/grand"
 	"github.com/gogf/gf/v2/frame/g"

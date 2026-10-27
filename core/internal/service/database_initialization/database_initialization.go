@@ -1,13 +1,13 @@
 package database_initialization
 
 import (
-	"billionmail-core/internal/consts"
-	"billionmail-core/internal/service/public"
 	"context"
 	"fmt"
 	"github.com/gogf/gf/v2/database/gdb"
 	"github.com/gogf/gf/v2/frame/g"
 	"time"
+	"xenixmail-core/internal/consts"
+	"xenixmail-core/internal/service/public"
 )
 
 var registeredHandlers = make([]func(), 0, 256)

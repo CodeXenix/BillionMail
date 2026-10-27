@@ -1,13 +1,13 @@
 package mail_services
 
 import (
-	"billionmail-core/api/mail_services/v1"
-	"billionmail-core/internal/consts"
-	"billionmail-core/internal/service/mail_service"
-	"billionmail-core/internal/service/public"
 	"context"
 	"github.com/gogf/gf/v2/frame/g"
 	"time"
+	"xenixmail-core/api/mail_services/v1"
+	"xenixmail-core/internal/consts"
+	"xenixmail-core/internal/service/mail_service"
+	"xenixmail-core/internal/service/public"
 
 	"github.com/gogf/gf/v2/errors/gerror"
 )

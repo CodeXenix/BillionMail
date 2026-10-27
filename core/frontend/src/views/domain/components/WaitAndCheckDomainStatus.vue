@@ -2,7 +2,7 @@
     <n-modal v-model:show="show" :close-on-esc="false" :mask-closable="false">
         <n-card style="width: auto;">
             <div class="flex justify-start gap-2.5 bg-transparent items-center">
-                <i class="i-svg-spinners:bars-scale text-[var(--color-primary-1)] text-6"></i>
+                <i class="i-lucide-loader-circle animate-spin text-[var(--color-primary-1)] text-6"></i>
                 <span class="flex items-center text-4">{{ $t("domain.waitAndCheckDomainStatus.loading") }}</span>
             </div>
         </n-card>

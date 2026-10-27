@@ -5,7 +5,7 @@
 package campaign
 
 import (
-	"billionmail-core/api/campaign"
+	"xenixmail-core/api/campaign"
 )
 
 type ControllerV1 struct{}

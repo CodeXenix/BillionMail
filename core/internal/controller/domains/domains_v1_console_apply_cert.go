@@ -1,12 +1,12 @@
 package domains
 
 import (
-	"billionmail-core/api/domains/v1"
-	"billionmail-core/internal/consts"
-	"billionmail-core/internal/service/domains"
-	"billionmail-core/internal/service/public"
 	"context"
 	"github.com/gogf/gf/v2/errors/gerror"
+	"xenixmail-core/api/domains/v1"
+	"xenixmail-core/internal/consts"
+	"xenixmail-core/internal/service/domains"
+	"xenixmail-core/internal/service/public"
 )
 
 func (c *ControllerV1) ConsoleApplyCert(ctx context.Context, req *v1.ConsoleApplyCertReq) (res *v1.ConsoleApplyCertRes, err error) {

@@ -2,16 +2,16 @@
 package batch_mail
 
 import (
-	"billionmail-core/internal/model/entity"
-	"billionmail-core/internal/service/domains"
-	"billionmail-core/internal/service/mail_service"
-	"billionmail-core/internal/service/maillog_stat"
-	"billionmail-core/internal/service/public"
 	"context"
 	"fmt"
 	"strings"
 	"sync"
 	"time"
+	"xenixmail-core/internal/model/entity"
+	"xenixmail-core/internal/service/domains"
+	"xenixmail-core/internal/service/mail_service"
+	"xenixmail-core/internal/service/maillog_stat"
+	"xenixmail-core/internal/service/public"
 
 	"github.com/gogf/gf/v2/frame/g"
 )

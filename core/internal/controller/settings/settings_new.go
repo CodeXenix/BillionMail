@@ -5,7 +5,7 @@
 package settings
 
 import (
-	"billionmail-core/api/settings"
+	"xenixmail-core/api/settings"
 )
 
 type ControllerV1 struct{}

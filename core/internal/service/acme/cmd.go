@@ -1,12 +1,12 @@
 package acme
 
 import (
-	"billionmail-core/internal/service/public"
 	"encoding/json"
 	"flag"
 	"fmt"
 	"os"
 	"strings"
+	"xenixmail-core/internal/service/public"
 )
 
 /**

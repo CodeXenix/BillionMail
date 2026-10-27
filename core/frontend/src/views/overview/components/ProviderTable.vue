@@ -20,6 +20,7 @@ const columns = ref<DataTableColumns<MailProvider>>([
 	{
 		key: 'mail_provider',
 		title: t('overview.provider.mailProvider'),
+		width: 140,
 		ellipsis: {
 			tooltip: true,
 		},

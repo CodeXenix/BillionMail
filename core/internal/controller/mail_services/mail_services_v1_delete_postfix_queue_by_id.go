@@ -1,14 +1,14 @@
 package mail_services
 
 import (
-	"billionmail-core/internal/consts"
-	docker "billionmail-core/internal/service/dockerapi"
-	"billionmail-core/internal/service/public"
 	"context"
 	"github.com/gogf/gf/v2/errors/gerror"
 	"strings"
+	"xenixmail-core/internal/consts"
+	docker "xenixmail-core/internal/service/dockerapi"
+	"xenixmail-core/internal/service/public"
 
-	"billionmail-core/api/mail_services/v1"
+	"xenixmail-core/api/mail_services/v1"
 )
 
 func (c *ControllerV1) DeletePostfixQueueById(ctx context.Context, req *v1.DeletePostfixQueueByIdReq) (res *v1.DeletePostfixQueueByIdRes, err error) {

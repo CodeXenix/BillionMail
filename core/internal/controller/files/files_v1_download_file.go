@@ -1,10 +1,10 @@
 package files
 
 import (
-	"billionmail-core/api/files/v1"
 	"context"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
+	"xenixmail-core/api/files/v1"
 )
 
 func (c *ControllerV1) DownloadFile(ctx context.Context, req *v1.DownloadFileReq) (res *v1.DownloadFileRes, err error) {

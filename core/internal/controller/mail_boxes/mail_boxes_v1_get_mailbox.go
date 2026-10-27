@@ -1,14 +1,14 @@
 package mail_boxes
 
 import (
-	domainsV1 "billionmail-core/api/domains/v1"
-	"billionmail-core/internal/service/domains"
-	"billionmail-core/internal/service/mail_boxes"
-	"billionmail-core/internal/service/public"
 	"context"
 	"fmt"
+	domainsV1 "xenixmail-core/api/domains/v1"
+	"xenixmail-core/internal/service/domains"
+	"xenixmail-core/internal/service/mail_boxes"
+	"xenixmail-core/internal/service/public"
 
-	"billionmail-core/api/mail_boxes/v1"
+	"xenixmail-core/api/mail_boxes/v1"
 )
 
 func (c *ControllerV1) GetMailbox(ctx context.Context, req *v1.GetMailboxReq) (res *v1.GetMailboxRes, err error) {

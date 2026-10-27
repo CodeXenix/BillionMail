@@ -1,13 +1,13 @@
 package settings
 
 import (
-	"billionmail-core/internal/consts"
 	"context"
 	"github.com/gogf/gf/v2/errors/gerror"
+	"xenixmail-core/internal/consts"
 
-	"billionmail-core/api/settings/v1"
-	"billionmail-core/internal/service/public"
 	"fmt"
+	"xenixmail-core/api/settings/v1"
+	"xenixmail-core/internal/service/public"
 )
 
 func (c *ControllerV1) SetReverseProxyDomain(ctx context.Context, req *v1.SetReverseProxyDomainReq) (res *v1.SetReverseProxyDomainRes, err error) {

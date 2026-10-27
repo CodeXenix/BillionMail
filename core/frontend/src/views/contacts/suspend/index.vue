@@ -19,7 +19,11 @@
 				</bt-search>
 			</template>
 			<template #table>
-				<n-data-table v-bind="tableProps" :columns="columns"> </n-data-table>
+				<n-data-table v-bind="tableProps" :columns="columns">
+					<template #empty>
+						<bt-table-help> </bt-table-help>
+					</template>
+				</n-data-table>
 			</template>
 			<template #pageRight>
 				<bt-table-page v-bind="pageProps" @refresh="fetchTable"> </bt-table-page>
@@ -33,10 +37,12 @@
 </template>
 
 <script lang="tsx" setup>
-import { DataTableColumns, NButton, NFlex } from 'naive-ui'
+import { DataTableColumns, NFlex } from 'naive-ui'
 import { confirm, formatTime, isNumber } from '@/utils'
 import { useDataTable } from '@/hooks/useDataTable'
 import { useModal } from '@/hooks/modal/useModal'
+import BtIconAction from '@/components/base/bt-icon-action/index.vue'
+import BtStatus from '@/components/base/bt-status/index.vue'
 import {
 	clearSuspend,
 	deleteSuspend,
@@ -115,15 +121,26 @@ const columns = ref<DataTableColumns<Suspend>>([
 	{
 		key: 'recipient',
 		title: t('contacts.suspend.columns.email'),
+		ellipsis: {
+			tooltip: true,
+		},
 	},
 	{
 		key: 'description',
 		title: t('contacts.suspend.columns.description'),
+		ellipsis: {
+			tooltip: true,
+		},
 	},
 	{
 		key: 'state',
 		title: t('contacts.suspend.columns.status'),
-		render: row => (row.state || row.count >= 3 ? t('contacts.suspend.status.invalid') : t('contacts.suspend.status.checking')),
+		render: row =>
+			row.state || row.count >= 3 ? (
+				<BtStatus type="error">{t('contacts.suspend.status.invalid')}</BtStatus>
+			) : (
+				<BtStatus type="info">{t('contacts.suspend.status.checking')}</BtStatus>
+			),
 	},
 	{
 		key: 'create_time',
@@ -134,17 +151,17 @@ const columns = ref<DataTableColumns<Suspend>>([
 		title: t('common.columns.actions'),
 		key: 'actions',
 		align: 'right',
-		width: 100,
+		width: 88, // wide enough for the column header
 		render: row => (
-			<NFlex inline={true}>
-				<NButton
+			<NFlex inline={true} size={4}>
+				<BtIconAction
+					icon="i-lucide-trash-2"
 					type="error"
-					text={true}
+					label={t('common.actions.delete')}
 					onClick={() => {
 						handleDelete(row)
-					}}>
-					{t('common.actions.delete')}
-				</NButton>
+					}}
+				/>
 			</NFlex>
 		),
 	},
@@ -154,6 +171,8 @@ const handleDelete = (row: Suspend) => {
 	confirm({
 		title: t('contacts.suspend.confirm.delete.title'),
 		content: t('contacts.suspend.confirm.delete.content', { email: row.recipient }),
+		confirmText: t('common.actions.delete'),
+		confirmType: 'error',
 		onConfirm: async () => {
 			await deleteSuspend({ id: row.id })
 			fetchTable()

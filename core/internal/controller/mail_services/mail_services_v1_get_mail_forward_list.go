@@ -1,14 +1,14 @@
 package mail_services
 
 import (
-	"billionmail-core/internal/service/public"
 	"context"
 	"database/sql"
 	"github.com/gogf/gf/v2/frame/g"
+	"xenixmail-core/internal/service/public"
 
 	"github.com/gogf/gf/v2/errors/gerror"
 
-	"billionmail-core/api/mail_services/v1"
+	"xenixmail-core/api/mail_services/v1"
 )
 
 func (c *ControllerV1) GetMailForwardList(ctx context.Context, req *v1.GetMailForwardListReq) (res *v1.GetMailForwardListRes, err error) {

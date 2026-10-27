@@ -1,15 +1,15 @@
 package settings
 
 import (
-	"billionmail-core/internal/consts"
 	"context"
 	"time"
+	"xenixmail-core/internal/consts"
 
 	"github.com/gogf/gf/os/gtimer"
 
-	"billionmail-core/api/settings/v1"
-	"billionmail-core/internal/service/public"
 	"strings"
+	"xenixmail-core/api/settings/v1"
+	"xenixmail-core/internal/service/public"
 
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"

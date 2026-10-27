@@ -1,15 +1,15 @@
 package rspamd
 
 import (
-	"billionmail-core/internal/consts"
-	docker "billionmail-core/internal/service/dockerapi"
-	"billionmail-core/internal/service/public"
 	"context"
 	"errors"
 	"github.com/gogf/gf/util/grand"
 	"github.com/gogf/gf/v2/frame/g"
 	"path/filepath"
 	"strings"
+	"xenixmail-core/internal/consts"
+	docker "xenixmail-core/internal/service/dockerapi"
+	"xenixmail-core/internal/service/public"
 )
 
 // InitWorkerController initializes the worker controller

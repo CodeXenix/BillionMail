@@ -1,11 +1,11 @@
 package settings
 
 import (
-	"billionmail-core/api/settings/v1"
-	"billionmail-core/internal/service/domains"
-	"billionmail-core/internal/service/public"
 	"context"
 	"encoding/json"
+	"xenixmail-core/api/settings/v1"
+	"xenixmail-core/internal/service/domains"
+	"xenixmail-core/internal/service/public"
 
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"

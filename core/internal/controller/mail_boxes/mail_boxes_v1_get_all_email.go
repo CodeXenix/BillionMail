@@ -1,12 +1,12 @@
 package mail_boxes
 
 import (
-	"billionmail-core/internal/service/mail_boxes"
-	"billionmail-core/internal/service/public"
 	"context"
 	"fmt"
+	"xenixmail-core/internal/service/mail_boxes"
+	"xenixmail-core/internal/service/public"
 
-	"billionmail-core/api/mail_boxes/v1"
+	"xenixmail-core/api/mail_boxes/v1"
 )
 
 func (c *ControllerV1) GetAllEmail(ctx context.Context, req *v1.GetAllEmailReq) (res *v1.GetAllEmailRes, err error) {

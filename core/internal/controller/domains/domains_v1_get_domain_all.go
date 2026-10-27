@@ -1,15 +1,15 @@
 package domains
 
 import (
-	"billionmail-core/internal/service/domains"
-	"billionmail-core/internal/service/public"
 	"context"
 	"fmt"
+	"xenixmail-core/internal/service/domains"
+	"xenixmail-core/internal/service/public"
 
 	"github.com/gogf/gf/v2/errors/gcode"
 	"github.com/gogf/gf/v2/errors/gerror"
 
-	"billionmail-core/api/domains/v1"
+	"xenixmail-core/api/domains/v1"
 )
 
 func (c *ControllerV1) GetDomainAll(ctx context.Context, req *v1.GetDomainAllReq) (res *v1.GetDomainAllRes, err error) {

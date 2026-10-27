@@ -1,9 +1,9 @@
 package relay
 
 import (
-	"billionmail-core/internal/model/entity"
 	"strings"
 	"testing"
+	"xenixmail-core/internal/model/entity"
 
 	"github.com/stretchr/testify/assert"
 )

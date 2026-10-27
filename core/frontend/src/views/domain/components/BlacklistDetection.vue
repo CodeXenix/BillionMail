@@ -14,6 +14,9 @@
 				<span>{{ $t('domain.blacklistDetection.success') }}</span>
 			</n-alert>
 			<n-data-table v-else max-height="200" :columns="columns" :data="result.black_list">
+				<template #empty>
+					<bt-table-help></bt-table-help>
+				</template>
 			</n-data-table>
 		</div>
 	</modal>
@@ -33,6 +36,9 @@ const columns = ref<DataTableColumns<{ blacklist: string; time: number }>>([
 	{
 		key: 'blacklist',
 		title: t('domain.blacklistDetection.columns.blacklist'),
+		ellipsis: {
+			tooltip: true,
+		},
 	},
 	{
 		key: 'response',

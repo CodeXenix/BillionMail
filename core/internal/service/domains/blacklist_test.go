@@ -1,9 +1,9 @@
 package domains
 
 import (
-	"billionmail-core/internal/model"
 	"strings"
 	"testing"
+	"xenixmail-core/internal/model"
 
 	"github.com/stretchr/testify/assert"
 )
@@ -217,7 +217,7 @@ func TestBuildBlacklistAlertEmailHTML(t *testing.T) {
 			assert.Contains(t, html, tt.domain)
 			assert.Contains(t, html, tt.ip)
 			assert.Contains(t, html, "Blacklist Detection Alert")
-			assert.Contains(t, html, "BillionMail")
+			assert.Contains(t, html, "Xenix Mail")
 			assert.Contains(t, html, "<!DOCTYPE html>")
 
 			for _, bl := range tt.result.BlackList {

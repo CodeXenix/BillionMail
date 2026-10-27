@@ -1,15 +1,15 @@
 package domains
 
 import (
-	"billionmail-core/internal/consts"
-	"billionmail-core/internal/service/multi_ip_domain"
-	"billionmail-core/internal/service/public"
 	"context"
 	"fmt"
+	"xenixmail-core/internal/consts"
+	"xenixmail-core/internal/service/multi_ip_domain"
+	"xenixmail-core/internal/service/public"
 
 	"github.com/gogf/gf/v2/errors/gerror"
 
-	"billionmail-core/api/domains/v1"
+	"xenixmail-core/api/domains/v1"
 )
 
 func (c *ControllerV1) ApplyMultiIPDomainConfig(ctx context.Context, req *v1.ApplyMultiIPDomainConfigReq) (res *v1.ApplyMultiIPDomainConfigRes, err error) {

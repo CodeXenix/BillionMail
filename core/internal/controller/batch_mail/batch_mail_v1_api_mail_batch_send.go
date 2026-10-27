@@ -1,17 +1,17 @@
 package batch_mail
 
 import (
-	"billionmail-core/internal/service/contact"
-	"billionmail-core/internal/service/mail_service"
-	"billionmail-core/internal/service/public"
 	"context"
 	"strings"
 	"time"
+	"xenixmail-core/internal/service/contact"
+	"xenixmail-core/internal/service/mail_service"
+	"xenixmail-core/internal/service/public"
 
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
 
-	"billionmail-core/api/batch_mail/v1"
+	"xenixmail-core/api/batch_mail/v1"
 )
 
 func (c *ControllerV1) ApiMailBatchSend(ctx context.Context, req *v1.ApiMailBatchSendReq) (res *v1.ApiMailBatchSendRes, err error) {

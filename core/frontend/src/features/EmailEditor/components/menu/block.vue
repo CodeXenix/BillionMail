@@ -35,14 +35,14 @@ const [, drag] = useDrag(() => {
 })
 
 const iconMap: Record<BlockType, () => VNodeChild> = {
-	columns: () => <i class="i-mdi:view-column-outline"></i>,
-	button: () => <i class="i-mdi:button-outline"></i>,
-	link: () => <i class="i-mdi:link"></i>,
-	divider: () => <i class="i-mdi:horizontal-line"></i>,
-	header: () => <i class="i-ri:heading"></i>,
-	text: () => <i class="i-mdi:format-text"></i>,
-	image: () => <i class="i-mdi:file-image"></i>,
-	menu: () => <i class="i-mdi:menu"></i>,
+	columns: () => <i class="i-lucide-columns-2"></i>,
+	button: () => <i class="i-lucide-rectangle-horizontal"></i>,
+	link: () => <i class="i-lucide-link"></i>,
+	divider: () => <i class="i-lucide-separator-horizontal"></i>,
+	header: () => <i class="i-lucide-heading"></i>,
+	text: () => <i class="i-lucide-type"></i>,
+	image: () => <i class="i-lucide-image"></i>,
+	menu: () => <i class="i-lucide-menu"></i>,
 	placeholder: () => <i></i>,
 	cell: () => <i></i>,
 	html: () => <i></i>,

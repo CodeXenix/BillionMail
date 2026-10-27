@@ -8,12 +8,12 @@
 		@keyup.enter="onSearch">
 		<template v-if="prefix" #prefix>
 			<div class="flex items-center cursor-pointer" @click="onSearch">
-				<i class="i-mdi-search text-16px"></i>
+				<i class="i-lucide-search text-16px"></i>
 			</div>
 		</template>
 		<template v-if="!prefix" #suffix>
 			<div class="flex items-center cursor-pointer" @click="onSearch">
-				<i class="i-mdi-search text-16px"></i>
+				<i class="i-lucide-search text-16px"></i>
 			</div>
 		</template>
 	</n-input>

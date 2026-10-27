@@ -1,13 +1,13 @@
 package batch_mail
 
 import (
-	"billionmail-core/internal/model/entity"
-	"billionmail-core/internal/service/testutil"
 	"context"
 	"fmt"
 	"sync"
 	"testing"
 	"time"
+	"xenixmail-core/internal/model/entity"
+	"xenixmail-core/internal/service/testutil"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

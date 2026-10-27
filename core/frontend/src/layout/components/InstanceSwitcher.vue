@@ -1,7 +1,7 @@
 <template>
 	<n-dropdown size="large" :options="dropdownOptions" @select="handleSelect">
 		<n-button class="icon-btn" :bordered="false">
-			<i class="icon i-mdi-server-network text-18px"></i>
+			<i class="icon i-lucide-server"></i>
 		</n-button>
 	</n-dropdown>
 
@@ -27,12 +27,12 @@
 				<div class="instance-actions">
 					<template v-if="editingId !== inst.id">
 						<n-button size="small" quaternary @click="startEdit(inst)">
-							<i class="i-mdi-pencil"></i>
+							<i class="i-lucide-pencil"></i>
 						</n-button>
 						<n-popconfirm @positive-click="instanceStore.removeInstance(inst.id)">
 							<template #trigger>
 								<n-button size="small" quaternary type="error">
-									<i class="i-mdi-delete"></i>
+									<i class="i-lucide-trash-2"></i>
 								</n-button>
 							</template>
 							{{ t('layout.instances.deleteConfirm', { name: inst.name }) }}
@@ -40,10 +40,10 @@
 					</template>
 					<template v-else>
 						<n-button size="small" quaternary type="primary" @click="saveEdit(inst.id)">
-							<i class="i-mdi-check"></i>
+							<i class="i-lucide-check"></i>
 						</n-button>
 						<n-button size="small" quaternary @click="editingId = ''">
-							<i class="i-mdi-close"></i>
+							<i class="i-lucide-x"></i>
 						</n-button>
 					</template>
 				</div>
@@ -74,7 +74,7 @@
 <script lang="ts" setup>
 import { DropdownOption } from 'naive-ui'
 import { useInstanceStore } from '@/store'
-import type { BillionMailInstance } from '@/store/modules/instance'
+import type { XenixMailInstance } from '@/store/modules/instance'
 
 const { t } = useI18n()
 const instanceStore = useInstanceStore()
@@ -92,7 +92,7 @@ const dropdownOptions = computed<DropdownOption[]>(() => {
 		label: inst.name,
 		key: inst.id,
 		icon: instanceStore.currentInstance?.id === inst.id
-			? () => h('i', { class: 'i-mdi-check text-14px' })
+			? () => h('i', { class: 'i-lucide-check text-14px' })
 			: undefined,
 	}))
 
@@ -103,7 +103,7 @@ const dropdownOptions = computed<DropdownOption[]>(() => {
 	items.push({
 		label: t('layout.instances.manage'),
 		key: '__manage__',
-		icon: () => h('i', { class: 'i-mdi-cog text-14px' }),
+		icon: () => h('i', { class: 'i-lucide-settings text-14px' }),
 	})
 
 	return items
@@ -138,7 +138,7 @@ const handleAdd = () => {
 	newUrl.value = ''
 }
 
-const startEdit = (inst: BillionMailInstance) => {
+const startEdit = (inst: XenixMailInstance) => {
 	editingId.value = inst.id
 	editName.value = inst.name
 	editUrl.value = inst.url

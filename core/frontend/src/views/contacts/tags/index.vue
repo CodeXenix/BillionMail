@@ -22,7 +22,11 @@
 		<template #table>
 			<n-data-table v-bind="tableProps" :columns="columns">
 				<template #empty>
-					<bt-table-help> </bt-table-help>
+					<bt-table-help>
+						<n-button type="primary" size="small" @click="onShowAdd">
+							{{ t('contacts.tags.addTag') }}
+						</n-button>
+					</bt-table-help>
 				</template>
 			</n-data-table>
 		</template>
@@ -42,6 +46,7 @@ import { useBrowserLocation } from '@vueuse/core'
 import { confirm, formatTime } from '@/utils'
 import { useModal } from '@/hooks/modal/useModal'
 import { useDataTable } from '@/hooks/useDataTable'
+import BtIconAction from '@/components/base/bt-icon-action/index.vue'
 import { deleteTag, getTagList } from './service'
 import { Tag, TagParams } from './types'
 
@@ -106,33 +111,31 @@ const columns = ref<DataTableColumns<Tag>>([
 		key: 'action',
 		title: t('contacts.tags.columns.actions'),
 		align: 'right',
-		width: 180,
+		width: 116,
 		render: row => (
-			<NFlex inline={true}>
-				<NButton
-					type="primary"
-					text={true}
+			<NFlex inline={true} size={4}>
+				<BtIconAction
+					icon="i-lucide-eye"
+					label={t('common.actions.view')}
 					onClick={() => {
 						onView(row)
-					}}>
-					{t('common.actions.view')}
-				</NButton>
-				<NButton
-					type="primary"
-					text={true}
+					}}
+				/>
+				<BtIconAction
+					icon="i-lucide-pencil"
+					label={t('common.actions.edit')}
 					onClick={() => {
 						onEditTag(row)
-					}}>
-					{t('common.actions.edit')}
-				</NButton>
-				<NButton
+					}}
+				/>
+				<BtIconAction
+					icon="i-lucide-trash-2"
 					type="error"
-					text={true}
+					label={t('common.actions.delete')}
 					onClick={() => {
 						onDelTag(row)
-					}}>
-					{t('common.actions.delete')}
-				</NButton>
+					}}
+				/>
 			</NFlex>
 		),
 	},
@@ -168,6 +171,8 @@ const onDelTag = (row: Tag) => {
 	confirm({
 		title: t('contacts.tags.delete.title'),
 		content: t('contacts.tags.delete.confirm', { name: row.name }),
+		confirmText: t('common.actions.delete'),
+		confirmType: 'error',
 		onConfirm: async () => {
 			await deleteTag({ id: row.id })
 			fetchTable()

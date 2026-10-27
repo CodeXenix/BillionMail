@@ -1,12 +1,12 @@
 package batch_mail
 
 import (
-	"billionmail-core/internal/service/public"
 	"context"
 	"github.com/gogf/gf/v2/database/gdb"
 	"github.com/gogf/gf/v2/frame/g"
 	"strconv"
 	"time"
+	"xenixmail-core/internal/service/public"
 )
 
 type TaskStatService struct{}

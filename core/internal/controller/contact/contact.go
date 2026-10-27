@@ -5,7 +5,6 @@
 package contact
 
 import (
-	"billionmail-core/internal/model/entity"
 	"bytes"
 	"encoding/csv"
 	"fmt"
@@ -15,6 +14,7 @@ import (
 	"math/rand"
 	"strings"
 	"time"
+	"xenixmail-core/internal/model/entity"
 )
 
 const (

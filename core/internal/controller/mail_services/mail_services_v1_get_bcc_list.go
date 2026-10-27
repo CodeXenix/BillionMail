@@ -5,9 +5,9 @@ import (
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/util/gconv"
 
-	"billionmail-core/api/mail_services/v1"
-	"billionmail-core/internal/model/entity"
-	"billionmail-core/internal/service/public"
+	"xenixmail-core/api/mail_services/v1"
+	"xenixmail-core/internal/model/entity"
+	"xenixmail-core/internal/service/public"
 
 	"github.com/gogf/gf/v2/errors/gerror"
 )

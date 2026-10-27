@@ -5,7 +5,7 @@
 package languages
 
 import (
-	"billionmail-core/api/languages"
+	"xenixmail-core/api/languages"
 )
 
 type ControllerV1 struct{}

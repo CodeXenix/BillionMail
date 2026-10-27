@@ -11,6 +11,7 @@
 
 <script lang="ts" setup>
 import { isArray, isObject } from '@/utils'
+import { useThemeStore } from '@/store'
 import { getSubscriberTrend } from '@/api/modules/contacts/subscribers'
 import type { ECOptionLine } from '@/types/chart'
 import type { SubscriberParams, SubscriberTrend } from '../interface'
@@ -37,7 +38,15 @@ const subscribe = ref<SubscriberTrend[]>([])
 
 const { t } = useI18n()
 
+const themeStore = useThemeStore()
+
 const chartOptions = computed<ECOptionLine>(() => {
+	// ECharts needs concrete colours: re-read the tokens whenever the theme store swaps overrides
+	const { textColor3 } = themeStore.themeOverrides.common ?? {}
+	// ponytail: assumes --color-primary-1 is #rrggbb so an alpha byte can be appended
+	const primary = getComputedStyle(document.documentElement)
+		.getPropertyValue('--color-primary-1')
+		.trim()
 	return {
 		tooltip: {
 			trigger: 'axis',
@@ -59,7 +68,7 @@ const chartOptions = computed<ECOptionLine>(() => {
 				show: false,
 			},
 			axisLabel: {
-				color: '#6b7280',
+				color: textColor3,
 				fontSize: 12,
 			},
 		},
@@ -67,7 +76,7 @@ const chartOptions = computed<ECOptionLine>(() => {
 			type: 'value',
 			minInterval: 1,
 			axisLabel: {
-				color: '#6b7280',
+				color: textColor3,
 				fontSize: 12,
 			},
 		},
@@ -77,7 +86,7 @@ const chartOptions = computed<ECOptionLine>(() => {
 				type: 'line',
 				data: subscribe.value.map(item => item.count),
 				itemStyle: {
-					color: '#20a53a',
+					color: primary,
 				},
 				smooth: true,
 				showSymbol: false,
@@ -91,8 +100,8 @@ const chartOptions = computed<ECOptionLine>(() => {
 						y2: 1,
 						global: false,
 						colorStops: [
-							{ offset: 0, color: 'rgba(32, 164, 58, 0.4)' },
-							{ offset: 0.7, color: 'rgba(32, 164, 58, 0)' },
+							{ offset: 0, color: `${primary}66` },
+							{ offset: 0.7, color: `${primary}00` },
 						],
 					},
 				},

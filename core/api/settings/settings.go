@@ -7,7 +7,7 @@ package settings
 import (
 	"context"
 
-	"billionmail-core/api/settings/v1"
+	"xenixmail-core/api/settings/v1"
 )
 
 type ISettingsV1 interface {

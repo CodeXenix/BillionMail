@@ -1,14 +1,14 @@
 package relay
 
 import (
-	"billionmail-core/api/relay/v1"
-	"billionmail-core/internal/consts"
-	"billionmail-core/internal/service/public"
-	"billionmail-core/internal/service/relay"
 	"context"
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
 	"strings"
+	"xenixmail-core/api/relay/v1"
+	"xenixmail-core/internal/consts"
+	"xenixmail-core/internal/service/public"
+	"xenixmail-core/internal/service/relay"
 )
 
 func (c *ControllerV1) DeleteRelayConfig(ctx context.Context, req *v1.DeleteRelayConfigReq) (res *v1.DeleteRelayConfigRes, err error) {

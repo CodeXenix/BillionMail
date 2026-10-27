@@ -5,7 +5,7 @@
 package domains
 
 import (
-	"billionmail-core/api/domains"
+	"xenixmail-core/api/domains"
 )
 
 type ControllerV1 struct{}

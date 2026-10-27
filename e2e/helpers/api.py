@@ -1,4 +1,4 @@
-"""HTTP API helpers for BillionMail + FrostByte E2E tests."""
+"""HTTP API helpers for Xenix Mail + FrostByte E2E tests."""
 
 import logging
 import re

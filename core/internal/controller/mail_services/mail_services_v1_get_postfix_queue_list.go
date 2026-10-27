@@ -1,17 +1,17 @@
 package mail_services
 
 import (
-	docker "billionmail-core/internal/service/dockerapi"
-	"billionmail-core/internal/service/public"
 	"context"
 	"strings"
+	docker "xenixmail-core/internal/service/dockerapi"
+	"xenixmail-core/internal/service/public"
 
 	"github.com/gogf/gf/v2/encoding/gjson"
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
 
-	"billionmail-core/api/mail_services/v1"
-	"billionmail-core/internal/consts"
+	"xenixmail-core/api/mail_services/v1"
+	"xenixmail-core/internal/consts"
 )
 
 func (c *ControllerV1) GetPostfixQueueList(ctx context.Context, req *v1.GetPostfixQueueListReq) (res *v1.GetPostfixQueueListRes, err error) {

@@ -1,9 +1,6 @@
 package contact
 
 import (
-	"billionmail-core/internal/consts"
-	"billionmail-core/internal/service/contact"
-	"billionmail-core/internal/service/public"
 	"context"
 	"encoding/json"
 	"fmt"
@@ -11,10 +8,13 @@ import (
 	"github.com/gogf/gf/v2/frame/g"
 	"strings"
 	"time"
+	"xenixmail-core/internal/consts"
+	"xenixmail-core/internal/service/contact"
+	"xenixmail-core/internal/service/public"
 
 	"github.com/gogf/gf/v2/errors/gerror"
 
-	"billionmail-core/api/contact/v1"
+	"xenixmail-core/api/contact/v1"
 )
 
 func (c *ControllerV1) EditContacts(ctx context.Context, req *v1.EditContactsReq) (res *v1.EditContactsRes, err error) {

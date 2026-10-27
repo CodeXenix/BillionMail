@@ -1,7 +1,6 @@
 package operation_log
 
 import (
-	"billionmail-core/internal/service/public"
 	"bufio"
 	"context"
 	"errors"
@@ -10,8 +9,9 @@ import (
 	"path/filepath"
 	"strings"
 	"time"
+	"xenixmail-core/internal/service/public"
 
-	"billionmail-core/api/operation_log/v1"
+	"xenixmail-core/api/operation_log/v1"
 )
 
 func (c *ControllerV1) GetOutputLog(ctx context.Context, req *v1.GetOutputLogReq) (res *v1.GetOutputLogRes, err error) {

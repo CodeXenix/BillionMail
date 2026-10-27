@@ -346,5 +346,6 @@
     "04f33e88d2d8d4ac4363336c24933c84": "Kişi sayısı alınamadı: {}",
     "8f759823dbe04188a1dae3c8d1d3f45e": "Geçersiz IP adresi: {}",
     "da3a6cce34026ab87459baff83a10664": "silme başarılı ancak yapılandırma senkronizasyonu başarısız oldu: {}",
-    "2c7330c6de7f21f0a1f0674aeffed4cc": "postsuper -d başarısız oldu: {}"
+    "2c7330c6de7f21f0a1f0674aeffed4cc": "postsuper -d başarısız oldu: {}",
+    "548e223a36848d21b1c4d1e90088d0d0": "Tamamlanmış bir görev düzenlenemez."
 }

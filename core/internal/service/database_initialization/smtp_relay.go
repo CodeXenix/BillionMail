@@ -101,13 +101,14 @@ func cleanupAndIndexRelayDomainMapping(ctx context.Context) error {
 		return gerror.New("Table bm_relay_domain_mapping does not exist")
 	}
 
-	exists, err := g.DB().Model("pg_indexes").Fields("1").
+	// Count, not Fields("1"): GoFrame quotes that as a column named "1", so the check always failed
+	indexCount, err := g.DB().Model("pg_indexes").
 		Where("indexname", "uk_relay_domain").
-		Value()
+		Count()
 	if err != nil {
 		return err
 	}
-	if exists != nil && exists.Int() == 1 {
+	if indexCount > 0 {
 		g.Log().Info(ctx, "Unique index uk_relay_domain already exists, skip cleanup.")
 		return nil
 	}
@@ -328,7 +329,7 @@ func RenameRelayTable(ctx context.Context) error {
 	}
 
 	existsOld := checkTableExists(ctx, "bm_relay_old")
-	if !existsOld {
+	if existsOld {
 		return gerror.New("Table bm_relay_old already exists, skipping rename operation")
 	}
 

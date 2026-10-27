@@ -1,17 +1,17 @@
 package mail_services
 
 import (
-	"billionmail-core/internal/consts"
-	"billionmail-core/internal/service/mail_service"
-	"billionmail-core/internal/service/public"
 	"context"
 	"github.com/gogf/gf/v2/frame/g"
 	"strings"
 	"time"
+	"xenixmail-core/internal/consts"
+	"xenixmail-core/internal/service/mail_service"
+	"xenixmail-core/internal/service/public"
 
 	"github.com/gogf/gf/v2/errors/gerror"
 
-	"billionmail-core/api/mail_services/v1"
+	"xenixmail-core/api/mail_services/v1"
 )
 
 func (c *ControllerV1) AddMailForward(ctx context.Context, req *v1.AddMailForwardReq) (res *v1.AddMailForwardRes, err error) {

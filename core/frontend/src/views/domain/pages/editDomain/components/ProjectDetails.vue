@@ -4,7 +4,7 @@
 			<div class="page-tit">
 				<div class="left-tit">
 					<div class="back-tool">
-						<i class="i-ri:apps-fill text-6"></i>
+						<i class="i-lucide-layout-grid text-6"></i>
 					</div>
 					<span class="tit-content">{{ $t('domain.edit.projectDetails.title') }}</span>
 				</div>
@@ -31,7 +31,7 @@
 			<div class="page-tit mb-20px">
 				<div class="left-tit">
 					<div class="back-tool">
-						<i class="i-ri:earth-fill text-6"></i>
+						<i class="i-lucide-earth text-6"></i>
 					</div>
 					<span class="tit-content">{{ $t('domain.edit.projectDetails.brandLogos') }}</span>
 				</div>
@@ -50,14 +50,14 @@
 					</div>
 					<div class="logo-area" @click="choosePrimary">
 						<div v-if="!primary_logo" class="upload-logo-placeholder">
-							<i class="i-carbon:cloud-upload text-8"></i>
+							<i class="i-lucide-cloud-upload text-8"></i>
 							<span>{{ $t('domain.edit.projectDetails.primaryLogo') }}</span>
 						</div>
 						<n-image v-else :src="primary_logo" height="100" width="150" object-fit="contain"
 							preview-disabled>
 							<template #error>
 								<div class="w-100% h-100% flex justify-center items-center flex-col gap-1.25">
-									<i class="i-mingcute:pic-line text-15"></i>
+									<i class="i-lucide-image text-15"></i>
 									<span>{{ $t('domain.edit.projectDetails.loadingFailed') }}</span>
 								</div>
 							</template>
@@ -73,14 +73,14 @@
 					</div>
 					<div class="logo-area" @click="chooseSecondary">
 						<div v-if="!secondary_logo" class="upload-logo-placeholder">
-							<i class="i-carbon:cloud-upload text-8"></i>
+							<i class="i-lucide-cloud-upload text-8"></i>
 							<span>{{ $t('domain.edit.projectDetails.primaryLogo') }}</span>
 						</div>
 						<n-image v-else :src="secondary_logo" height="100" width="150" object-fit="contain"
 							preview-disabled>
 							<template #error>
 								<div class="w-100% h-100% flex justify-center items-center flex-col gap-1.25">
-									<i class="i-mingcute:pic-line text-15"></i>
+									<i class="i-lucide-image text-15"></i>
 									<span>{{ $t('domain.edit.projectDetails.loadingFailed') }}</span>
 								</div>
 							</template>
@@ -94,13 +94,13 @@
 					<div class="operation-sub-tit">{{ $t('domain.edit.projectDetails.faviconDesc') }}</div>
 					<div class="logo-area" @click="chooseFavicon">
 						<div v-if="!favicon" class="upload-logo-placeholder">
-							<i class="i-carbon:cloud-upload text-8"></i>
+							<i class="i-lucide-cloud-upload text-8"></i>
 							<span>{{ $t('domain.edit.projectDetails.primaryLogo') }}</span>
 						</div>
 						<n-image v-else :src="favicon" height="40" width="60" object-fit="contain" preview-disabled>
 							<template #error>
 								<div class="w-100% h-100% flex justify-center items-center flex-col gap-1.25">
-									<i class="i-mingcute:pic-line text-15"></i>
+									<i class="i-lucide-image text-15"></i>
 									<span>{{ $t('domain.edit.projectDetails.loadingFailed') }}</span>
 								</div>
 							</template>
@@ -110,16 +110,16 @@
 					</div>
 					<!-- <div class="operation-tools">
 						<div class="tool-item">
-							<i class="i-carbon:copy text-4"></i>
+							<i class="i-lucide-copy text-4"></i>
 						</div>
 						<div class="tool-item">
-							<i class="i-carbon:overflow-menu-vertical text-4"></i>
+							<i class="i-lucide-ellipsis-vertical text-4"></i>
 						</div>
 						<div class="tool-item">
-							<i class="i-carbon:export text-4"></i>
+							<i class="i-lucide-download text-4"></i>
 						</div>
 						<div class="tool-item">
-							<i class="i-material-symbols:delete-outline text-4"></i>
+							<i class="i-lucide-trash-2 text-4"></i>
 						</div>
 					</div> -->
 				</div>
@@ -130,7 +130,7 @@
 			<div class="page-tit">
 				<div class="left-tit">
 					<div class="back-tool">
-						<i class="i-ri:earth-fill text-6"></i>
+						<i class="i-lucide-earth text-6"></i>
 					</div>
 					<span class="tit-content">{{ $t('domain.edit.projectDetails.knowledgeBase') }}</span>
 				</div>
@@ -151,7 +151,7 @@
 							<span class="info-sub-tit">{{ formatTimeDifference(item.update_time) }} {{ $t('domain.edit.projectDetails.ago') }}</span>
 						</div>
 						<div class="info-right" @click="handleDelete(item)">
-							<i class="i-material-symbols:delete-outline text-5"></i>
+							<i class="i-lucide-trash-2 text-5"></i>
 						</div>
 					</div>
 					<div class="operation">
@@ -277,6 +277,8 @@ function handleDelete(knowledge: KnowledgeBase) {
 	confirm({
 		title: t('domain.edit.projectDetails.notice'),
 		content: t("domain.edit.projectDetails.sureDel"),
+		confirmType: 'error',
+		confirmText: t('common.actions.delete'),
 		onConfirm() {
 			deleteKnowledgeBase(domain, knowledge)
 		},

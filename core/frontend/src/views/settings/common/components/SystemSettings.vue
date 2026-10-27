@@ -3,7 +3,7 @@
 		<template #header>
 			<div class="flex items-center">
 				<n-icon class="mr-2 text-primary" size="20">
-					<i class="i-mdi-cog"></i>
+					<i class="i-lucide-settings"></i>
 				</n-icon>
 				<span class="text-lg font-medium">{{ $t('settings.common.system.title') }}</span>
 			</div>

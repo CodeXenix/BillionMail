@@ -1,11 +1,11 @@
 package relay
 
 import (
-	"billionmail-core/api/relay/v1"
-	"billionmail-core/internal/service/public"
 	"context"
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
+	"xenixmail-core/api/relay/v1"
+	"xenixmail-core/internal/service/public"
 )
 
 type DomainEntity struct {

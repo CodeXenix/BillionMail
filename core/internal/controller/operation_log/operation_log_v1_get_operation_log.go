@@ -1,13 +1,13 @@
 package operation_log
 
 import (
-	"billionmail-core/api/operation_log/v1"
-	"billionmail-core/internal/model/entity"
-	"billionmail-core/internal/service/public"
 	"context"
 	"github.com/gogf/gf/v2/frame/g"
 	"strconv"
 	"time"
+	"xenixmail-core/api/operation_log/v1"
+	"xenixmail-core/internal/model/entity"
+	"xenixmail-core/internal/service/public"
 )
 
 func (c *ControllerV1) GetOperationLog(ctx context.Context, req *v1.GetOperationLogReq) (res *v1.GetOperationLogRes, err error) {

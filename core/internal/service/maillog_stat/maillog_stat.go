@@ -1,8 +1,6 @@
 package maillog_stat
 
 import (
-	"billionmail-core/internal/consts"
-	"billionmail-core/internal/service/public"
 	"context"
 	"errors"
 	"fmt"
@@ -15,6 +13,8 @@ import (
 	"strconv"
 	"strings"
 	"time"
+	"xenixmail-core/internal/consts"
+	"xenixmail-core/internal/service/public"
 )
 
 // Define constants

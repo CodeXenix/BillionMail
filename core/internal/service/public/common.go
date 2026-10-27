@@ -1,9 +1,6 @@
 package public
 
 import (
-	v1 "billionmail-core/api/domains/v1"
-	docker "billionmail-core/internal/service/dockerapi"
-	"billionmail-core/utility/types/api_v1"
 	"bufio"
 	"context"
 	"crypto/md5"
@@ -29,6 +26,9 @@ import (
 	"strings"
 	"time"
 	"unicode/utf8"
+	v1 "xenixmail-core/api/domains/v1"
+	docker "xenixmail-core/internal/service/dockerapi"
+	"xenixmail-core/utility/types/api_v1"
 
 	"github.com/gogf/gf/os/gfile"
 	"gopkg.in/yaml.v3"
@@ -44,7 +44,7 @@ import (
 
 	"github.com/g0rbe/go-chattr"
 
-	"billionmail-core/internal/consts"
+	"xenixmail-core/internal/consts"
 )
 
 // Check if it is a development environment

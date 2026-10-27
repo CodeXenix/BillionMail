@@ -1,10 +1,6 @@
 package mail_service
 
 import (
-	"billionmail-core/internal/consts"
-	"billionmail-core/internal/model/entity"
-	docker "billionmail-core/internal/service/dockerapi"
-	"billionmail-core/internal/service/public"
 	"context"
 	"fmt"
 	"github.com/gogf/gf/v2/errors/gerror"
@@ -14,6 +10,10 @@ import (
 	"path"
 	"regexp"
 	"strings"
+	"xenixmail-core/internal/consts"
+	"xenixmail-core/internal/model/entity"
+	docker "xenixmail-core/internal/service/dockerapi"
+	"xenixmail-core/internal/service/public"
 )
 
 func ProcessForwardUsers(forwardUsers string) []string {

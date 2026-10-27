@@ -1,9 +1,6 @@
 package mail_boxes
 
 import (
-	"billionmail-core/internal/consts"
-	"billionmail-core/internal/service/dockerapi"
-	"billionmail-core/internal/service/public"
 	"context"
 	"errors"
 	"fmt"
@@ -15,6 +12,9 @@ import (
 	"regexp"
 	"strings"
 	"time"
+	"xenixmail-core/internal/consts"
+	"xenixmail-core/internal/service/dockerapi"
+	"xenixmail-core/internal/service/public"
 )
 
 // Initialize quota plugin. If not installed, install it first.

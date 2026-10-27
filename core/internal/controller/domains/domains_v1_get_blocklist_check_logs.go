@@ -1,9 +1,9 @@
 package domains
 
 import (
-	"billionmail-core/api/domains/v1"
-	"billionmail-core/internal/service/public"
 	"context"
+	"xenixmail-core/api/domains/v1"
+	"xenixmail-core/internal/service/public"
 
 	"github.com/gogf/gf/v2/os/gfile"
 )

@@ -1,9 +1,9 @@
 package askai
 
 import (
-	v1 "billionmail-core/api/askai/v1"
-	"billionmail-core/internal/service/askai"
 	"context"
+	v1 "xenixmail-core/api/askai/v1"
+	"xenixmail-core/internal/service/askai"
 )
 
 // Chat related methods

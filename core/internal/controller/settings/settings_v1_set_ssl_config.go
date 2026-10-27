@@ -9,10 +9,10 @@ import (
 	"path/filepath"
 	"time"
 
-	"billionmail-core/api/settings/v1"
-	"billionmail-core/internal/consts"
-	"billionmail-core/internal/service/public"
 	"github.com/gogf/gf/v2/errors/gerror"
+	"xenixmail-core/api/settings/v1"
+	"xenixmail-core/internal/consts"
+	"xenixmail-core/internal/service/public"
 )
 
 func (c *ControllerV1) SetSSLConfig(ctx context.Context, req *v1.SetSSLConfigReq) (res *v1.SetSSLConfigRes, err error) {

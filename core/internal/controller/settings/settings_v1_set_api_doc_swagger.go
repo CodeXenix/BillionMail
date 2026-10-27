@@ -1,13 +1,13 @@
 package settings
 
 import (
-	"billionmail-core/api/settings/v1"
-	"billionmail-core/internal/consts"
-	"billionmail-core/internal/service/public"
 	"context"
 	"github.com/gogf/gf/os/gtimer"
 	"github.com/gogf/gf/v2/errors/gerror"
 	"time"
+	"xenixmail-core/api/settings/v1"
+	"xenixmail-core/internal/consts"
+	"xenixmail-core/internal/service/public"
 )
 
 func (c *ControllerV1) SetAPIDocSwagger(ctx context.Context, req *v1.SetAPIDocSwaggerReq) (res *v1.SetAPIDocSwaggerRes, err error) {

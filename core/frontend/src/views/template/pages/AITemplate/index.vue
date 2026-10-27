@@ -23,7 +23,7 @@
 								<div class="ask-content">
 									<div class="pic">
 										<i
-											class="i-material-symbols:account-circle text-6 text-[var(--color-primary-hover-1)]"></i>
+											class="i-lucide-circle-user text-6 text-[var(--color-primary-hover-1)]"></i>
 									</div>
 									<div class="text">
 										{{ $t('template.ai.greeting') }}
@@ -36,7 +36,7 @@
 										<div class="ask-content">
 											<div class="pic">
 												<i
-													class="i-material-symbols:account-circle text-6 text-[var(--color-primary-hover-1)]"></i>
+													class="i-lucide-circle-user text-6 text-[var(--color-primary-hover-1)]"></i>
 											</div>
 											<div class="text">
 												{{ item[0].split('_+_')[0] }}
@@ -61,13 +61,13 @@
 											</div>
 											<div class="answer-tool">
 												<div class="tool-item" @click="handleRegenerate(item[0].toString())">
-													<i class="i-ri:refresh-line text-5"></i>
+													<i class="i-lucide-refresh-cw text-5"></i>
 													<span>{{ $t('template.ai.buttons.regenerate') }}</span>
 												</div>
 												<n-popover trigger="hover">
 													<template #trigger>
 														<div class="tool-item">
-															<i class="i-ri:information-2-fill text-5"></i>
+															<i class="i-lucide-info text-5"></i>
 															<span>{{ $t('template.ai.buttons.info') }}</span>
 														</div>
 													</template>
@@ -129,14 +129,14 @@
 							</div>
 							<div class="send-btn">
 								<!-- <i
-                                class="i-icon-park-twotone:new-picture text-8 text-[var(--color-primary-1)] hover-text-[var(--color-primary-hover-1)]"></i> -->
+                                class="i-lucide-image-plus text-8 text-[var(--color-primary-1)] hover-text-[var(--color-primary-hover-1)]"></i> -->
 								<i
 									v-if="!isChat"
-									class="i-icon-park-twotone:arrow-circle-up text-8 text-[var(--color-primary-1)] hover-text-[var(--color-primary-hover-1)]"
+									class="i-lucide-circle-arrow-up text-8 text-[var(--color-primary-1)] hover-text-[var(--color-primary-hover-1)]"
 									@click="sendChat(store)"></i>
 								<i
 									v-else
-									class="i-svg-spinners:pulse-2 text-8 text-[var(--color-primary-1)] hover-text-[var(--color-primary-hover-1)]"
+									class="i-lucide-circle-stop text-8 text-[var(--color-primary-1)] hover-text-[var(--color-primary-hover-1)]"
 									@click="stopChat(store)"></i>
 							</div>
 						</div>
@@ -153,7 +153,7 @@
 										:type="previewStatus == 'view' ? 'primary' : 'default'"
 										@click="previewStatus = 'view'">
 										<template #icon>
-											<i class="i-mingcute:eye-2-fill text-5"></i>
+											<i class="i-lucide-eye text-5"></i>
 										</template>
 										{{ $t('template.ai.buttons.view') }}
 									</n-button>
@@ -161,7 +161,7 @@
 										:type="previewStatus == 'edit' ? 'primary' : 'default'"
 										@click="previewStatus = 'edit'">
 										<template #icon>
-											<i class="i-tdesign:code text-5"></i>
+											<i class="i-lucide-code text-5"></i>
 										</template>
 										{{ $t('template.ai.buttons.edit') }}
 									</n-button>
@@ -177,7 +177,7 @@
 								:disabled="!previewCode"
 								@click="goToSendEmail">
 								<template #icon>
-									<i class="i-mingcute:mail-send-fill"></i>
+									<i class="i-lucide-send"></i>
 								</template>
 								{{ $t('template.ai.send') }}
 							</n-button>

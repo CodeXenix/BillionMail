@@ -1,6 +1,6 @@
 <template>
 	<div class="drag-icon">
-		<i class="i-mdi-upload"></i>
+		<i class="i-lucide-upload"></i>
 	</div>
 	<div class="drag-text">{{ $t('components.upload.prompt.dragText') }}</div>
 	<div class="drag-suffix">{{ $t('components.upload.prompt.supportedFiles', { suffix }) }}</div>

@@ -1,11 +1,11 @@
 package domains
 
 import (
-	"billionmail-core/internal/service/domains"
-	"billionmail-core/internal/service/public"
 	"context"
+	"xenixmail-core/internal/service/domains"
+	"xenixmail-core/internal/service/public"
 
-	"billionmail-core/api/domains/v1"
+	"xenixmail-core/api/domains/v1"
 )
 
 func (c *ControllerV1) GetDomain(ctx context.Context, req *v1.GetDomainReq) (res *v1.GetDomainRes, err error) {

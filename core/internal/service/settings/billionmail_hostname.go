@@ -1,11 +1,11 @@
 package settings
 
 import (
-	v1 "billionmail-core/api/domains/v1"
-	"billionmail-core/internal/service/domains"
-	"billionmail-core/internal/service/public"
 	"os"
 	"strings"
+	v1 "xenixmail-core/api/domains/v1"
+	"xenixmail-core/internal/service/domains"
+	"xenixmail-core/internal/service/public"
 )
 
 // Check whether the A record of BILLIONMAIL_HOSTNAME is consistent with the local public network IP and write or delete the tag file

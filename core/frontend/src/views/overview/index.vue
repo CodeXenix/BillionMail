@@ -1,6 +1,6 @@
 <template>
-	<div class="email-analytics-container">
-		<div class="bt-title">{{ t('layout.menu.overview') }}</div>
+	<div class="p-24px">
+		<h1 class="bt-title">{{ t('layout.menu.overview') }}</h1>
 		<!-- Top Filter Area -->
 		<filter-bar
 			v-model:domain="domain"
@@ -12,30 +12,41 @@
 		<!-- Main Metric Cards -->
 		<div class="metrics-cards">
 			<metric-card
-				v-for="(item, key) in rateData"
-				:key="key"
-				:title="item.label"
+				v-for="item in metrics"
+				:key="item.key"
+				:title="item.title"
 				:value="item.value"
-				:unit="item.unit">
+				unit="%"
+				:icon="item.icon"
+				:caption="item.caption">
 			</metric-card>
 			<metric-card
 				class="cursor-pointer"
+				role="button"
+				tabindex="0"
+				icon="i-lucide-clock"
 				:title="$t('overview.delayedQueue')"
-				:value="delayedQueue"
-				:text-color="delayedQueue > 0 ? theme.warningColor : ''"
-				@click="onClickDelayedQueue">
+				:value="dashboard.delayed_queue"
+				:text-color="dashboard.delayed_queue > 0 ? theme.warningColor : ''"
+				@click="onClickDelayedQueue"
+				@keydown.enter="onClickDelayedQueue"
+				@keydown.space.prevent="onClickDelayedQueue">
+				<i
+					v-if="dashboard.delayed_queue > 0"
+					class="i-lucide-triangle-alert text-20px"
+					aria-hidden="true"></i>
 			</metric-card>
 		</div>
 
 		<!-- Data Details Area -->
 		<div class="detail-row">
 			<!-- Left: Mail Provider Table -->
-			<n-card class="provider-table-card" :title="$t('overview.mailProviders')">
+			<n-card :title="$t('overview.mailProviders')">
 				<provider-table v-model:value="providers" />
 			</n-card>
 
 			<!-- Right: Today's Sending Statistics -->
-			<n-card class="send-today-card" :title="$t('overview.sendStats')">
+			<n-card :title="$t('overview.sendStats')">
 				<send-today-stats :data="sendMail" @show-fail="handleShowFail" />
 			</n-card>
 		</div>
@@ -55,7 +66,7 @@ import { useThemeVars } from 'naive-ui'
 import { getDayTimeRange, isArray, isObject } from '@/utils'
 import { useModal } from '@/hooks/modal/useModal'
 import { getOverviewInfo } from '@/api/modules/overview'
-import type { MailOverview, MailProvider, RateData } from './types'
+import type { MailDashboard, MailOverview, MailProvider } from './types'
 
 import FilterBar from './components/FilterBar.vue'
 import MetricCard from './components/MetricCard.vue'
@@ -64,7 +75,7 @@ import SendTodayStats from './components/SendTodayStats.vue'
 import RateChartPanel from './components/RateChartPanel.vue'
 import SendFailDetails from './components/SendFailDetails.vue'
 
-const { t } = useI18n()
+const { t, locale } = useI18n()
 
 const theme = useThemeVars()
 
@@ -74,14 +85,55 @@ const dateRange = ref(getDayTimeRange())
 
 const providers = ref<MailProvider[]>([])
 
-const rateData = reactive<RateData>({
-	delivery_rate: { label: t('overview.delivered'), value: 0, unit: '%' },
-	open_rate: { label: t('overview.opened'), value: 0, unit: '%' },
-	click_rate: { label: t('overview.clicked'), value: 0, unit: '%' },
-	bounce_rate: { label: t('overview.bounced'), value: 0, unit: '%' },
+const dashboard = ref<MailDashboard>({
+	sends: 0,
+	delivered: 0,
+	delivery_rate: 0,
+	opened: 0,
+	open_rate: 0,
+	clicked: 0,
+	click_rate: 0,
+	bounced: 0,
+	bounce_rate: 0,
+	delayed_queue: 0,
 })
 
-const delayedQueue = ref(0)
+const formatCount = (val: number) => val.toLocaleString(locale.value)
+
+// Each rate card shows the counts behind it: part / whole
+const metrics = computed(() => {
+	const d = dashboard.value
+	return [
+		{
+			key: 'delivery_rate',
+			title: t('overview.delivered'),
+			icon: 'i-lucide-mail-check',
+			value: d.delivery_rate,
+			caption: `${formatCount(d.delivered)} / ${formatCount(d.sends)}`,
+		},
+		{
+			key: 'open_rate',
+			title: t('overview.opened'),
+			icon: 'i-lucide-mail-open',
+			value: d.open_rate,
+			caption: `${formatCount(d.opened)} / ${formatCount(d.delivered)}`,
+		},
+		{
+			key: 'click_rate',
+			title: t('overview.clicked'),
+			icon: 'i-lucide-mouse-pointer-click',
+			value: d.click_rate,
+			caption: `${formatCount(d.clicked)} / ${formatCount(d.delivered)}`,
+		},
+		{
+			key: 'bounce_rate',
+			title: t('overview.bounced'),
+			icon: 'i-lucide-mail-warning',
+			value: d.bounce_rate,
+			caption: `${formatCount(d.bounced)} / ${formatCount(d.sends)}`,
+		},
+	]
+})
 
 const sendMail = ref<MailOverview['send_mail_chart']>({
 	column_type: 'hourly',
@@ -129,19 +181,6 @@ const handleShowFail = () => {
 	failModalApi.open()
 }
 
-// Function to handle data update
-const handleDataUpdate = useDebounceFn(fetchOverviewData, 300)
-
-// Function to update rate data
-const updateRateData = (dashboard: MailOverview['dashboard']) => {
-	Object.entries(dashboard).forEach(([key, value]) => {
-		if (key in rateData) {
-			rateData[key].value = value
-		}
-	})
-	delayedQueue.value = dashboard.delayed_queue
-}
-
 // Function to fetch overview data
 async function fetchOverviewData() {
 	const res = await getOverviewInfo({
@@ -151,8 +190,7 @@ async function fetchOverviewData() {
 	})
 
 	if (isObject<MailOverview>(res)) {
-		updateRateData(res.dashboard)
-
+		dashboard.value = res.dashboard
 		providers.value = isArray(res.mail_providers) ? res.mail_providers : []
 		sendMail.value = res.send_mail_chart
 		bounceRate.value = res.bounce_rate_chart
@@ -161,36 +199,11 @@ async function fetchOverviewData() {
 	}
 }
 
-onMounted(() => {
-	fetchOverviewData()
-})
+// Every filter change refetches, debounced. No onMounted fetch: bt-time-range (in FilterBar)
+// sets the range once during its setup, and that update is the first load
+const handleDataUpdate = useDebounceFn(fetchOverviewData, 300)
 </script>
 
 <style lang="scss" scoped>
-.email-analytics-container {
-	padding: 20px;
-}
-
-.metrics-cards {
-	display: flex;
-	justify-content: space-between;
-	gap: 20px;
-	margin-bottom: 20px;
-}
-
-.detail-row {
-	display: flex;
-	gap: 20px;
-	margin-bottom: 20px;
-
-	.provider-table-card,
-	.send-today-card {
-		flex: 1;
-	}
-}
-
-.rate-charts-card {
-	display: flex;
-	gap: 20px;
-}
+@use './dashboard.scss';
 </style>

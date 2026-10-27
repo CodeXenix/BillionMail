@@ -1,10 +1,10 @@
 package dockerapi
 
 import (
-	"billionmail-core/internal/service/public"
 	"context"
+	"xenixmail-core/internal/service/public"
 
-	"billionmail-core/api/dockerapi/v1"
+	"xenixmail-core/api/dockerapi/v1"
 )
 
 func (c *ControllerV1) ContainerState(ctx context.Context, req *v1.ContainerStateReq) (res *v1.ContainerStateRes, err error) {

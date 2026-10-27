@@ -36,11 +36,11 @@ describe('ThemeStore', () => {
       const store = useThemeStore()
       const common = store.themeOverrides.common
       expect(common).toBeDefined()
-      expect(common!.fontSize).toBe('12px')
-      expect(common!.fontSizeSmall).toBe('12px')
-      expect(common!.fontSizeMedium).toBe('12px')
-      expect(common!.fontSizeLarge).toBe('14px')
-      expect(common!.borderRadius).toBe('4px')
+      expect(common!.fontSize).toBe('14px')
+      expect(common!.fontSizeSmall).toBe('13px')
+      expect(common!.fontSizeMedium).toBe('14px')
+      expect(common!.fontSizeLarge).toBe('15px')
+      expect(common!.borderRadius).toBe('6px')
       expect(common!.baseColor).toBe('#fff')
       expect(common!.lineHeight).toBe('normal')
     })
@@ -61,8 +61,8 @@ describe('ThemeStore', () => {
       const store = useThemeStore()
       const card = store.themeOverrides.Card
       expect(card).toBeDefined()
-      expect(card!.borderColor).toBe('transparent')
-      expect(card!.borderRadius).toBe('6px')
+      expect(card).toHaveProperty('borderColor')
+      expect(card!.borderRadius).toBe('12px')
     })
 
     it('contains Form overrides', () => {
@@ -85,9 +85,9 @@ describe('ThemeStore', () => {
       const store = useThemeStore()
       const dt = store.themeOverrides.DataTable
       expect(dt).toBeDefined()
-      expect(dt!.thPaddingMedium).toBe('10px')
-      expect(dt!.tdPaddingMedium).toBe('10px')
-      expect(dt!.borderRadius).toBe('4px')
+      expect(dt!.thPaddingMedium).toBe('10px 12px')
+      expect(dt!.tdPaddingMedium).toBe('10px 12px')
+      expect(dt!.borderRadius).toBe('8px')
     })
 
     it('contains Breadcrumb overrides', () => {

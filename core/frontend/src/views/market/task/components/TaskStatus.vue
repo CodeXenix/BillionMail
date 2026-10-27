@@ -10,6 +10,9 @@
 			<template #toolsRight> </template>
 			<template #table>
 				<n-data-table :bordered="false" :loading="loading" :columns="columns" :data="tableList">
+					<template #empty>
+						<bt-table-help> </bt-table-help>
+					</template>
 				</n-data-table>
 			</template>
 			<template #modal>
@@ -20,12 +23,13 @@
 </template>
 
 <script lang="tsx" setup>
-import { DataTableColumns, NButton } from 'naive-ui'
+import { DataTableColumns, NFlex } from 'naive-ui'
 import { isArray } from '@/utils'
 import { useModal } from '@/hooks/modal/useModal'
 import { getMailProvider } from '@/api/modules/market/task'
 import type { Task, TaskStatus } from '../interface'
 
+import BtIconAction from '@/components/base/bt-icon-action/index.vue'
 import TaskStatusDetails from './TaskStatusDetails.vue'
 
 const title = ref('Error tasks')
@@ -43,6 +47,9 @@ const columns = ref<DataTableColumns<TaskStatus>>([
 	{
 		key: 'domain',
 		title: 'Domain',
+		ellipsis: {
+			tooltip: true,
+		},
 	},
 	{
 		key: 'count',
@@ -52,18 +59,19 @@ const columns = ref<DataTableColumns<TaskStatus>>([
 		key: 'active',
 		title: 'Operator',
 		align: 'right',
-		render: row => {
-			return (
-				<NButton
-					text
-					type="primary"
+		// 1 icon button (28 + 24), widened so the "Operator" header fits
+		width: 88,
+		render: row => (
+			<NFlex inline={true} size={4}>
+				<BtIconAction
+					icon="i-lucide-file-text"
+					label="Details"
 					onClick={() => {
 						handleShowDetails(row)
-					}}>
-					Details
-				</NButton>
-			)
-		},
+					}}
+				/>
+			</NFlex>
+		),
 	},
 ])
 

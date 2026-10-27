@@ -29,7 +29,7 @@
 				</span>
 				<template #suffix>
 					<n-button size="small" quaternary circle @click="onDelIp(item.id, index)">
-						<i class="i-mingcute:close-fill text-16px"></i>
+						<i class="i-lucide-x text-16px"></i>
 					</n-button>
 				</template>
 			</n-list-item>

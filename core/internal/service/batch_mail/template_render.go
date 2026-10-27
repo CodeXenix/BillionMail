@@ -1,13 +1,13 @@
 package batch_mail
 
 import (
-	"billionmail-core/internal/model/entity"
-	"billionmail-core/internal/service/video_outreach"
 	"context"
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/os/gview"
 	"regexp"
 	"strings"
+	"xenixmail-core/internal/model/entity"
+	"xenixmail-core/internal/service/video_outreach"
 )
 
 // TemplateEngine

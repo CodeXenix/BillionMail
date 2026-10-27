@@ -1,10 +1,10 @@
 package rbac
 
 import (
-	"billionmail-core/internal/model"
 	"context"
 	"fmt"
 	"time"
+	"xenixmail-core/internal/model"
 
 	"github.com/gogf/gf/v2/frame/g"
 	"golang.org/x/crypto/bcrypt"

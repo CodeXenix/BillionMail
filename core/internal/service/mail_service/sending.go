@@ -1,7 +1,6 @@
 package mail_service
 
 import (
-	"billionmail-core/internal/service/public"
 	"bytes"
 	"context"
 	"crypto/tls"
@@ -19,6 +18,7 @@ import (
 	"strings"
 	"sync"
 	"time"
+	"xenixmail-core/internal/service/public"
 )
 
 type Message struct {
@@ -295,7 +295,7 @@ func (e *EmailSender) GenerateMessageID() string {
 	timestampMillis := time.Now().UnixMilli()
 
 	domain := strings.SplitN(e.Email, "@", 2)
-	domainPart := "billionmail"
+	domainPart := "xenixmail"
 	if len(domain) > 1 {
 		domainPart = domain[1]
 	}
@@ -389,7 +389,7 @@ func (e *EmailSender) doSend(message Message, recipients []string) error {
 		fmt.Sprintf("Subject: %s\r\n", message.MailTitle()) +
 		"MIME-Version: 1.0\r\n" +
 		"Content-Transfer-Encoding: quoted-printable\r\n" +
-		"X-Mailer: BillionMail\r\n" +
+		"X-Mailer: Xenix Mail\r\n" +
 		message.MailHeader() +
 		"\r\n" +
 		message.MailText() +

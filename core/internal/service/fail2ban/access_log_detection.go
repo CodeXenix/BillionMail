@@ -1,13 +1,13 @@
 package fail2ban
 
 import (
-	"billionmail-core/internal/service/public"
 	"context"
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/os/gfsnotify"
 	"os/exec"
 	"path/filepath"
 	"time"
+	"xenixmail-core/internal/service/public"
 )
 
 type AccessLogDetection struct {

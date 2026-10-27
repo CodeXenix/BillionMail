@@ -3,11 +3,6 @@ package contact
 
 import (
 	"archive/zip"
-	"billionmail-core/api/contact/v1"
-	"billionmail-core/internal/consts"
-	"billionmail-core/internal/model/entity"
-	"billionmail-core/internal/service/contact"
-	"billionmail-core/internal/service/public"
 	"bytes"
 	"context"
 	"encoding/csv"
@@ -18,6 +13,11 @@ import (
 	"github.com/gogf/gf/v2/os/gtime"
 	"strings"
 	"time"
+	"xenixmail-core/api/contact/v1"
+	"xenixmail-core/internal/consts"
+	"xenixmail-core/internal/model/entity"
+	"xenixmail-core/internal/service/contact"
+	"xenixmail-core/internal/service/public"
 )
 
 func (c *ControllerV1) ExportContacts(ctx context.Context, req *v1.ExportContactsReq) (res *v1.ExportContactsRes, err error) {

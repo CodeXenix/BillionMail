@@ -5,9 +5,6 @@
 package settings
 
 import (
-	v1 "billionmail-core/api/settings/v1"
-	"billionmail-core/internal/consts"
-	"billionmail-core/internal/service/public"
 	"crypto/x509"
 	"encoding/pem"
 	"fmt"
@@ -15,6 +12,9 @@ import (
 	"path/filepath"
 	"strconv"
 	"time"
+	v1 "xenixmail-core/api/settings/v1"
+	"xenixmail-core/internal/consts"
+	"xenixmail-core/internal/service/public"
 )
 
 var (

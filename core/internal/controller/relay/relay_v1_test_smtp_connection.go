@@ -1,12 +1,12 @@
 package relay
 
 import (
-	"billionmail-core/api/relay/v1"
-	"billionmail-core/internal/consts"
-	"billionmail-core/internal/service/public"
-	"billionmail-core/internal/service/relay"
 	"context"
 	"github.com/gogf/gf/v2/errors/gerror"
+	"xenixmail-core/api/relay/v1"
+	"xenixmail-core/internal/consts"
+	"xenixmail-core/internal/service/public"
+	"xenixmail-core/internal/service/relay"
 )
 
 // TestSmtpConnection

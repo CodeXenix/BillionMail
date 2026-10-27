@@ -15,9 +15,13 @@
 				</bt-search>
 			</template>
 			<template #table>
-				<n-data-table :loading="loading" :columns="columns" :data="tableList">
+				<n-data-table :loading="loading" :columns="columns" :data="tableList" :scroll-x="1410">
 					<template #empty>
-						<bt-table-help> </bt-table-help>
+						<bt-table-help>
+							<n-button type="primary" size="small" @click="handleAdd">
+								{{ t('market.task.actions.add') }}
+							</n-button>
+						</bt-table-help>
 					</template>
 				</n-data-table>
 			</template>
@@ -38,15 +42,18 @@
 </template>
 
 <script lang="tsx" setup>
-import { DataTableColumns, NButton, NFlex, NProgress, NTag } from 'naive-ui'
+import { DataTableColumns, NButton, NEllipsis, NFlex, NProgress } from 'naive-ui'
 import { useModal } from '@/hooks/modal/useModal'
 import { useTableData } from '@/hooks/useTableData'
 import { confirm, formatDurationHighest, formatTime } from '@/utils'
 import { deleteTask, getTaskList, pauseTask, resumeTask } from '@/api/modules/market/task'
 import type { Task, TaskParams } from './interface'
 
+import BtIconAction from '@/components/base/bt-icon-action/index.vue'
+import BtStatus from '@/components/base/bt-status/index.vue'
 import TaskDetail from './components/TaskDetail.vue'
 import TaskStatus from './components/TaskStatus.vue'
+
 const { t } = useI18n()
 
 const { loading, tableParams, tableList, tableTotal, getTableData } = useTableData<
@@ -64,50 +71,76 @@ const { loading, tableParams, tableList, tableTotal, getTableData } = useTableDa
 })
 
 // Table columns
+// task_process: 0 not started, 1 sending, 2 completed, 3 paused
 const columns = ref<DataTableColumns<Task>>([
-	{
-		key: 'create_time',
-		title: t('market.task.columns.time'),
-		width: '9%',
-		minWidth: 130,
-		ellipsis: {
-			tooltip: true,
-		},
-		render: row => formatTime(row.create_time),
-	},
 	{
 		key: 'subject',
 		title: t('market.task.columns.subject'),
-		minWidth: 120,
-		ellipsis: {
-			tooltip: true,
+		// pinned, like the actions, so the campaign stays in view when the table scrolls
+		width: 240,
+		fixed: 'left',
+		// The remark is an internal note, shown under the subject it describes
+		render: row => (
+			<div>
+				<div>
+					<NEllipsis>{row.subject}</NEllipsis>
+				</div>
+				{row.remark && (
+					<div class="text-12px text-desc">
+						<NEllipsis>{row.remark}</NEllipsis>
+					</div>
+				)}
+			</div>
+		),
+	},
+	{
+		key: 'active',
+		title: t('market.task.columns.status'),
+		width: 110,
+		render: row => {
+			if (row.task_process === 2)
+				return <BtStatus type="success">{t('market.task.status.done')}</BtStatus>
+			if (row.task_process === 3)
+				return <BtStatus type="warning">{t('market.task.status.paused')}</BtStatus>
+			if (row.task_process === 1)
+				return <BtStatus type="info">{t('market.task.status.processing')}</BtStatus>
+			if (row.start_time * 1000 > Date.now())
+				return <BtStatus>{t('market.task.status.scheduled')}</BtStatus>
+			return <BtStatus>{t('market.task.status.pending')}</BtStatus>
 		},
 	},
 	{
-		key: 'addresser',
-		title: t('market.task.columns.sender'),
-		minWidth: 130,
-		ellipsis: {
-			tooltip: true,
-		},
+		key: 'progress',
+		title: t('market.task.columns.progress'),
+		width: 150,
+		render: row => (
+			<div class="flex items-center gap-8px">
+				<NProgress
+					class="flex-1"
+					type="line"
+					status="success"
+					processing={row.task_process === 1}
+					percentage={row.progress}
+					show-indicator={false}
+				/>
+				<span class="w-36px text-right">{row.progress}%</span>
+			</div>
+		),
 	},
 	{
 		key: 'recipient_count',
 		title: t('market.task.columns.recipients'),
-		width: '6%',
-		minWidth: 80,
+		width: 90,
 	},
 	{
 		key: 'success_count',
 		title: t('market.task.columns.success'),
-		width: '6%',
-		minWidth: 80,
+		width: 90,
 	},
 	{
 		key: 'error_count',
 		title: t('market.task.columns.failed'),
-		width: '6%',
-		minWidth: 80,
+		width: 90,
 		render: row => (
 			<NButton
 				type="error"
@@ -120,45 +153,23 @@ const columns = ref<DataTableColumns<Task>>([
 		),
 	},
 	{
-		key: 'active',
-		title: t('market.task.columns.status'),
-		width: '8%',
-		minWidth: 90,
-		render: row => {
-			if (row.task_process === 0 || row.task_process === 3)
-				return (
-					<NTag size="small" bordered={false} type="warning">
-						{t('market.task.status.pending')}
-					</NTag>
-				)
-			if (row.task_process === 1)
-				return (
-					<NTag size="small" bordered={false} type="info">
-						{t('market.task.status.processing')}
-					</NTag>
-				)
-			return (
-				<NTag size="small" bordered={false} type="success">
-					{t('market.task.status.done')}
-				</NTag>
-			)
-		},
-	},
-	{
-		key: 'remark',
-		title: t('market.task.columns.remark'),
-		width: '8%',
-		minWidth: 80,
+		key: 'addresser',
+		title: t('market.task.columns.sender'),
+		minWidth: 170,
 		ellipsis: {
 			tooltip: true,
 		},
-		render: row => row.remark || '--',
+	},
+	{
+		key: 'start_time',
+		title: t('market.task.edit.sendTime'),
+		width: 170,
+		render: row => formatTime(row.start_time),
 	},
 	{
 		key: 'estimated_time_with_warmup',
 		title: t('market.task.columns.estimatedTime'),
-		width: '11%',
-		minWidth: 110,
+		minWidth: 120,
 		ellipsis: {
 			tooltip: true,
 		},
@@ -175,88 +186,67 @@ const columns = ref<DataTableColumns<Task>>([
 		},
 	},
 	{
-		key: 'progress',
-		title: t('market.task.columns.progress'),
-		width: '8%',
-		minWidth: 130,
-		render: row => {
-			return (
-				<div class="max-w-160px">
-					<NProgress
-						type="line"
-						status="success"
-						indicator-placement="inside"
-						processing={row.progress !== 100}
-						percentage={row.progress}
-						show-indicator={false}
-					/>
-				</div>
-			)
-		},
-	},
-	{
 		title: t('common.columns.actions'),
 		key: 'actions',
 		align: 'right',
-		width: 250,
+		// up to 5 icon buttons: 5 × 28 + 4 × 4 + 24; pinned so it stays visible when the table scrolls
+		width: 180,
+		fixed: 'right',
 		render: row => (
-			<NFlex inline={true}>
-				{row.task_process !== 2 && (
-					<NButton
-						type="primary"
-						text={true}
+			<NFlex inline={true} size={4}>
+				{(row.task_process === 1 || row.task_process === 3) && (
+					<BtIconAction
+						icon={row.task_process === 3 ? 'i-lucide-send' : 'i-lucide-pause'}
+						label={
+							row.task_process === 3
+								? t('market.task.actions.send')
+								: t('market.task.actions.pause')
+						}
 						onClick={() => {
 							handleSetStatus(row)
-						}}>
-						{row.task_process === 3
-							? t('market.task.actions.send')
-							: t('market.task.actions.pause')}
-					</NButton>
+						}}
+					/>
 				)}
-				{row.task_process === 3 && (
-					<NButton
-						type="primary"
-						text={true}
+				{row.task_process !== 2 && (
+					<BtIconAction
+						icon="i-lucide-pencil"
+						label={t('common.actions.edit')}
 						onClick={() => {
 							handleEdit(row)
-						}}>
-						{t('common.actions.edit')}
-					</NButton>
+						}}
+					/>
 				)}
-				<NButton
-					type="primary"
-					text={true}
+				<BtIconAction
+					icon="i-lucide-chart-column"
+					label={t('market.task.actions.analytics')}
 					onClick={() => {
 						handleGoAnalytics(row)
-					}}>
-					{t('market.task.actions.analytics')}
-				</NButton>
+					}}
+				/>
 				{row.task_process === 2 && (
-					<NButton
-						type="primary"
-						text={true}
+					<BtIconAction
+						icon="i-lucide-file-text"
+						label={t('market.task.actions.detail')}
 						onClick={() => {
 							handleDetail(row)
-						}}>
-						{t('market.task.actions.detail')}
-					</NButton>
+						}}
+					/>
 				)}
-				<NButton
-					type="primary"
-					text={true}
+				<BtIconAction
+					icon="i-lucide-copy"
+					label={t('common.actions.copy')}
 					onClick={() => {
 						handleCopy(row)
-					}}>
-					{t('common.actions.copy')}
-				</NButton>
-				<NButton
+					}}
+				/>
+				<BtIconAction
+					icon="i-lucide-trash-2"
+					label={t('common.actions.delete')}
 					type="error"
-					text={true}
 					onClick={() => {
 						handleDelete(row)
-					}}>
-					{t('common.actions.delete')}
-				</NButton>
+					}}
+				/>
 			</NFlex>
 		),
 	},
@@ -333,7 +323,20 @@ const handleDelete = (row: Task) => {
 }
 
 const handleEdit = (row: Task) => {
-	router.push(`/market/task/edit?task_id=${row.id}&type=edit`)
+	const goEdit = () => router.push(`/market/task/edit?task_id=${row.id}&type=edit`)
+	if (row.task_process !== 1) {
+		goEdit()
+		return
+	}
+	// A sending campaign has to be paused before it can change
+	confirm({
+		title: t('market.task.pauseToEdit.title'),
+		content: t('market.task.pauseToEdit.content'),
+		onConfirm: async () => {
+			await pauseTask({ task_id: row.id })
+			goEdit()
+		},
+	})
 }
 </script>
 

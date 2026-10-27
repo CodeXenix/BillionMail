@@ -7,7 +7,7 @@
 				</n-ellipsis>
 			</div>
 			<div class="ml-6px text-15px cursor-pointer" title="Copy" @click="onCopy">
-				<i class="i-mdi-content-copy"></i>
+				<i class="i-lucide-copy"></i>
 			</div>
 		</div>
 	</div>

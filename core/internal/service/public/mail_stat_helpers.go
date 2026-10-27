@@ -1,8 +1,8 @@
 package public
 
 import (
-	"billionmail-core/internal/consts"
 	"strings"
+	"xenixmail-core/internal/consts"
 )
 
 // GetMailProviderGroup Gets the mail provider group based on the email or host.

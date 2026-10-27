@@ -7,7 +7,7 @@ package contact
 import (
 	"context"
 
-	"billionmail-core/api/contact/v1"
+	"xenixmail-core/api/contact/v1"
 )
 
 type IContactV1 interface {

@@ -1,16 +1,16 @@
 package rbac
 
 import (
-	"billionmail-core/api/rbac/v1"
-	"billionmail-core/internal/consts"
-	"billionmail-core/internal/service/public"
-	service "billionmail-core/internal/service/rbac"
 	"context"
 	"fmt"
 	"github.com/gogf/gf/util/gconv"
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
 	"time"
+	"xenixmail-core/api/rbac/v1"
+	"xenixmail-core/internal/consts"
+	"xenixmail-core/internal/service/public"
+	service "xenixmail-core/internal/service/rbac"
 )
 
 // Login handles user login

@@ -1,6 +1,6 @@
 <template>
 	<div class="p-24px">
-		<div class="bt-title">{{ $t('api.title') }}</div>
+		<h1 class="bt-title">{{ $t('api.title') }}</h1>
 		<n-card class="mb-24px" :content-style="{ padding: '16px 24px' }">
 			<div class="flex flex-wrap items-center gap-16px">
 				<div class="flex items-center whitespace-pre">
@@ -40,11 +40,17 @@
 				<n-button type="primary" @click="handleAdd">
 					{{ $t('api.createNew') }}
 				</n-button>
-				<bt-help href="https://www.billionmail.com/start/api_mail_guide.html" :text="$t('common.actions.help')">
-				</bt-help>
 			</template>
 			<template #table>
-				<n-data-table v-bind="tableProps" :columns="columns"></n-data-table>
+				<n-data-table v-bind="tableProps" :columns="columns">
+					<template #empty>
+						<bt-table-help>
+							<n-button type="primary" size="small" @click="handleAdd">
+								{{ $t('api.createNew') }}
+							</n-button>
+						</bt-table-help>
+					</template>
+				</n-data-table>
 			</template>
 			<template #pageRight>
 				<bt-table-page v-bind="pageProps" @refresh="fetchTable"> </bt-table-page>
@@ -58,13 +64,15 @@
 </template>
 
 <script lang="tsx" setup>
-import { DataTableColumns, NButton, NFlex, NTag } from 'naive-ui'
+import { DataTableColumns, NButton, NFlex } from 'naive-ui'
 import { confirm } from '@/utils'
 import { useDataTable } from '@/hooks/useDataTable'
 import { useModal } from '@/hooks/modal/useModal'
 import { deleteApi, getApiList } from '@/api/modules/api'
 import type { Api, ApiParams } from './types/base'
 
+import BtIconAction from '@/components/base/bt-icon-action/index.vue'
+import BtStatus from '@/components/base/bt-status/index.vue'
 import ApiOverview from './components/Overview.vue'
 import ApiKey from './components/ApiKey.vue'
 import ApiForm from './components/ApiForm.vue'
@@ -85,6 +93,9 @@ const columns = ref<DataTableColumns<Api>>([
 		key: 'api_name',
 		title: t('api.columns.apiName'),
 		maxWidth: 120,
+		ellipsis: {
+			tooltip: true,
+		},
 		render: row => (
 			<NButton
 				type="primary"
@@ -142,42 +153,41 @@ const columns = ref<DataTableColumns<Api>>([
 		width: '8%',
 		maxWidth: 80,
 		render: row => (
-			<NTag size="small" type={row.active ? 'primary' : 'warning'} bordered={false}>
+			<BtStatus type={row.active ? 'success' : 'warning'}>
 				{row.active ? t('api.statusLabels.active') : t('api.statusLabels.inactive')}
-			</NTag>
+			</BtStatus>
 		),
 	},
 	{
 		title: t('common.columns.actions'),
 		key: 'actions',
 		align: 'right',
-		width: 160,
+		// 3 icon buttons: 3 × 28 + 2 × 4 + 24
+		width: 116,
 		render: row => (
-			<NFlex inline={true}>
-				<NButton
-					type="primary"
-					text={true}
+			<NFlex inline={true} size={4}>
+				<BtIconAction
+					icon="i-lucide-zap"
+					label={t('common.actions.test')}
 					onClick={() => {
 						handleTest(row)
-					}}>
-					{t('common.actions.test')}
-				</NButton>
-				<NButton
-					type="primary"
-					text={true}
+					}}
+				/>
+				<BtIconAction
+					icon="i-lucide-pencil"
+					label={t('common.actions.edit')}
 					onClick={() => {
 						handleEdit(row)
-					}}>
-					{t('common.actions.edit')}
-				</NButton>
-				<NButton
+					}}
+				/>
+				<BtIconAction
+					icon="i-lucide-trash-2"
+					label={t('common.actions.delete')}
 					type="error"
-					text={true}
 					onClick={() => {
 						handleDelete(row)
-					}}>
-					{t('common.actions.delete')}
-				</NButton>
+					}}
+				/>
 			</NFlex>
 		),
 	},
@@ -250,6 +260,8 @@ const handleDelete = (row: Api) => {
 	confirm({
 		title: t('api.confirmDelete.title', { apiName: row.api_name }),
 		content: t('api.confirmDelete.content'),
+		confirmText: t('common.actions.delete'),
+		confirmType: 'error',
 		onConfirm: async () => {
 			await deleteApi({ id: row.id })
 			fetchTable()

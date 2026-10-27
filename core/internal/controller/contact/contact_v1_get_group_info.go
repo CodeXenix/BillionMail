@@ -1,16 +1,16 @@
 package contact
 
 import (
-	"billionmail-core/internal/service/domains"
 	"context"
+	"xenixmail-core/internal/service/domains"
 
 	"github.com/gogf/gf/v2/errors/gerror"
 
-	"billionmail-core/api/contact/v1"
-	"billionmail-core/internal/controller/subscribe_list"
-	"billionmail-core/internal/service/contact"
-	"billionmail-core/internal/service/public"
 	"github.com/gogf/gf/v2/frame/g"
+	"xenixmail-core/api/contact/v1"
+	"xenixmail-core/internal/controller/subscribe_list"
+	"xenixmail-core/internal/service/contact"
+	"xenixmail-core/internal/service/public"
 )
 
 func (c *ControllerV1) GetGroupInfo(ctx context.Context, req *v1.GetGroupInfoReq) (res *v1.GetGroupInfoRes, err error) {
@@ -76,29 +76,27 @@ func (c *ControllerV1) GetGroupInfo(ctx context.Context, req *v1.GetGroupInfoReq
 		group.UnsubscribeRedirectUrl = hostUrl + "/unsubscribe_success.html"
 	}
 
-
-
 	DefaultDomain, err := subscribe_list.GetDefaultDomain()
 	noreplyEmail := "noreply@" + DefaultDomain
 	contactGroup := v1.ContactGroup{
-		Id:               group.Id,
-		Name:             group.Name,
-		Description:      group.Description,
-		CreateTime:       group.CreateTime,
-		UpdateTime:       group.UpdateTime,
-		Token:            group.Token,
-		DoubleOptin:      group.DoubleOptin,
-		WelcomeHtml:      group.WelcomeHtml,
-		WelcomeDrag:      group.WelcomeDrag,
-		ConfirmHtml:      group.ConfirmHtml,
-		ConfirmDrag:      group.ConfirmDrag,
-		SuccessUrl:       group.SuccessUrl,
-		ConfirmUrl:       group.ConfirmUrl,
-		AlreadyUrl:       group.AlreadyUrl,
-		SubscribeForm:    group.SubscribeForm,
-		ConfirmSubject:   group.ConfirmSubject,
-		WelcomeSubject:   group.WelcomeSubject,
-		SendWelcomeEmail: group.SendWelcomeEmail,
+		Id:                     group.Id,
+		Name:                   group.Name,
+		Description:            group.Description,
+		CreateTime:             group.CreateTime,
+		UpdateTime:             group.UpdateTime,
+		Token:                  group.Token,
+		DoubleOptin:            group.DoubleOptin,
+		WelcomeHtml:            group.WelcomeHtml,
+		WelcomeDrag:            group.WelcomeDrag,
+		ConfirmHtml:            group.ConfirmHtml,
+		ConfirmDrag:            group.ConfirmDrag,
+		SuccessUrl:             group.SuccessUrl,
+		ConfirmUrl:             group.ConfirmUrl,
+		AlreadyUrl:             group.AlreadyUrl,
+		SubscribeForm:          group.SubscribeForm,
+		ConfirmSubject:         group.ConfirmSubject,
+		WelcomeSubject:         group.WelcomeSubject,
+		SendWelcomeEmail:       group.SendWelcomeEmail,
 		UnsubscribeMailHtml:    group.UnsubscribeMailHtml,
 		UnsubscribeMailDrag:    group.UnsubscribeMailDrag,
 		UnsubscribeSubject:     group.UnsubscribeSubject,

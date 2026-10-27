@@ -1,13 +1,13 @@
 package email_template
 
 import (
-	"billionmail-core/internal/service/public"
 	"context"
 	"fmt"
 	"regexp"
 	"strings"
+	"xenixmail-core/internal/service/public"
 
-	"billionmail-core/api/email_template/v1"
+	"xenixmail-core/api/email_template/v1"
 )
 
 type ScoreItem struct {

@@ -24,7 +24,7 @@ fi
 
 if [ ! -s ".env" ]; then
     ls -al
-    echo " The .env file does not exist. Please check whether BillionMail is installed? Please operate in the project directory."
+    echo " The .env file does not exist. Please check whether Xenix Mail is installed? Please operate in the project directory."
     exit 1
 fi
 
@@ -40,7 +40,7 @@ while [ ${#} -gt 0 ]; do
         -h|--help)
             echo "Usage:  [options]"
             echo "Options:"
-            echo "  --ours       Use merge strategy option "ours" to resolve conflicts in favor of non-BillionMail code (local changes override remote changes)."
+            echo "  --ours       Use merge strategy option "ours" to resolve conflicts in favor of non-Xenix Mail code (local changes override remote changes)."
             exit 0
             ;;
         --ours)
@@ -71,7 +71,7 @@ GetSysInfo(){
     echo -e ${SYS_VERSION}
     echo -e Bit:${SYS_BIT} Mem:${MEM_TOTAL}M Core:${CPU_INFO}
     echo -e ${SYS_INFO}
-    echo -e "Please screenshot the above error message and post to the https://github.com/aaPanel/BillionMail/issues for help"
+    echo -e "Please screenshot the above error message and post to the https://github.com/CodeXenix/XenixMail/issues for help"
 
 }
 
@@ -131,7 +131,7 @@ Docker_Start() {
                     if [ "$?" != "0" ];then
                         docker_status=$(systemctl status docker.service)
                         echo "$docker_status"
-                        Red_Error "docker start failed" "Please try again later execute the restart docker command: systemctl restart docker.service (no content returns normal)" "Finally, re-execute install BillionMail"
+                        Red_Error "docker start failed" "Please try again later execute the restart docker command: systemctl restart docker.service (no content returns normal)" "Finally, re-execute install Xenix Mail"
                     fi
                 fi
             fi
@@ -186,7 +186,7 @@ Docker_Status_Check(){
     fi
 }
 
-Update_BillionMail(){
+Update_XenixMail(){
 
     if ! Command_Exists git ; then
         Red_Error "ERROR: git Command does not exist"
@@ -210,10 +210,10 @@ Update_BillionMail(){
     echo -e "\033[34m🚀 Committing current changes...\033[0m"
     # Set user.name and user.email if they are not set
     if [[ -z "$(git config user.name)" ]]; then
-        git config user.name BillionMail
+        git config user.name XenixMail
     fi
     if [[ -z "$(git config user.email)" ]]; then
-        git config user.email BillionMail@BillionMail.com
+        git config user.email xenixmail@localhost
     fi
     # Commit current changes
     git add -u
@@ -259,14 +259,14 @@ Update_BillionMail(){
         Red_Error "docker-compose.yml not found."
     fi
 
-    echo -e "Stop BillionMail, please wait..."
+    echo -e "Stop Xenix Mail, please wait..."
     sleep 3
     ${DOCKER_COMPOSE} down
 
     echo -e "Getting the latest image, please wait..."
     ${DOCKER_COMPOSE} pull
 
-    echo -e "Starting BillionMail, please wait..."
+    echo -e "Starting Xenix Mail, please wait..."
     ${DOCKER_COMPOSE} up -d
     if [ $? -eq 0 ]; then
         echo -e "\033[32m✅ Started successfully, update completed.\033[0m"
@@ -294,7 +294,7 @@ Update_config() {
 
 echo "
 +-----------------------------------------------------------------------------
-| You are updating BillionMail. This operation will pull the latest code from 
+| You are updating Xenix Mail. This operation will pull the latest code from 
 | GitHub's main branch and rebuild the containers.
 |
 | If you have made any modifications, please back them up first. 
@@ -303,7 +303,7 @@ echo "
 "
 
 while [ "$go" != 'y' ] && [ "$go" != 'n' ]; do
-	read -p "Are you sure want to update BillionMail. All containers will be stopped? (y/n): " go;
+	read -p "Are you sure want to update Xenix Mail. All containers will be stopped? (y/n): " go;
 done
 
 if [ "$go" == 'n' ];then
@@ -314,6 +314,6 @@ Docker_Compose_Check
     
 Docker_Status_Check
 
-Update_BillionMail
+Update_XenixMail
 
 Update_config

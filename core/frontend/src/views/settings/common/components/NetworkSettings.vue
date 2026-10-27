@@ -3,7 +3,7 @@
 		<template #header>
 			<div class="flex items-center">
 				<n-icon class="mr-2 text-primary" size="20">
-					<i class="i-mdi-network"></i>
+					<i class="i-lucide-network"></i>
 				</n-icon>
 				<span class="text-lg font-medium">{{ $t('settings.common.network.title') }}</span>
 			</div>
